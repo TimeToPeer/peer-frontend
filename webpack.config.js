@@ -45,7 +45,7 @@ module.exports = {
                         options: {
                             name: '[hash].[ext]',
                             outputPath: '/',
-                            publicPath: path.resolve(__dirname, './dist'),
+                            publicPath: './',
                         }
                     }
                 ]
