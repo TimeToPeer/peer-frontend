@@ -9,13 +9,14 @@ import classImg from 'Assets/images/class.png';
 import constants from 'Constants/constants'
 
 type MyProps = {};
-type MyState = { feature: string };
+type MyState = { feature: string, loading: boolean};
 
 class LandingPage extends Component<MyProps, MyState>{
 	constructor(props: object){
 		super(props);
 		this.state = {
 			feature: 'quest',
+			loading: true,
 		}
 
 		this.onFeatureClick = this.onFeatureClick.bind(this);
@@ -38,15 +39,21 @@ class LandingPage extends Component<MyProps, MyState>{
 		this.setState({ feature: event.target.id })
 	}
 
+	loadShit(){
+		this.setState({ loading: false });
+	}
+
 	render(){
-		const { feature } = this.state;
+		const { feature, loading } = this.state;
 		const containerClass = `feature-container ${feature}`;
+		const isLoading = loading ? 'isLoading' : '';
+
 		return(
-			<Fragment>
+			<div className={`container ${loading}`}>
 				<NavBar />
 				<div className='landing-container'>
 					<div className='title'>WELCOME TO PEER</div>
-					<img className='landing-img' src={landingImg} />
+					<img className='landing-img' src={landingImg} onLoad={this.loadShit.bind(this)}/>
 					<div className='description-header'>A META-LEARNING EXPERIENCE</div>
 					<div className='description-text'>PEERS follows an intuitive education process that meets the learning needs, interests, and aspirations of all students.
 						PEER provides students a platform to engage as digital citizens in meaningful, positive ways.
@@ -83,7 +90,7 @@ class LandingPage extends Component<MyProps, MyState>{
 						SIGN ME UP
 					</div>
 				</div>
-			</Fragment>
+			</div>
 		)
 	}
 }
