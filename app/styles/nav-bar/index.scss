@@ -1,0 +1,29 @@
+.menu-container {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    
+    .logo-container {
+        .image {
+            display: inline-block;
+            img {
+                width: 40px;
+                height: 40px;
+                vertical-align: middle;
+            }
+        }
+        .logo-name {
+            display:inline-block;
+            font-size: 20px;
+            padding-left: 5px;
+            height: 40px;
+            vertical-align: middle;
+            margin-top: 15px;
+        }
+    }
+
+    .signin {
+        margin-left: auto;
+    }
+}

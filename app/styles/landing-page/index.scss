@@ -1,0 +1,79 @@
+.landing-container {
+    .title {
+        font-size: 42px;
+        text-align: center;
+        margin: 150px 0 50px 0;
+    }
+    .landing-img {
+        width: 100%;
+    }
+    
+    .description-header {
+        font-size: 26px;
+        text-align: center;
+        margin: 150px 0 20px 0;
+    }
+    
+    .description-text {
+        font-size: 18px;
+        text-align: center;
+        margin: auto;
+        width: 80%;
+    }
+
+    .feature-container {
+        margin-top: 100px;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        padding: 30px 0;
+        .feature-row {
+            margin-bottom: 60px;
+
+            .item  {
+                display: inline-block;
+                width: 20%;
+                text-align: center;
+                img {
+                    cursor: pointer;
+                    background-color: white;
+                    border-radius: 50%;
+                    border-color: black;
+                    border: 1px solid;
+                    width: 80px;
+                    height: 80px;
+                }
+            }
+        }
+        .feature-content {
+            .feature-title {
+                font-size: 18px;
+                margin-bottom: 30px;
+            }
+            .feature-text {
+                font-size: 18px;
+            }
+        }
+    }
+
+    .feature-container.quest {
+        background-color: #EAE8E3;
+    }
+    .feature-container.post {
+        background-color: #F8E8FB;
+    }
+    .feature-container.peers {
+        background-color: #EAE8E3;
+    }
+    .feature-container.skills {
+        background-color: #FEEEDE;
+    }
+    .feature-container.class {
+        background-color: #FFFBE2;
+    }
+
+    .footer {
+        margin: 30px 0;
+        text-align: center;
+    }
+}
