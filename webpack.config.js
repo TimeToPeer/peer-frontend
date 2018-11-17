@@ -35,7 +35,7 @@ module.exports = {
                 }]
             },
             {
-                test: /\.(jpe?g|png|gif|svg)$/i,
+                test: /\.(jpe?g|png|gif|svg|ttf)$/i,
                 exclude: [
                     path.resolve(__dirname, './node_modules'),
                 ],

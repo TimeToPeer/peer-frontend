@@ -1,13 +1,16 @@
+@import './fonts.scss';
+@import './colors.scss';
+
 @import 'nav-bar/index.scss';
 @import 'landing-page/index.scss';
 
 body {
     width: 100%;
     margin: 0 auto;
-    font-family: Arial, Helvetica, sans-serif;
+    color: $mainFontColor;
 }
 
 #root {
-    width: 50%;
+    width: 1024px;
     margin: auto;
 }
