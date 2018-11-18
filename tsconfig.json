@@ -11,10 +11,13 @@
         "removeComments": true,
         "baseUrl": ".",
         "paths": {
-            "Assets": ["app/assets/*"],
+            "Assets": ["public/assets/*"],
             "Styles/*": ["app/styles/*"],
             "Components/*": ["app/components/*"],
-            "Constants/*": ["app/constants/*"]
+            "Constants/*": ["app/constants/*"],
+            "Actions/*": ["app/actions/*"],
+            "Reducers/*": ["app/reducers/*"],
+            "Types/*": ["app/types/*"]
         }
     },
     "include": [

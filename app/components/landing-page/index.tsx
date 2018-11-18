@@ -7,15 +7,17 @@ import peersImg from 'Assets/images/peers.png';
 import skillsImg from 'Assets/images/skills.png';
 import classImg from 'Assets/images/class.png';
 import constants from 'Constants/constants';
+import {connect} from 'react-redux';
+import {testRedux} from 'Actions/index';
 
-interface IMyState { feature: string; loading: boolean; }
+interface IMyState { feature: string; }
+interface IMyProps { dispatch: any; message: string; }
 
-class LandingPage extends Component<{}, IMyState> {
-	constructor(props: object) {
+class LandingPage extends Component<IMyProps, IMyState> {
+	constructor(props: any) {
 		super(props);
 		this.state = {
 			feature: 'quest',
-			loading: true,
 		};
 
 		this.onFeatureClick = this.onFeatureClick.bind(this);
@@ -36,22 +38,19 @@ class LandingPage extends Component<{}, IMyState> {
 
 	onFeatureClick(event: any) {
 		this.setState({ feature: event.target.id });
-	}
-
-	loadImage() {
-		this.setState({ loading: false });
+		this.props.dispatch(testRedux('yo man'));
 	}
 
 	render() {
-		const { feature, loading } = this.state;
+		const { feature } = this.state;
 		const containerClass = `feature-container ${feature}`;
-		const isLoading = loading ? 'isLoading' : '';
+
 		return(
-			<div className={`container ${isLoading}`}>
+			<div className='container'>
 				<NavBar />
 				<div className='landing-container'>
 					<div className='title'>WELCOME TO PEER</div>
-					<img className='landing-img' src={landingImg} onLoad={this.loadImage.bind(this)}/>
+					<img className='landing-img' src={landingImg} />
 					<div className='description-header'>A META-LEARNING EXPERIENCE</div>
 					<div className='description-text'>
 						PEERS follows an intuitive education process that meets the learning needs, interests,
@@ -91,4 +90,10 @@ class LandingPage extends Component<{}, IMyState> {
 	}
 }
 
-export default LandingPage;
+const mapStateToProps = (state: any, ownProps: any) => {
+	return {
+		message: state.testReducer.message,
+	};
+};
+
+export default connect(mapStateToProps)(LandingPage);

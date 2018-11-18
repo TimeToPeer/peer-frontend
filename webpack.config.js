@@ -1,22 +1,19 @@
 var path = require('path');
 var webpack = require('webpack');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+var BUILD_DIR = path.resolve(__dirname, 'dist/');
 
-const htmlWebpackPlugin = new HtmlWebPackPlugin({
-    filename: "./index.html",
-    template: "./index.html"
-});
-console.log(__dirname);
 module.exports = {
     mode: 'development',
     entry: './app/index.tsx',
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[hash].bundle.js'
+        path: BUILD_DIR,
+        filename: 'bundle.js'
     },
-    plugins:[
-        htmlWebpackPlugin
-    ],
+    devServer: {
+        historyApiFallback: true,
+        contentBase: './',
+        hot: true
+    },
     module: {
         rules: [
             {
@@ -41,12 +38,7 @@ module.exports = {
                 ],
                 use: [
                     {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[hash].[ext]',
-                            outputPath: '/',
-                            publicPath: './',
-                        }
+                        loader: 'file-loader'
                     }
                 ]
             }
@@ -55,10 +47,13 @@ module.exports = {
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
         alias: {
-            'Assets': path.resolve(__dirname, 'app/assets'),
+            'Assets': path.resolve(__dirname, 'public/assets'),
             'Styles': path.resolve(__dirname, 'app/styles'),
             'Components': path.resolve(__dirname, 'app/components'),
-            'Constants': path.resolve(__dirname, 'app/constants')
+            'Constants': path.resolve(__dirname, 'app/constants'),
+            'Actions': path.resolve(__dirname, 'app/actions'),
+            'Reducers': path.resolve(__dirname, 'app/reducers'),
+            'Types': path.resolve(__dirname, 'app/types')
         }
     },
     devtool: 'inline-source-map'
