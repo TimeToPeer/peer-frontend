@@ -7,7 +7,7 @@ class NavBar extends Component<{}, IMyState> {
 	constructor(props: object) {
 		super(props);
 		this.state = {
-			loginClicked: false,
+			loginClicked: true,
 		};
 
 		this.openLoginModal = this.openLoginModal.bind(this);

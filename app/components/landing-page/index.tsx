@@ -46,7 +46,6 @@ class LandingPage extends Component<{}, IMyState> {
 		const { feature, loading } = this.state;
 		const containerClass = `feature-container ${feature}`;
 		const isLoading = loading ? 'isLoading' : '';
-
 		return(
 			<div className={`container ${isLoading}`}>
 				<NavBar />
