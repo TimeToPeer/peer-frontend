@@ -53,7 +53,7 @@ class Login extends Component<IMyProps, IMyState> {
 	requestLogin() {
 		const { userName, password } = this.state;
 
-		fetch('http://localhost:8080/post/users/create_account', {
+		fetch('https://api.timetopeer.ca/post/users/create_account', {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
