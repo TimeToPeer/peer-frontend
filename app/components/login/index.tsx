@@ -62,6 +62,8 @@ class Login extends Component<IMyProps, IMyState> {
 			}),
 		}).then((response) => {
 			this.setState({ valid: true, loginSuccess: true });
+		}).catch((err) => {
+			console.log(err);
 		});
 	}
 
