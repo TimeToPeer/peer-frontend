@@ -11,7 +11,7 @@ import {connect} from 'react-redux';
 import {testRedux} from 'Actions/index';
 
 interface IMyState { feature: string; }
-interface IMyProps { dispatch: any; message: string; }
+interface IMyProps { dispatch: any; message: string; history: any; }
 
 class LandingPage extends Component<IMyProps, IMyState> {
 	constructor(props: any) {
@@ -19,7 +19,7 @@ class LandingPage extends Component<IMyProps, IMyState> {
 		this.state = {
 			feature: 'quest',
 		};
-
+		this.props.history.push('/');
 		this.onFeatureClick = this.onFeatureClick.bind(this);
 	}
 
