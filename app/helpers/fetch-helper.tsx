@@ -3,7 +3,7 @@ export const fetchUrl = (path: string) => {
 	if (document.location.hostname === 'localhost') {
 		url = 'http://localhost:8080';
 	} else {
-		url = 'https://api.timetopeer.com';
+		url = 'https://api.timetopeer.ca';
 	}
 	url += path;
 
