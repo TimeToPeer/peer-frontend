@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import NavBar from 'Components/nav-bar';
 
 class Dashboard extends Component<{}, {}> {
 	constructor(props: object) {
@@ -7,7 +8,10 @@ class Dashboard extends Component<{}, {}> {
 	render() {
 		return(
 			<div className='dashboard-container'>
-				hello world
+				<NavBar />
+				<div className='dashboard'>
+					hello world
+				</div>
 			</div>
 		);
 	}

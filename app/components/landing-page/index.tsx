@@ -7,11 +7,9 @@ import peersImg from 'Assets/images/peers.png';
 import skillsImg from 'Assets/images/skills.png';
 import classImg from 'Assets/images/class.png';
 import constants from 'Constants/constants';
-import {connect} from 'react-redux';
-import {testRedux} from 'Actions/index';
 
 interface IMyState { feature: string; }
-interface IMyProps { dispatch: any; message: string; history: any; }
+interface IMyProps { dispatch: any; loggedIn: boolean; history: any; }
 
 class LandingPage extends Component<IMyProps, IMyState> {
 	constructor(props: any) {
@@ -19,7 +17,6 @@ class LandingPage extends Component<IMyProps, IMyState> {
 		this.state = {
 			feature: 'quest',
 		};
-		this.props.history.push('/');
 		this.onFeatureClick = this.onFeatureClick.bind(this);
 	}
 
@@ -38,7 +35,6 @@ class LandingPage extends Component<IMyProps, IMyState> {
 
 	onFeatureClick(event: any) {
 		this.setState({ feature: event.target.id });
-		this.props.dispatch(testRedux('yo man'));
 	}
 
 	render() {
@@ -90,10 +86,4 @@ class LandingPage extends Component<IMyProps, IMyState> {
 	}
 }
 
-const mapStateToProps = (state: any, ownProps: any) => {
-	return {
-		message: state.testReducer.message,
-	};
-};
-
-export default connect(mapStateToProps)(LandingPage);
+export default LandingPage;

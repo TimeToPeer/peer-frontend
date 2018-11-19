@@ -53,7 +53,8 @@ module.exports = {
             'Constants': path.resolve(__dirname, 'app/constants'),
             'Actions': path.resolve(__dirname, 'app/actions'),
             'Reducers': path.resolve(__dirname, 'app/reducers'),
-            'Types': path.resolve(__dirname, 'app/types')
+            'Types': path.resolve(__dirname, 'app/types'),
+            'Helpers': path.resolve(__dirname, 'app/helpers')
         }
     },
     devtool: 'inline-source-map'

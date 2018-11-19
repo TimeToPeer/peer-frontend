@@ -17,7 +17,8 @@
             "Constants/*": ["app/constants/*"],
             "Actions/*": ["app/actions/*"],
             "Reducers/*": ["app/reducers/*"],
-            "Types/*": ["app/types/*"]
+            "Types/*": ["app/types/*"],
+            "Helpers/*": ["app/helpers/*"]
         }
     },
     "include": [

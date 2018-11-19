@@ -1,19 +1,20 @@
 import React, {Component, Fragment} from 'react';
 import Modal from 'react-modal';
-import { Redirect } from 'react-router';
+import {Redirect} from 'react-router';
+import {authUser} from 'Actions/index';
+import {connect} from 'react-redux';
 
-interface IMyState { modalIsOpen: boolean; userName: string; password: string; valid: boolean; loginSuccess: boolean; }
-interface IMyProps { loginClicked: boolean; openLoginModal(openModal: boolean): void; }
+interface IMyState { modalIsOpen: boolean; userName: string; password: string; valid: boolean; }
+interface IMyProps { dispatch: any; loggedIn: boolean; loginClicked: boolean; openLoginModal(openModal: boolean): void; }
 
 class Login extends Component<IMyProps, IMyState> {
 	constructor(props: IMyProps) {
 		super(props);
 		this.state = {
 			modalIsOpen: false,
-			userName: 'asdfasdf',
-			password: 'asdfasdfasd',
+			userName: '',
+			password: '',
 			valid: true,
-			loginSuccess: false,
 		};
 
 		this.openModal = this.openModal.bind(this);
@@ -46,6 +47,7 @@ class Login extends Component<IMyProps, IMyState> {
 		if (userName.length < 1 || password.length < 6) {
 			this.setState({ valid: false });
 		} else {
+			this.setState({ valid: true });
 			this.requestLogin();
 		}
 	}
@@ -53,33 +55,20 @@ class Login extends Component<IMyProps, IMyState> {
 	requestLogin() {
 		const { userName, password } = this.state;
 
-		fetch('https://api.timetopeer.ca/post/users/create_account', {
-			method: 'POST',
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({
-				userName,
-				password,
-			}),
-		}).then((response) => {
-			this.setState({ valid: true, loginSuccess: true });
-		}).catch((err) => {
-			console.log(err);
-		});
+		this.props.dispatch(authUser({userName, password}));
 	}
 
 	render() {
-		const { userName, password, valid, loginSuccess } = this.state;
-
-		// if (loginSuccess) {
-		// 	return (
-		// 		<Redirect to='/dashboard' />
-		// 	);
-		// }
-
+		const { userName, password, valid } = this.state;
+		if (this.props.loggedIn) {
+			return (
+				<Redirect to='/dashboard' />
+			);
+		}
 		return (
 			<Modal
 				className='login-modal'
-				isOpen={true}
+				isOpen={this.props.loginClicked}
 				onRequestClose={this.closeModal}
 				ariaHideApp={false}
 				contentLabel='Example Modal'
@@ -101,4 +90,4 @@ class Login extends Component<IMyProps, IMyState> {
 	}
 }
 
-export default Login;
+export default connect()(Login);
