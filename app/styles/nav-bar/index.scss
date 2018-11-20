@@ -1,34 +1,45 @@
 .menu-container {
     height: 60px;
+    overflow: hidden;
+    background-color: #333;
     position: fixed;
-    width: 100%;
-    box-sizing: border-box;
     top: 0;
     width: 1024px;
     background-color: white;
 
-    .menu-container-flex {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        margin-top: 18px;
-        .logo-name {
-            font-family: JosefinRegular, Arial;
-            font-size: 14pt;
-            cursor: pointer;
-            &:hover {
-                color: black;
-            }
+    .logo-name {
+        height: 60px;
+        line-height: 60px;
+        float: left;
+        display: block;
+        font-family: JosefinRegular, Arial;
+        font-size: 14pt;
+        cursor: pointer;
+        &:hover {
+            color: black;
         }
-    
-        .signin, .signout {
-            font-family: JosefinRegular, Arial;
-            font-size: 14pt;
-            cursor: pointer;
-            &:hover {
-                color: black;
-            }
-        }
+        padding-left: 10px;
     }
+
+    .signin, .signout {
+        float: right;
+        height: 60px;
+        line-height: 60px;
+        font-family: JosefinRegular, Arial;
+        font-size: 14pt;
+        cursor: pointer;
+        &:hover {
+            color: black;
+        }
+        padding-right: 10px;
+    }
+
+    .profile-icon {
+        float:right;
+        height: 60px;
+        line-height: 60px;
+        cursor: pointer;
+    }
+    
     
 }

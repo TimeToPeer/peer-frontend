@@ -1,0 +1,32 @@
+.account-input-field {
+    position: relative;
+    display: inline-block;
+    input {
+        height: 53px;
+        width: 326px;
+        padding: 12px 60px 12px 20px;
+        display: block;
+        border: 1px solid #ccc;;
+        border-radius: 6px;
+        box-sizing: border-box;
+        margin: auto;
+        outline: none;
+        border-width: 1px;
+        border-style:solid;
+        font-family: GothicRegular, Arial;
+        font-size: 12pt;
+        &:focus {
+            border: 1px solid #5E9ED6;
+        }
+        &::placeholder {
+            color: #ccc;
+        }
+    }
+    img {
+        position: absolute;
+        height: 30px;
+        width: 32px;
+        top: 10px;
+        right: 15px;
+    }
+}
