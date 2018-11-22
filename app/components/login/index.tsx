@@ -1,11 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import Modal from 'react-modal';
-import {Redirect} from 'react-router';
 import {authUser} from 'Actions/index';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 interface IMyState { modalIsOpen: boolean; userName: string; password: string; valid: boolean; }
-interface IMyProps { dispatch: any; loggedIn: boolean; loginClicked: boolean; openLoginModal(openModal: boolean): void; }
+interface IMyProps { dispatch: any; loginClicked: boolean; openLoginModal(openModal: boolean): void; }
 
 class Login extends Component<IMyProps, IMyState> {
 	constructor(props: IMyProps) {
@@ -60,11 +59,6 @@ class Login extends Component<IMyProps, IMyState> {
 
 	render() {
 		const { userName, password, valid } = this.state;
-		if (this.props.loggedIn) {
-			return (
-				<Redirect to='/dashboard' />
-			);
-		}
 		return (
 			<Modal
 				className='login-modal'

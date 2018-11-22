@@ -4,9 +4,10 @@ import {connect} from 'react-redux';
 import {saveUser} from 'Actions/index';
 import closeIcon from 'Assets/images/close.svg';
 import AccountInput from 'Components/common/inputs/account-input';
+import ColorPicker from 'Common/color-selector';
 
-interface IMyState { modalIsOpen: boolean; valid: boolean; name: string; class_code: string; school_code: string; profile: any; personality: string; saved: boolean; }
-interface IMyProps { dispatch: any; accountClicked: boolean; profile: any; openAccount(openAccount: boolean): void; }
+interface IMyState { modalIsOpen: boolean; valid: boolean; name: string; class_code: string; school_code: string; profile: any; personality: string; saved: boolean; icon: number; }
+interface IMyProps { dispatch: any; accountClicked: boolean; isProfileComplete: boolean; profile: any; openAccount(openAccount: boolean): void; }
 
 class Account extends Component<IMyProps, IMyState> {
 	static getDerivedStateFromProps(props: any, state: any) {
@@ -17,6 +18,7 @@ class Account extends Component<IMyProps, IMyState> {
 				class_code: props.profile.class_code || '',
 				school_code: props.profile.school_code || '',
 				personality: props.profile.personality || '',
+				icon: Number(props.profile.icon),
 			};
 		} else if (props.saved !== state.saved) {
 			return {
@@ -38,6 +40,7 @@ class Account extends Component<IMyProps, IMyState> {
 			school_code: '',
 			personality: '',
 			saved: false,
+			icon: 0,
 		};
 
 		this.openModal = this.openModal.bind(this);
@@ -47,6 +50,7 @@ class Account extends Component<IMyProps, IMyState> {
 		this.onChangeClassCode = this.onChangeClassCode.bind(this);
 		this.onChangeSchool = this.onChangeSchool.bind(this);
 		this.onChangePersonality = this.onChangePersonality.bind(this);
+		this.onChangeIcon = this.onChangeIcon.bind(this);
 	}
 	componentDidUpdate() {
 		if (this.props.profile.saved) {
@@ -63,8 +67,9 @@ class Account extends Component<IMyProps, IMyState> {
 
 	submitChange() {
 		// save changes
-		const { name, class_code, school_code, personality } = this.state;
-		this.props.dispatch(saveUser({ name, class_code, school_code, personality }));
+		const { name, class_code, school_code, personality, icon } = this.state;
+		this.props.dispatch(saveUser({ name, class_code, school_code, personality, icon }));
+		this.closeModal();
 	}
 
 	onChangeName(val: string) {
@@ -83,17 +88,24 @@ class Account extends Component<IMyProps, IMyState> {
 		this.setState({ personality: val });
 	}
 
+	onChangeIcon(icon: number) {
+		this.setState({icon});
+	}
+
 	render() {
 		const { pending, name, class_code, school_code, personality } = this.props.profile;
 		if (pending) {
 			return (
-				<div>loading</div>
+				<div></div>
 			);
 		}
+
+		const isOpen = !this.props.isProfileComplete ? true : this.props.accountClicked;
+
 		return (
 			<Modal
 				className='account-modal'
-				isOpen={this.props.accountClicked}
+				isOpen={isOpen}
 				onRequestClose={this.closeModal}
 				ariaHideApp={false}
 				contentLabel='Account Modal'
@@ -104,12 +116,12 @@ class Account extends Component<IMyProps, IMyState> {
 					</div>
 					<div className='account-heading'>ABOUT ME</div>
 					<div className='row'>
-						<AccountInput value={name} onChange={this.onChangeName} placeholder='Student Name' />
-						<AccountInput value='' onChange={this.onChangeName} placeholder='Class Code 1001'/>
+						<AccountInput value={name} onChange={this.onChangeName} placeholder='STUDENT NAME' />
+						<ColorPicker userColor={this.state.icon} onChangeIcon={this.onChangeIcon} />
 					</div>
 					<div className='row'>
-						<AccountInput value={class_code} onChange={this.onChangeClassCode} placeholder='Class Code 1001'/>
-						<AccountInput value={school_code} onChange={this.onChangeSchool} placeholder='Student School'/>
+						<AccountInput value={class_code} onChange={this.onChangeClassCode} placeholder='CLASS CODE'/>
+						<AccountInput value={school_code} onChange={this.onChangeSchool} placeholder='STUDENT SCHOOL'/>
 					</div>
 					<div className='wide-row'>
 						<AccountInput value={personality} onChange={this.onChangePersonality} placeholder='ADD PERSONALITY (School President, Book Worm, Soccer Star, or Class Comedian?)'/>

@@ -1,26 +1,24 @@
-import { PROFILE_REQUEST, PROFILE_PENDING, PROFILE_SAVED } from 'Types/index';
+import { PROFILE_REQUEST, PROFILE_SAVED } from 'Types/index';
 
-export default (state= {}, action: any) => {
+export default (state= {pending: true}, action: any) => {
 	switch (action.type) {
-		case PROFILE_REQUEST:
-			const { userInfo } = action.payload;
+		case PROFILE_REQUEST: {
+			const userInfo = action.payload[0];
 			return {
 				...state,
 				...userInfo,
 				saved: false,
 				pending: false,
 			};
-		case PROFILE_PENDING:
+		}
+		case PROFILE_SAVED: {
+			const { dispatchData: userInfo } = action.payload;
 			return {
 				...state,
-				saved: false,
-				pending: action.payload.pending,
-			};
-		case PROFILE_SAVED:
-			return {
-				...state,
+				...userInfo,
 				saved: action.payload.success,
 			};
+		}
 		default:
 			return state;
 	}

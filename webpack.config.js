@@ -38,7 +38,7 @@ module.exports = {
                 ],
                 use: [
                     {
-                        loader: 'file-loader'
+                        loader: 'url-loader',
                     }
                 ]
             }
@@ -54,8 +54,9 @@ module.exports = {
             'Actions': path.resolve(__dirname, 'app/actions'),
             'Reducers': path.resolve(__dirname, 'app/reducers'),
             'Types': path.resolve(__dirname, 'app/types'),
-            'Helpers': path.resolve(__dirname, 'app/helpers')
+            'Helpers': path.resolve(__dirname, 'app/helpers'),
+            'Common': path.resolve(__dirname, 'app/components/common')
         }
     },
-    devtool: 'inline-source-map'
+    devtool: 'source-map'
 }

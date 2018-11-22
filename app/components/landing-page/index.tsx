@@ -7,6 +7,8 @@ import peersImg from 'Assets/images/peers.png';
 import skillsImg from 'Assets/images/skills.png';
 import classImg from 'Assets/images/class.png';
 import constants from 'Constants/constants';
+import {Redirect} from 'react-router';
+import {connect} from 'react-redux';
 
 interface IMyState { feature: string; }
 interface IMyProps { dispatch: any; loggedIn: boolean; history: any; }
@@ -40,6 +42,12 @@ class LandingPage extends Component<IMyProps, IMyState> {
 	render() {
 		const { feature } = this.state;
 		const containerClass = `feature-container ${feature}`;
+
+		if (this.props.loggedIn) {
+			return (
+				<Redirect to='/dashboard' />
+			);
+		}
 
 		return(
 			<div className='container'>
@@ -86,4 +94,10 @@ class LandingPage extends Component<IMyProps, IMyState> {
 	}
 }
 
-export default LandingPage;
+const mapStateToProps = (state: any, ownProps: any) => {
+	return {
+		loggedIn: state.authReducer.loggedIn,
+	};
+};
+
+export default connect(mapStateToProps)(LandingPage);

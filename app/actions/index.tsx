@@ -1,113 +1,86 @@
-import { REDUX_TEST, LOGIN_REQUEST, LOGOUT_REQUEST, PROFILE_REQUEST, PROFILE_PENDING, PROFILE_SAVED } from 'Types/index';
-import { fetchUrl } from 'Helpers/fetch-helper';
+import { REDUX_TEST, LOGIN_REQUEST, LOGOUT_REQUEST, PROFILE_REQUEST, PROFILE_SAVED,
+	QUEST_ENTRY, QUEST_REQUEST, REQUEST_ERROR, QUEST_SUBMIT, QUEST_INVENTORY, QUEST_PEER_ENTRIES } from 'Types/index';
+import { mapTypeToUrl } from 'Helpers/fetch-helper';
 
-export const testRedux = (message: string) => {
+const sendDataToApi = (type: string, data: any, dispatchData?: any ) => {
 	return (dispatch: any) => {
-		dispatch({
-			type: REDUX_TEST,
-			payload: {
-				message,
+		const url = mapTypeToUrl(type);
+		const token = localStorage.getItem('key');
+		return fetch(
+			url,
+			{
+				method: 'POST',
+				headers: {'Content-Type': 'application/json', 'Authorization': token},
+				body: JSON.stringify({
+					...data,
+				}),
 			},
+		).then((response) => {
+			if (response.status !== 200) {
+				throw response;
+			}
+			return response.json();
+		}).then((res) => {
+			if (dispatchData) {
+				dispatch({
+					type,
+					payload: {
+						...res,
+						dispatchData,
+					},
+				});
+			} else {
+				dispatch({
+					type,
+					payload: {
+						...res,
+					},
+				});
+			}
+		}).catch((err) => {
+			dispatch({
+				type: REQUEST_ERROR,
+				payload: {
+					success: false,
+					name: err.statusText,
+				},
+			});
 		});
 	};
 };
 
 export const logoutUser = () => {
-	return (dispatch: any) => {
-		dispatch({
-			type: LOGOUT_REQUEST,
-		});
-	};
+	return sendDataToApi(LOGOUT_REQUEST, {});
 };
 
 export const authUser = (object: any) => {
-	return (dispatch: any) => {
-		const { userName, password } = object;
-		const url = fetchUrl('/post/users/create_account');
-		let loggedIn = false;
-
-		return fetch(url, {
-			method: 'POST',
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({
-				userName,
-				password,
-			}),
-		}).then((response) =>
-			response.json(),
-		).then((responseJson) => {
-			if (responseJson.success) {
-				localStorage.setItem('key', responseJson.token);
-				loggedIn = true;
-			}
-
-			dispatch({
-				type: LOGIN_REQUEST,
-				payload: {
-					loggedIn,
-				},
-			});
-		}).catch((err) => {
-			dispatch({
-				type: LOGIN_REQUEST,
-				payload: {
-					loggedIn: false,
-				},
-			});
-		});
-	};
+	return sendDataToApi(LOGIN_REQUEST, object);
 };
 
 export const getUser = () => {
-	return (dispatch: any) => {
-		const url = fetchUrl('/get/users/test.user90');
-		const token = localStorage.getItem('key');
-		dispatch({
-			type: PROFILE_PENDING,
-			payload: {
-				pending: true,
-			},
-		});
-
-		return fetch(url, {headers: {'Content-Type': 'application/json', 'Authorization': token}})
-			.then((response) => response.json())
-			.then((data) => {
-				dispatch({
-					type: PROFILE_REQUEST,
-					payload: {
-						userInfo: data[0],
-					},
-				});
-			},
-		);
-	};
+	return sendDataToApi(PROFILE_REQUEST, {});
 };
 
 export const saveUser = (userInfo: any) => {
-	return (dispatch: any) => {
-		const url = fetchUrl('/post/users/update_account');
-		const token = localStorage.getItem('key');
-		return fetch(url, {
-			method: 'POST',
-			headers: {'Content-Type': 'application/json', 'Authorization': token},
-			body: JSON.stringify({
-				userInfo,
-			}),
-		}).then((response) => response.json())
-		.then((responseJson) => {
-			dispatch({
-				type: PROFILE_SAVED,
-				payload: {
-					success: true,
-				},
-			});
-		}).catch((err) => {
-			dispatch({
-				type: PROFILE_SAVED,
-				payload: {
-					success: false,
-				},
-			});
-		});
-	};
+	return sendDataToApi(PROFILE_SAVED, userInfo, userInfo);
+};
+
+export const getQuests = (data: any) => {
+	return sendDataToApi(QUEST_INVENTORY, data);
+};
+
+export const getQuestById = (data: any) => {
+	return sendDataToApi(QUEST_REQUEST, data);
+};
+
+export const submitQuest = (data: any) => {
+	return sendDataToApi(QUEST_SUBMIT, data);
+};
+
+export const getQuestEntry = (data: any) => {
+	return sendDataToApi(QUEST_ENTRY, data);
+};
+
+export const getPeerQuests = (data: any) => {
+	return sendDataToApi(QUEST_PEER_ENTRIES, data);
 };

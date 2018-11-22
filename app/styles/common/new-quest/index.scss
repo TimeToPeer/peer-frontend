@@ -1,0 +1,30 @@
+.new-quest-container {
+    width: 163px;
+    display: inline-block;
+    margin-top: 37px;
+    margin-right: 30px;
+    .new-quest {
+        display: inline-block;
+        height: 163px;
+        width: 163px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 12pt;
+        font-family: JosefinRegular, Arial;
+        background-color: $hershey;
+        div {
+            width: 97px;
+            word-break: break-word;
+            text-align: center;
+            margin: auto;
+            margin-top: 67px;
+        }
+    }
+    .quest-title {
+        text-align: center;
+        font-family: JosefinRegular, Arial;
+        font-size: 10pt;
+        margin-top: 13px;
+    }
+
+}

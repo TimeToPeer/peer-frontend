@@ -1,0 +1,74 @@
+.popup-container {
+    .popup-trigger-btn {
+        position: relative;
+        background-color: white;
+        height: 53px;
+        width: 326px;
+        padding: 12px 60px 12px 20px;
+        display: block;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+        margin: auto;
+        outline: none;
+        font-family: GothicRegular, Arial;
+        font-size: 12pt;
+        cursor: pointer;
+        text-align: left;
+        line-height: 28px;
+    }
+
+    .color-selection {
+        position: absolute;
+        background-color: pink;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        right: 15px;
+        top:11px;
+    }
+
+    .color-choice-row {
+        margin: auto;
+        float: left;
+    }
+
+    .color-choice {
+        margin: 0 5px 0 5px;
+        display: inline-block;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .caramel {
+        background-color: $caramel;
+    }
+    .salt {
+        background-color: $salt;
+    }
+    .grape {
+        background-color: $grape;
+    }
+    .bubble {
+        background-color: $bubble;
+    }
+    .hershey {
+        background-color: $hershey;
+    }
+    .sour {
+        background-color: $sour;
+    }
+    .peach {
+        background-color: $peach;
+    }
+    .lemon {
+        background-color: $lemon;
+    }
+
+    .popup-content {
+        left: 564px !important;
+        width: 240px !important;
+    }
+}

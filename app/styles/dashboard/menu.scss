@@ -1,0 +1,25 @@
+.info-container{
+    margin-top: 115px;
+    height: 30px;
+    .quests-info, .peers-info, .skills-info{
+        font-family: JosefinBold, Arial;
+        font-size: 12pt;
+        text-align: center;
+        display: inline-block;
+        width: 160px;
+        width:33%;
+        span { cursor: pointer; user-select: none; }
+        img {
+            width: 119px;
+            height: 24px;
+            display: block;
+            margin: auto;
+            display:none;
+        }
+        .selected {
+            img {
+                display: block !important;
+            }
+        }
+    }
+}

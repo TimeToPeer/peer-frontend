@@ -6,8 +6,13 @@ export default (state= {loggedIn: false}, action: any) => {
 	}
 	switch (action.type) {
 		case LOGIN_REQUEST:
-			return {...state, loggedIn: action.payload.loggedIn };
+			if (action.payload.token) {
+				localStorage.setItem('key', action.payload.token);
+			}
+			return {...state, loggedIn: true };
 		case LOGOUT_REQUEST:
+			localStorage.removeItem('key');
+			window.location.href = '/';
 			return {...state, loggedIn: false};
 		default:
 			return state;

@@ -6,8 +6,13 @@
 @import 'login/index.scss';
 @import 'dashboard/index.scss';
 @import 'nav-bar/account.scss';
+@import 'quests/index.scss';
 
+@import 'common/new-quest/index.scss';
 @import 'common/input/account-input.scss';
+@import 'common/input/rich-input.scss';
+@import 'common/avatar/index.scss';
+@import 'common/color-selector/index.scss';
 
 body {
     width: 100%;

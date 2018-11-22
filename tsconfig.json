@@ -10,6 +10,7 @@
         "allowSyntheticDefaultImports": true,
         "removeComments": true,
         "baseUrl": ".",
+        "sourceMap": true,
         "paths": {
             "Assets": ["public/assets/*"],
             "Styles/*": ["app/styles/*"],
@@ -18,7 +19,8 @@
             "Actions/*": ["app/actions/*"],
             "Reducers/*": ["app/reducers/*"],
             "Types/*": ["app/types/*"],
-            "Helpers/*": ["app/helpers/*"]
+            "Helpers/*": ["app/helpers/*"],
+            "Common/*": ["app/components/common/*"]
         }
     },
     "include": [

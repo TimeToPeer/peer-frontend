@@ -7,7 +7,7 @@ import landingImg from 'Assets/images/profile.svg';
 import Account from 'Components/nav-bar/account';
 
 interface IMyState { loginClicked: boolean; signOut: boolean; accountClicked: boolean; }
-interface IMyProps { loggedIn: boolean; history: any; dispatch: any; }
+interface IMyProps { loggedIn: boolean; history: any; dispatch: any; isProfileComplete: boolean; }
 
 class NavBar extends Component<IMyProps, IMyState> {
 	constructor(props: any) {
@@ -32,7 +32,6 @@ class NavBar extends Component<IMyProps, IMyState> {
 	}
 
 	signOut() {
-		localStorage.removeItem('key');
 		this.props.dispatch(logoutUser());
 		this.setState({ signOut: true });
 	}
@@ -48,19 +47,13 @@ class NavBar extends Component<IMyProps, IMyState> {
 	render() {
 		const { loginClicked, accountClicked, signOut } = this.state;
 		const { loggedIn } = this.props;
-		if (signOut) {
-			return (
-				<Redirect to='/' />
-			);
-		}
-
 		return(
 			<div className='menu-container'>
-				<div className='logo-name'>PEER</div>
+				<div className='logo-name' onClick={() => { window.location.href = '/'; } }>PEER</div>
 				{loggedIn ? <img className='profile-icon' src={landingImg} onClick={() => this.openAccount(true)} /> : null }
 				<div className='signin' onClick={() => this.openLoginModal(true)}>{loggedIn ? 'SIGN OUT' : 'SIGN IN' }</div>
-				<Login loginClicked={loginClicked} openLoginModal={this.openLoginModal} loggedIn={loggedIn} />
-				<Account openAccount={this.openAccount} accountClicked={accountClicked} />
+				<Login loginClicked={loginClicked} openLoginModal={this.openLoginModal} />
+				<Account openAccount={this.openAccount} accountClicked={accountClicked} isProfileComplete={this.props.isProfileComplete} />
 			</div>
 		);
 	}
