@@ -19,4 +19,11 @@ export const QUEST_PEER_ENTRIES: string = 'QUEST_PEER_ENTRIES';
 // error
 export const REQUEST_ERROR: string = 'REQUEST_ERROR';
 
+// loading
+export const SHOW_LOADING: string = 'SHOW_LOADING';
+
+// comments
+export const GET_COMMENTS: string = 'GET_COMMENTS';
+export const POST_COMMENT: string = 'POST_COMMENT';
+
 export default 'default';

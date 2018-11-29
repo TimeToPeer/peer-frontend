@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import NavBar from 'Components/nav-bar';
 import landingImg from 'Assets/images/landing.png';
 import questImg from 'Assets/images/quest.png';
 import postImg from 'Assets/images/post.png';
@@ -35,6 +34,14 @@ class LandingPage extends Component<IMyProps, IMyState> {
 		);
 	}
 
+	componentDidMount() {
+		document.body.style.backgroundColor = 'white';
+	}
+
+	componentWillUnmount() {
+		document.body.style.backgroundColor = null;
+	}
+
 	onFeatureClick(event: any) {
 		this.setState({ feature: event.target.id });
 	}
@@ -42,7 +49,6 @@ class LandingPage extends Component<IMyProps, IMyState> {
 	render() {
 		const { feature } = this.state;
 		const containerClass = `feature-container ${feature}`;
-
 		if (this.props.loggedIn) {
 			return (
 				<Redirect to='/dashboard' />
@@ -51,7 +57,6 @@ class LandingPage extends Component<IMyProps, IMyState> {
 
 		return(
 			<div className='container'>
-				<NavBar />
 				<div className='landing-container'>
 					<div className='title'>WELCOME TO PEER</div>
 					<img className='landing-img' src={landingImg} />

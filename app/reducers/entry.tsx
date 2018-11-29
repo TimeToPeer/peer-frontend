@@ -10,7 +10,7 @@ export default (state= {pending: true}, action: any) => {
 			};
 		}
 		case QUEST_PEER_ENTRIES: {
-			const entries = action.payload;
+			const entries = action.payload.entries;
 			return {
 				entries,
 				pending: false,

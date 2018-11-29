@@ -1,0 +1,85 @@
+.response-container {
+    position: relative;
+    overflow: hidden;
+    .canvas-textarea {
+        top: 400px;
+        left: 579px;
+        position: absolute;
+        margin: 0px;
+        width: 500px;
+        height: 200px;
+        background-color: transparent;
+        font-size: 4vw;
+        border: none;
+        resize:both;
+        overflow: auto;
+        
+        &:focus {
+            border: 2px solid black;
+        }
+        
+        .text-editor {
+            height: 100%;
+            &:focus {
+                border: 2px solid black;
+            }
+        }
+    }
+
+    .assessment {
+        position: absolute;
+        top: 30px;
+        background-color: white;
+        height: 796px;
+        right: -270px;
+        width: 260px;
+        transition: right 0.1s cubic-bezier(0,0,1,1);
+        .wheel-container {
+            position: relative;
+            text-align: center;
+            .text-container {
+                left: 61px !important;
+            }
+        }
+
+        .heading-text {
+            margin-top: 15px;
+            font-family: JosefinBold, Arial;
+            font-size: 18pt;
+            text-align: center;
+            height: 100px;
+        }
+
+        .close-assessment {
+            position: absolute;
+            bottom: 0;
+            margin-left: 2px;
+            margin-bottom: 2px;
+            cursor: pointer;
+            border-radius: 50%;
+            padding: 5px;
+            &:hover {
+                background-color: $salt;
+            }
+        }
+    }
+    .open-assessment {
+        position: absolute;
+        right: 0;
+        cursor:pointer;
+        top: 350px;
+        margin-right: 15px;
+        border-radius: 50%;
+        &:hover {
+            background-color: $salt;
+        }
+    }
+
+    .error-msg {
+        color: red;
+        font-family: JosefinBold, Arial;
+        font-size: 14pt;
+        margin-top: 10px;
+        height: 22px;
+    }
+}

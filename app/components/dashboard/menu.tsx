@@ -3,7 +3,9 @@ import Hover1 from 'Assets/images/hover1.png';
 import Hover2 from 'Assets/images/hover2.png';
 import Hover3 from 'Assets/images/hover3.png';
 
-class Menu extends Component<{}, {}> {
+interface IProps { handleMenuClick?(id: string): void; }
+
+class Menu extends Component<IProps, {}> {
 	constructor(props: any) {
 		super(props);
 
@@ -26,6 +28,9 @@ class Menu extends Component<{}, {}> {
 		document.getElementById('peers-spanmenuitem').classList.remove('selected');
 		document.getElementById('skills-spanmenuitem').classList.remove('selected');
 		thisEl.classList.add('selected');
+		if (this.props.handleMenuClick) {
+			this.props.handleMenuClick(thisEl.id);
+		}
 	}
 
 	render() {
@@ -61,7 +66,7 @@ class Menu extends Component<{}, {}> {
 						onClick={this.handleOnClick}
 						id='skills-spanmenuitem'
 					>
-						PEERS
+						SKILLS
 						<img src={Hover3} />
 					</span>
 				</div>

@@ -1,70 +1,75 @@
-import React, { Component } from 'react';
-import { EditorState, convertToRaw } from 'draft-js';
-import Editor from 'draft-js-plugins-editor';
-import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
-import createLinkifyPlugin from 'draft-js-linkify-plugin';
-import { convertFromRaw } from 'draft-js';
+import React, { Component, createRef } from 'react';
+import {connect} from 'react-redux';
+import AvatarIcon from 'Common/avatar/avatar-icon';
+import {formatDate} from 'Helpers/main-helper';
+import CommentSvg from 'Assets/images/comment.svg';
+import EmojiInput from 'Common/inputs/emoji-input';
+import Comments from 'Common/comment';
+import {postQuestComment} from 'Actions/index';
 
-const toolbarPlugin = createToolbarPlugin();
-const linkifyPlugin = createLinkifyPlugin({
-	component: (props: any) => (
-	  // eslint-disable-next-line no-alert, jsx-a11y/anchor-has-content
-		<a {...props} onClick={() => {
-			if (props.href.indexOf('mailto:') === 0) {
-				window.location.href = props.href;
-			} else {
-				window.open(props.href);
-			}
-		}} />
-	),
-});
-const { Toolbar } = toolbarPlugin;
-const plugins = [toolbarPlugin, linkifyPlugin];
-
-interface IState { editorState: any; readerState: any; }
-interface IProps { post: any; }
+interface IProps { post: any; image: string; name: string; icon: string; created_on: string; entry: string; comments: any; id: number;
+	dispatch: any; }
+interface IState { comment: string; clearEditor: boolean; }
 
 class FeedRow extends Component<IProps, IState> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			editorState: EditorState.createEmpty(),
-			readerState: EditorState.createEmpty(),
+			comment: '',
+			clearEditor: false,
 		};
-		this.onChange = this.onChange.bind(this);
+		this.onChangeCommentInput = this.onChangeCommentInput.bind(this);
+		this.submitComment = this.submitComment.bind(this);
 	}
 
-	onChange(editorState: any) {
-		this.setState({
-		  editorState,
-		});
+	onChangeCommentInput(val: string) {
+		// do something
+		this.setState({ comment: val, clearEditor: false });
 	}
 
-	renderPosts(post: any) {
-		if (!post) { return null; }
-
-		const parsedPost = convertFromRaw(JSON.parse(post));
-		const storedState = EditorState.createWithContent(parsedPost, null);
-		return (
-			<div className='results'>
-				<Editor
-					editorState={storedState}
-					plugins={plugins}
-					onChange={this.onChange}
-					readOnly={true}
-				/>
-			</div>
-		);
+	submitComment() {
+		if (this.state.comment.trim().length > 0) {
+			// dispatch post comment
+			const { comment } = this.state;
+			const { id } = this.props;
+			this.props.dispatch(postQuestComment({ questEntryId: id, comment }));
+			this.setState({ clearEditor: true });
+		}
 	}
 
 	render() {
-		const { post } = this.props;
+		const { name, icon, created_on, image, entry, comments } = this.props;
+		const profile = {
+			name,
+			icon,
+		};
+		const dateString = formatDate(created_on);
 		return (
-			<div>
-				{this.renderPosts(post)}
+			<div className='entry'>
+				<div className='entry-info-container'>
+					<AvatarIcon profile={profile} />
+					<div className='info'>
+						<div className='heading'>{name.toUpperCase()}</div>
+						<div className='date'>{dateString}</div>
+						<div className='school'>School Name</div>
+					</div>
+				</div>
+				<div className='entry-img-container'>
+					<img className='entry-img' src={image} />
+				</div>
+				<div className='comment-count'>
+					<img src={CommentSvg} />
+					<span>2 Comments</span>
+				</div>
+				<div className='entry-text'>
+					{entry}
+				</div>
+				<Comments comments={comments}/>
+				<EmojiInput placeholder={'Add a comment..'} onChange={this.onChangeCommentInput} clearEditor={this.state.clearEditor} />
+				<button className='comment-submit' onClick={this.submitComment} >Submit</button>
 			</div>
 		);
 	}
 }
 
-export default FeedRow;
+export default connect()(FeedRow);

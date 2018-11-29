@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {mapIdToColor} from 'Helpers/main-helper';
 import MyPeers from 'Assets/images/people.svg';
 
-interface IProps { profile: any; }
+interface IProps { profile: any; openAccount(open: boolean): void; }
 
 class Avatar extends Component<IProps, {}> {
    	constructor(props: any) {
@@ -28,7 +28,7 @@ class Avatar extends Component<IProps, {}> {
 		const initials = this.getInitials(name);
 		return(
 			<div className='avatar'>
-				<div className={`avatar-container ${color}`}>{initials}</div>
+				<div className={`avatar-container ${color}`} onClick={() => this.props.openAccount(true)}>{initials}</div>
 				<div className='user-name'>{name.toUpperCase()}</div>
 				<div className='personality'>{personality}</div>
 				<div className='my-peers'>

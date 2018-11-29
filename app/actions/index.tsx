@@ -1,5 +1,6 @@
-import { REDUX_TEST, LOGIN_REQUEST, LOGOUT_REQUEST, PROFILE_REQUEST, PROFILE_SAVED,
-	QUEST_ENTRY, QUEST_REQUEST, REQUEST_ERROR, QUEST_SUBMIT, QUEST_INVENTORY, QUEST_PEER_ENTRIES } from 'Types/index';
+import { LOGIN_REQUEST, LOGOUT_REQUEST, PROFILE_REQUEST, PROFILE_SAVED,
+	QUEST_ENTRY, QUEST_REQUEST, REQUEST_ERROR, QUEST_SUBMIT, QUEST_INVENTORY, QUEST_PEER_ENTRIES, SHOW_LOADING,
+	GET_COMMENTS, POST_COMMENT } from 'Types/index';
 import { mapTypeToUrl } from 'Helpers/fetch-helper';
 
 const sendDataToApi = (type: string, data: any, dispatchData?: any ) => {
@@ -37,7 +38,20 @@ const sendDataToApi = (type: string, data: any, dispatchData?: any ) => {
 					},
 				});
 			}
+			dispatch({
+				type: REQUEST_ERROR,
+				payload: {
+					success: true,
+					name: '',
+				},
+			});
 		}).catch((err) => {
+			dispatch({
+				type: SHOW_LOADING,
+				payload: {
+					isLoading: false,
+				},
+			});
 			dispatch({
 				type: REQUEST_ERROR,
 				payload: {
@@ -83,4 +97,23 @@ export const getQuestEntry = (data: any) => {
 
 export const getPeerQuests = (data: any) => {
 	return sendDataToApi(QUEST_PEER_ENTRIES, data);
+};
+
+export const showLoading = (isLoading: boolean) => {
+	return (dispatch: any) => {
+		dispatch({
+			type: SHOW_LOADING,
+			payload: {
+				isLoading,
+			},
+		});
+	};
+};
+
+export const getQuestComments = (data: any) => {
+	return sendDataToApi(GET_COMMENTS, data);
+};
+
+export const postQuestComment = (data: any) => {
+	return sendDataToApi(POST_COMMENT, data);
 };

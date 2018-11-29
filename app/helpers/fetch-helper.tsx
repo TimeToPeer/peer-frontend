@@ -1,5 +1,6 @@
-import { REDUX_TEST, LOGIN_REQUEST, LOGOUT_REQUEST, PROFILE_REQUEST, PROFILE_SAVED,
-	QUEST_RECEIVED, QUEST_REQUEST, QUEST_SUBMIT, QUEST_ENTRY, QUEST_INVENTORY, QUEST_PEER_ENTRIES } from 'Types/index';
+import { LOGIN_REQUEST, LOGOUT_REQUEST, PROFILE_REQUEST, PROFILE_SAVED,
+	QUEST_REQUEST, QUEST_SUBMIT, QUEST_ENTRY, QUEST_INVENTORY, QUEST_PEER_ENTRIES,
+	GET_COMMENTS, POST_COMMENT } from 'Types/index';
 
 export const mapTypeToUrl = (type: string) => {
 	let url = '';
@@ -28,6 +29,10 @@ export const mapTypeToUrl = (type: string) => {
 			return url += '/get/quests/inventory';
 		case QUEST_PEER_ENTRIES:
 			return url += '/get/quests/entries';
+		case GET_COMMENTS:
+			return url += '/get/quests/comments';
+		case POST_COMMENT:
+			return url += '/post/quests/comment/submit';
 		default:
 			return url += '';
 	}

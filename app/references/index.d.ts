@@ -1,5 +1,6 @@
 declare module '*.png'
 declare module '*.svg'
+declare module '*.css'
 
 declare module "draft-js-plugins-editor" {
     export type PluginsEditorProps = Draft.EditorProps | {
@@ -42,3 +43,6 @@ declare module "draft-js-mention-plugin" {
 declare module "draft-js-static-toolbar-plugin";
 declare module "draft-js-linkify-plugin";
 declare module "draft-js-buttons";
+declare module 'tui-image-editor';
+declare module 'emoji-picker-react';
+declare module 'react-svg-donut-chart';

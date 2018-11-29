@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import {getQuestById, submitQuest, getQuestEntry} from 'Actions/index';
 import {connect} from 'react-redux';
-import NavBar from 'Components/nav-bar';
 import MenuBar from 'Components/dashboard/menu';
 import AvatarIcon from 'Common/avatar/avatar-icon';
 import {formatDate} from 'Helpers/main-helper';
-import RichEditor from 'Common/inputs/rich-input';
+import QuestReponse from 'Components/quests/response';
 import { convertToRaw } from 'draft-js';
 
 interface IProps { dispatch: any; questId: string; match: any; quest: any; entry: any; }
-interface IState { questId: string; entryVal: string; }
+interface IState { questId: string; responseMode: boolean; }
 
 class Quests extends Component<IProps, IState> {
 	constructor(props: any) {
@@ -17,10 +16,11 @@ class Quests extends Component<IProps, IState> {
 		const questId = this.props.match.params.id;
 		this.state = {
 			questId,
-			entryVal: '',
+			responseMode: false,
 		};
 
 		this.onSubmit = this.onSubmit.bind(this);
+		this.responseMode = this.responseMode.bind(this);
 	}
 
 	componentDidMount() {
@@ -38,40 +38,54 @@ class Quests extends Component<IProps, IState> {
 		}
 	}
 
-	render() {
-		if (this.props.quest.pending || this.props.entry.pending) {
-			return <div></div>;
-		}
-		const { title, description, create_time, name, icon } = this.props.quest;
+	responseMode() {
+		this.setState({responseMode: true});
+	}
+
+	renderQuestInfo() {
+		const { title, name, icon, create_time, description } = this.props.quest;
 		const teacherProfile = {
 			name,
 			icon,
 		};
 		const dateString = formatDate(create_time);
 
-		return(
+		return (
 			<div>
-				<NavBar />
-				<MenuBar />
 				<div className='quest-container'>
-					<div className='quest-description'>
-						{description}
+						<div className='quest-description'>
+							{description}
+						</div>
 					</div>
-				</div>
 				<div className='teacher-info'>
 					<AvatarIcon profile={teacherProfile} />
 					<div className='info'>
 						<div className='heading'>{`${title} by ${name}`}</div>
 						<div className='date'>{dateString}</div>
 					</div>
-				</div>
-				<RichEditor entry={this.props.entry} onSubmit={this.onSubmit}/>
+					<div className='post-button' onClick={this.responseMode}>
+						POST
+					</div>
+			</div>
+			</div>
+		);
+	}
+
+	render() {
+		if (this.props.quest.pending || this.props.entry.pending) {
+			return <div></div>;
+		}
+
+		return(
+			<div>
+				<MenuBar />
+				{this.state.responseMode ? <QuestReponse questId={this.state.questId} /> : this.renderQuestInfo() }
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = (state: any, ownProps: any) => {
+const mapStateToProps = (state: any) => {
 	return {
 		quest: state.questsReducer,
 		entry: state.entryReducer,

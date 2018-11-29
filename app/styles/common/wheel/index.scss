@@ -1,0 +1,20 @@
+.wheel-container {
+    position: relative;
+    .text-container {
+        position: absolute;
+        top: 43px;
+        left: 43px;
+        text-align: center;
+        width: 138px;
+        height: 138px;
+        font-family: GothicRegular, Arial;
+        font-size: 12pt;
+        display: table;
+    }
+
+    .text-container p {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+    }
+}

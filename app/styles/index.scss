@@ -13,21 +13,58 @@
 @import 'common/input/rich-input.scss';
 @import 'common/avatar/index.scss';
 @import 'common/color-selector/index.scss';
+@import 'common/image-editor/index.scss';
+@import 'common/input/emoji-input.scss';
+@import 'common/wheel/index.scss';
+@import 'common/spinner/index.scss';
 
 body {
     width: 100%;
     margin: 0 auto;
     color: $mainFontColor;
+    background-color: #fafafa;
 }
 
-#root {
+.container {
     width: 1024px;
     margin: auto;
 }
 
 @media only screen and (max-width: 1024px) {
-    #root {
+    .container {
         width: 100%;
         margin: auto;
     }
+    .menu-container .center-container {
+        width: 100%;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scroll-tract {
+    padding: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 8px;
+    background-color: #999999;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+
+    &:hover {
+        background-color: #999999;
+    }
+}
+
+input::placeholder, textarea::placeholder {
+    font-family: JosefinRegular, Arial;
+    color: #ccc;
+}
+
+.ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.7) !important;
 }

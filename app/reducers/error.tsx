@@ -1,6 +1,6 @@
 import { REQUEST_ERROR } from 'Types/index';
 
-export default (state = {}, action: any) => {
+export default (state = {success: true}, action: any) => {
 	switch (action.type) {
 		case REQUEST_ERROR:
 			const { success, name } = action.payload;

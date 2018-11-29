@@ -1,15 +1,19 @@
 import React, {Component} from 'react';
 import Login from 'Components/login';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router';
-import {logoutUser, getUser} from 'Actions/index';
-import landingImg from 'Assets/images/profile.svg';
-import Account from 'Components/nav-bar/account';
+import {logoutUser} from 'Actions/index';
 
 interface IMyState { loginClicked: boolean; signOut: boolean; accountClicked: boolean; }
 interface IMyProps { loggedIn: boolean; history: any; dispatch: any; isProfileComplete: boolean; }
 
 class NavBar extends Component<IMyProps, IMyState> {
+	static getDerivedStateFromProps(props: any, state: any) {
+		if (props.loggedIn && state.loginClicked) {
+			return {loginClicked: false};
+		}
+		return null;
+	}
+
 	constructor(props: any) {
 		super(props);
 		this.state = {
@@ -20,7 +24,6 @@ class NavBar extends Component<IMyProps, IMyState> {
 
 		this.openLoginModal = this.openLoginModal.bind(this);
 		this.signOut = this.signOut.bind(this);
-		this.openAccount = this.openAccount.bind(this);
 	}
 
 	openLoginModal(openModal: boolean) {
@@ -36,24 +39,16 @@ class NavBar extends Component<IMyProps, IMyState> {
 		this.setState({ signOut: true });
 	}
 
-	openAccount(openAccount: boolean) {
-		// open account modal
-		this.setState({ accountClicked: openAccount });
-		if (openAccount) {
-			this.props.dispatch(getUser());
-		}
-	}
-
 	render() {
-		const { loginClicked, accountClicked, signOut } = this.state;
+		const { loginClicked } = this.state;
 		const { loggedIn } = this.props;
 		return(
 			<div className='menu-container'>
-				<div className='logo-name' onClick={() => { window.location.href = '/'; } }>PEER</div>
-				{loggedIn ? <img className='profile-icon' src={landingImg} onClick={() => this.openAccount(true)} /> : null }
-				<div className='signin' onClick={() => this.openLoginModal(true)}>{loggedIn ? 'SIGN OUT' : 'SIGN IN' }</div>
-				<Login loginClicked={loginClicked} openLoginModal={this.openLoginModal} />
-				<Account openAccount={this.openAccount} accountClicked={accountClicked} isProfileComplete={this.props.isProfileComplete} />
+				<div className='center-container'>
+					<div className='logo-name' onClick={() => { window.location.href = '/'; } }>PEER</div>
+					<div className='signin' onClick={() => this.openLoginModal(true)}>{loggedIn ? 'SIGN OUT' : 'SIGN IN' }</div>
+					<Login loginClicked={loginClicked} openLoginModal={this.openLoginModal} />
+				</div>
 			</div>
 		);
 	}

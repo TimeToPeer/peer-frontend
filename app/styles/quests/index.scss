@@ -1,5 +1,6 @@
+@import './response.scss';
+
 .quest-container {
-    width: 100%;
     height: 722px;
     background-color: $salt;
     margin-top: 30px;
@@ -9,12 +10,15 @@
     display: flex;
     justify-content: center;
     align-items: center; 
+    border: 2px solid $salt;
 }
 
 .teacher-info {
     height: 47px;
     padding: 24px 20px;
     font-family: GothicRegular, Arial;
+    border: 1px solid #dddddd;
+    border-top: 0;
     .avatar {
         margin-right: 15px;
         width: 61px;
@@ -35,6 +39,22 @@
         }
         .date {
             font-size: 8pt;
+        }
+    }
+
+    .post-button {
+        cursor: pointer;
+        margin-top: -5px;
+        text-align:center;
+        float: right;
+        height: 56px;
+        width: 56px;
+        line-height: 56px;
+        border: 1px solid $mainFontColor;
+        border-radius: 50%;
+
+        &:hover {
+            background-color: $bubble;
         }
     }
 }

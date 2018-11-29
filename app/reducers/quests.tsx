@@ -1,4 +1,4 @@
-import { QUEST_REQUEST, QUEST_INVENTORY } from 'Types/index';
+import { QUEST_REQUEST, QUEST_INVENTORY, QUEST_SUBMIT } from 'Types/index';
 
 export default (state= {pending: true}, action: any) => {
 	switch (action.type) {
@@ -14,6 +14,12 @@ export default (state= {pending: true}, action: any) => {
 			return {
 				pending: false,
 				inventory,
+			};
+		}
+		case QUEST_SUBMIT: {
+			window.location.href = '/';
+			return {
+				...state,
 			};
 		}
 		default:
