@@ -53,7 +53,7 @@ class Dashboard extends Component<IProps, IState> {
 	}
 
 	onClickHandler(id: string) {
-		const questEntry = this.props.entries.entries.find((ent:any) => {
+		const questEntry = this.props.entries.entries && this.props.entries.entries.find((ent:any) => {
 			return ent.created_by === this.props.profile.id &&
 			ent.questId === id;
 		}) || '';
