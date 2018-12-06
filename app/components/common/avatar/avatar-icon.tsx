@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {mapIdToColor} from 'Helpers/main-helper';
 import Avatar from '@material-ui/core/Avatar';
-import { withStyles } from '@material-ui/core/Styles';
+import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 
 const styles = () => ({

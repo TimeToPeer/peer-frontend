@@ -5,7 +5,7 @@ import NewQuest from 'Common/new-quest';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/Styles';
+import { withStyles } from '@material-ui/core/styles';
 import CardHeader from '@material-ui/core/CardHeader';
 import {mapIdToColor, formatDataWithoutTime} from 'Helpers/main-helper';
 

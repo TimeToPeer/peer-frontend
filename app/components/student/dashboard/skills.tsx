@@ -7,7 +7,7 @@ import Legend2 from 'Assets/images/hover3.png';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/Styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = () => ({
 	card: {

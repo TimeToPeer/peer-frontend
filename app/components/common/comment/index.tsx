@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import AvatarIcon from 'Common/avatar/avatar-icon';
 import {formatDate} from 'Helpers/main-helper';
-import { withStyles } from '@material-ui/core/Styles';
+import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 
 const styles = () => ({
