@@ -67,7 +67,8 @@ class Skills extends Component<IProps, IState> {
         const { pending} = this.props.skills;
         if (pending) return null;
         const { classes } = this.props;
-        const { id, critical, creative, responsible, teacher_critical, teacher_creative, teacher_responsible} = this.props.skills.skills[0];
+        const { id=0, critical=0, creative=0, responsible=0, teacher_critical=0, teacher_creative=0,
+            teacher_responsible=0} = this.props.skills.skills[0] || {};
         return(
             <Card className={classes.card}>
                 <CardContent className={classes['content-container']}>
