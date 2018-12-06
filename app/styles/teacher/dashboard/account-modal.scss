@@ -1,0 +1,83 @@
+.teacher-account-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 742px;
+    height: 583px;
+    background-color: $salt;
+    text-align: center;
+    outline: none;
+    margin: -432px 0 0 -340px;
+    padding: 20px;
+
+    .close-btn {
+        cursor: pointer;
+        fill: $mainFontColor;
+        text-align: right;
+        margin-bottom: 20px;
+
+        img {
+            width: 35px;
+            height: 35px;
+        }
+    }
+
+    .account-heading {
+        font-size: 42pt;
+        font-family: JosefinRegular, Arial;
+        color: $mainFontColor;
+        margin-top: 46px;
+        margin-bottom: 60px;
+    }
+
+    .account-container {
+        .row {
+            padding: 0 40px;
+            height: 53px;
+            margin-bottom: 18px;
+            div:first-child {
+                float: left;
+            }
+            div:last-child {
+                float: right;
+            }
+        }
+
+        .wide-row {
+            padding-left: 40px;
+            padding-right: 40px;
+
+            .account-input-field {
+                width: 100%;
+                input {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .action-container {
+        margin-top: 40px;
+    }
+
+    button {
+        width: 147px;
+        height: 48px;
+        background-color: white;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-family: GothicRegular, Arial;
+        font-size: 14pt;
+        outline: none;
+        cursor: pointer;
+        margin-top: 25px;
+        &:active {
+            background-color: $hershey;
+        }
+        .account-button-placeholder {
+            float: left;
+            margin-left: 14px;
+            line-height: 50px;
+        }
+    }
+}

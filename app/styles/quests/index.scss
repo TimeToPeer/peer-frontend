@@ -1,60 +1,62 @@
 @import './response.scss';
 
-.quest-container {
-    height: 722px;
-    background-color: $salt;
-    margin-top: 30px;
-    font-family: JosefinBold;
-    font-size: 60pt;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    border: 2px solid $salt;
-}
-
-.teacher-info {
-    height: 47px;
-    padding: 24px 20px;
-    font-family: GothicRegular, Arial;
-    border: 1px solid #dddddd;
-    border-top: 0;
-    .avatar {
-        margin-right: 15px;
-        width: 61px;
-        .avatar-container {
-            width: 47px;
-            height: 47px;
-            font-size: 12pt;
-            line-height: 47px;
-        }
+.quest-page {
+    .quest-container {
+        height: 722px;
+        background-color: $salt;
+        margin-top: 30px;
+        font-family: JosefinBold;
+        font-size: 60pt;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        border: 2px solid $salt;
     }
 
-    .info {
-        display: inline-block;
+    .teacher-info {
         height: 47px;
-        padding-top: 6px;
-        .heading {
-            font-size: 12pt;
+        padding: 24px 20px;
+        font-family: GothicRegular, Arial;
+        border: 1px solid #dddddd;
+        border-top: 0;
+        .avatar {
+            margin-right: 15px;
+            width: 61px;
+            .avatar-container {
+                width: 47px;
+                height: 47px;
+                font-size: 12pt;
+                line-height: 47px;
+            }
         }
-        .date {
-            font-size: 8pt;
+
+        .info {
+            display: inline-block;
+            height: 47px;
+            padding-top: 6px;
+            .heading {
+                font-size: 12pt;
+            }
+            .date {
+                font-size: 8pt;
+            }
         }
-    }
 
-    .post-button {
-        cursor: pointer;
-        margin-top: -5px;
-        text-align:center;
-        float: right;
-        height: 56px;
-        width: 56px;
-        line-height: 56px;
-        border: 1px solid $mainFontColor;
-        border-radius: 50%;
+        .post-button {
+            cursor: pointer;
+            margin-top: -5px;
+            text-align:center;
+            float: right;
+            height: 56px;
+            width: 56px;
+            line-height: 56px;
+            border: 1px solid $mainFontColor;
+            border-radius: 50%;
 
-        &:hover {
-            background-color: $bubble;
+            &:hover {
+                background-color: $bubble;
+            }
         }
     }
 }

@@ -1,0 +1,16 @@
+.teacher-quest-entries-col-container {
+    .my-library {
+        font-family: GothicRegular, Arial;
+        font-size: 18px;
+        color: $mainFontColor;
+
+        .sub-header {
+            margin-top: 20px;
+            span {
+                font-size: 10pt;
+                margin-right: 15px;
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -1,25 +1,25 @@
 import React, {Component, createRef} from 'react';
 import Wheel from './wheel';
-import ReactDOM from 'react-dom';
 
 const dataPie = [
-	{value: 12.5, stroke: '#f8e8fb'},
-	{value: 12.5, stroke: '#f8e8fb'},
-	{value: 12.5, stroke: '#f8e8fb'},
-	{value: 12.5, stroke: '#f8e8fb'},
-	{value: 12.5, stroke: '#f8e8fb'},
-	{value: 12.5, stroke: '#f8e8fb'},
-	{value: 12.5, stroke: '#f8e8fb'},
-	{value: 12.5, stroke: '#f8e8fb'},
+	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: '#eae8e3'},
 ];
 
-interface IWheelComponent { id: string; title: string; description: string; onWheelClick(id: string, val: string): void; }
-
-class WheelComponent extends Component<IWheelComponent, {}> {
+interface IProps { id: string; title: string; description: string; type: string, onWheelClick(id: string, val: string): void; }
+class WheelComponent extends Component<IProps, {}> {
+	stroke: any;
 	constructor(props: any) {
 		super(props);
 		this.addBoundMouseOutEvent = this.addBoundMouseOutEvent.bind(this);
 		this.addMouseOverEvent = this.addMouseOverEvent.bind(this);
+		this.stroke = this.props.type === 'teacher' ? '#dfe8d3' : '#fee8ef';
 	}
 
 	addBoundMouseOutEvent(event: any) {
@@ -27,7 +27,7 @@ class WheelComponent extends Component<IWheelComponent, {}> {
 		const circle: any = wheelContainer.querySelectorAll('.circle-piece:not(.selected)' );
 
 		for (const c of circle) {
-			c.style.stroke = '#f8e8fb';
+			c.style.stroke = '#eae8e3';
 		}
 	}
 
@@ -36,11 +36,11 @@ class WheelComponent extends Component<IWheelComponent, {}> {
 		const circle: any = wheelContainer.getElementsByClassName('circle-piece');
 		const targetId =  event.srcElement.id;
 		for (let i = 0; i <= targetId; i++) {
-			circle[i].style.stroke = '#fee8ef';
+			circle[i].style.stroke = this.stroke;
 		}
 		const sup = Number(targetId) + 1;
 		for (let j = sup; j < 8; j++) {
-			circle[j].style.stroke = '#f8e8fb';
+			circle[j].style.stroke = '#eae8e3';
 		}
 	}
 
@@ -57,12 +57,12 @@ class WheelComponent extends Component<IWheelComponent, {}> {
 			item.addEventListener('click', (e: any) => {
 				const targetId =  e.srcElement.id;
 				for (let i = 0; i <= targetId; i++) {
-					circle[i].style.stroke = '#fee8ef';
+					circle[i].style.stroke = this.stroke;
 					circle[i].classList.add('selected');
 					circle[i].removeEventListener('mouseover', this.addMouseOverEvent);
 				}
 				for (let i = Number(targetId) + 1; i < 8; i++) {
-					circle[i].style.stroke = '#f8e8fb';
+					circle[i].style.stroke = '#eae8e3';
 					circle[i].classList.remove('selected');
 					circle[i].addEventListener('mouseover', this.addMouseOverEvent);
 				}

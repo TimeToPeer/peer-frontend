@@ -69,11 +69,11 @@ class QuestResponse extends Component<IProps, IState> {
 					<div className='heading-text'>
 						How can we better conserve energy or resource in our school?
 					</div>
-					<Wheel id='critical-wheel' onWheelClick={this.onWheelClick}
+					<Wheel id='critical-wheel' onWheelClick={this.onWheelClick} type='student'
 						title='CRITICAL' description='I give feedback about my work.' />
-					<Wheel id='creative-wheel' onWheelClick={this.onWheelClick}
+					<Wheel id='creative-wheel' onWheelClick={this.onWheelClick} type='student'
 						title='CREATIVE' description={`I get new ideas or build on other people's ideas.`}/>
-					<Wheel id='responsible-wheel' onWheelClick={this.onWheelClick}
+					<Wheel id='responsible-wheel' onWheelClick={this.onWheelClick} type='student'
 						title='RESPONSIBLE' description='I seek out help or work to get more information.'/>
 					<img className='close-assessment' src={CloseSvg} onClick={this.closeAssessment} />
 				</div>

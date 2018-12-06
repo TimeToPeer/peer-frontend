@@ -6,6 +6,10 @@ import entryReducer from 'Reducers/entry';
 import errorReducer from 'Reducers/error';
 import loadingReducer from 'Reducers/loading';
 import commentsReducer from 'Reducers/comments';
+import assessmentReducer from 'Reducers/assessment';
+import classroomReducer from 'Reducers/classroom';
+import skillsReducer from 'Reducers/skills';
+
 
 import thunk from 'redux-thunk';
 
@@ -17,6 +21,9 @@ const reducers = combineReducers({
 	entryReducer,
 	loadingReducer,
 	commentsReducer,
+	assessmentReducer,
+	skillsReducer,
+	classroomReducer,
 });
 
 const store = createStore(

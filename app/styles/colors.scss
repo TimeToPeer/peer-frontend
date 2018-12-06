@@ -8,3 +8,32 @@ $hershey: #eae8e3;
 $sour: #dfe8d3;
 $peach: #feeede;
 $lemon: #fffbe2;
+
+.caramel {
+    background-color: $caramel !important;
+}
+.salt {
+    background-color: $salt !important;
+}
+.grape {
+    background-color: $grape !important;
+}
+.bubble {
+    background-color: $bubble !important;
+}
+.hershey {
+    background-color: $hershey !important;
+}
+.sour {
+    background-color: $sour !important;
+}
+.peach {
+    background-color: $peach !important;
+}
+.lemon {
+    background-color: $lemon !important;
+}
+.white {
+    background-color: white !important;
+    border: 2px $hershey solid;
+}

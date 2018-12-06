@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Login from 'Components/login';
+import Login from 'Common/nav-bar/login';
 import {connect} from 'react-redux';
 import {logoutUser} from 'Actions/index';
 

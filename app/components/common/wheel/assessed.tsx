@@ -3,14 +3,14 @@ import Wheel from './wheel';
 import ReactDOM from 'react-dom';
 
 const dataPie = [
-	{value: 12.5, stroke: '#f8e8fb'},
-	{value: 12.5, stroke: '#f8e8fb'},
-	{value: 12.5, stroke: '#f8e8fb'},
-	{value: 12.5, stroke: '#f8e8fb'},
-	{value: 12.5, stroke: '#f8e8fb'},
-	{value: 12.5, stroke: '#f8e8fb'},
-	{value: 12.5, stroke: '#f8e8fb'},
-	{value: 12.5, stroke: '#f8e8fb'},
+	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: '#eae8e3'},
 ];
 
 interface IProps { id: string; title: string; description: string;

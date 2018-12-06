@@ -9,7 +9,7 @@ import ColorPicker from 'Common/color-selector';
 interface IMyState { modalIsOpen: boolean; valid: boolean; name: string; class_code: string; school_code: string; profile: any; personality: string; saved: boolean; icon: number; }
 interface IMyProps { dispatch: any; accountClicked: boolean; isProfileComplete: boolean; profile: any; openAccount(openAccount: boolean): void; }
 
-class Account extends Component<IMyProps, IMyState> {
+class AccountModal extends Component<IMyProps, IMyState> {
 	static getDerivedStateFromProps(props: any, state: any) {
 		if (props.profile !== state.profile) {
 			return {
@@ -104,7 +104,7 @@ class Account extends Component<IMyProps, IMyState> {
 
 		return (
 			<Modal
-				className='account-modal'
+				className='student-account-modal'
 				isOpen={isOpen}
 				onRequestClose={this.closeModal}
 				ariaHideApp={false}
@@ -139,4 +139,4 @@ const mapStateToProps = (state: any, ownProps: any) => {
 	};
 };
 
-export default connect(mapStateToProps)(Account);
+export default connect(mapStateToProps)(AccountModal);

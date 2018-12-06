@@ -1,16 +1,15 @@
 @import './fonts.scss';
 @import './colors.scss';
 
-@import 'nav-bar/index.scss';
+@import 'common/nav-bar/index.scss';
 @import 'landing-page/index.scss';
 @import 'login/index.scss';
 @import 'dashboard/index.scss';
-@import 'nav-bar/account.scss';
 @import 'quests/index.scss';
 
 @import 'common/new-quest/index.scss';
 @import 'common/input/account-input.scss';
-@import 'common/input/rich-input.scss';
+@import 'common/input/account-button.scss';
 @import 'common/avatar/index.scss';
 @import 'common/color-selector/index.scss';
 @import 'common/image-editor/index.scss';
@@ -18,11 +17,22 @@
 @import 'common/wheel/index.scss';
 @import 'common/spinner/index.scss';
 
+@import 'teacher/dashboard/index.scss';
+
+@import 'student/dashboard/index.scss';
+
+@import 'assessment/index.scss';
+
+html {
+    margin-left: calc(100vw - 100%);
+}
 body {
     width: 100%;
     margin: 0 auto;
     color: $mainFontColor;
     background-color: #fafafa;
+    margin-top: 50px;
+    overflow-y: scroll;
 }
 
 .container {
@@ -66,5 +76,6 @@ input::placeholder, textarea::placeholder {
 }
 
 .ReactModal__Overlay {
+    z-index: 5;
     background-color: rgba(0, 0, 0, 0.7) !important;
 }

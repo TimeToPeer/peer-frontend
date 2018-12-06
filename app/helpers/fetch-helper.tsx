@@ -1,6 +1,6 @@
 import { LOGIN_REQUEST, LOGOUT_REQUEST, PROFILE_REQUEST, PROFILE_SAVED,
-	QUEST_REQUEST, QUEST_SUBMIT, QUEST_ENTRY, QUEST_INVENTORY, QUEST_PEER_ENTRIES,
-	GET_COMMENTS, POST_COMMENT } from 'Types/index';
+	QUEST_REQUEST, QUEST_SUBMIT, QUEST_ENTRY_ASSESSMENT, QUEST_INVENTORY, QUEST_PEER_ENTRIES,
+	GET_COMMENTS, POST_COMMENT, SUBMIT_ASSESSMENT, CLASSROOM_DATA, GET_SKILLS} from 'Types/index';
 
 export const mapTypeToUrl = (type: string) => {
 	let url = '';
@@ -23,8 +23,8 @@ export const mapTypeToUrl = (type: string) => {
 			return url += '/post/users/update_account';
 		case QUEST_SUBMIT:
 			return url += '/post/quests/submit';
-		case QUEST_ENTRY:
-			return url += '/get/quests/entry';
+		case QUEST_ENTRY_ASSESSMENT:
+			return url += '/get/quests/entry/asessment';
 		case QUEST_INVENTORY:
 			return url += '/get/quests/inventory';
 		case QUEST_PEER_ENTRIES:
@@ -33,6 +33,12 @@ export const mapTypeToUrl = (type: string) => {
 			return url += '/get/quests/comments';
 		case POST_COMMENT:
 			return url += '/post/quests/comment/submit';
+		case SUBMIT_ASSESSMENT:
+			return url += '/post/quests/assessment/feedback';
+		case CLASSROOM_DATA:
+			return url += '/get/quests/classroom';
+		case GET_SKILLS:
+			return url += '/get/quests/skills';
 		default:
 			return url += '';
 	}

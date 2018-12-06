@@ -1,30 +1,81 @@
 import React, {Component} from 'react';
 import AvatarIcon from 'Common/avatar/avatar-icon';
 import {formatDate} from 'Helpers/main-helper';
+import { withStyles } from '@material-ui/core/Styles';
+import classnames from 'classnames';
 
-interface IProps { comments: any; }
+const styles = () => ({
+	'comment': {
+		display: 'inline-block',
+		marginLeft: '10px',
+		width: '85%',
+	},
+	'comment-container': {
+		marginBottom: '14px',
+	},
+	'container': {
+		paddingLeft: '24px',
+		paddingRight: '24px',
+		paddingTop: '24px',
+	},
+	hide: {
+		display: 'none',
+	},
+	show: {
+		display: 'block',
+	},
+	'show-more': {
+		textAlign: 'center' as 'center',
+		cursor: 'pointer',
+		fontFamily: 'GothicRegular, Arial',
+		'&:hover': {
+			opacity: 0.7,
+		}
+	},
+	from: {
+		marginRight: '14px',
+	},
+	date: {
+		fontSize: '10pt',
+	}
+});
 
-class Comment extends Component<IProps, {}> {
+interface IProps { comments: any; classes: any; }
+interface IState { showMore: boolean; }
+
+class Comment extends Component<IProps, IState> {
 	constructor(props: any) {
 		super(props);
 		this.renderComments = this.renderComments.bind(this);
+		this.showMore = this.showMore.bind(this);
+
+		this.state = {
+			showMore: false,
+		}
 	}
 
-	renderCommentItem(item: any) {
+	renderCommentItem(item: any, count: number, length: number) {
 		// render each comments here
-		const { name, icon, comment, created_on, id } = item;
+		const { name, icon, comment, created_on, id, special_text } = item;
 		const profile = {
 			name,
 			icon,
 		};
+		const { classes } = this.props;
+		let show = '';
+		if (length <= 3 || this.state.showMore) {
+			show = 'show';
+		} else {
+			show = length-count > 3 ? 'hide' : 'show';
+		}
 		const dateString = formatDate(created_on);
 		return (
-			<div className='comment' key={id}>
-				<AvatarIcon profile={profile} />
-				<div className='comment-text'>
-					<span className='from'><b>{name}</b></span>
-					<span className='text'>{comment}</span>
-					<div className='date'>{dateString}</div>
+			<div className={classnames(classes['comment-container'], classes[show])} key={id}>
+				<AvatarIcon profile={profile} size='small' />
+				<div className={classes.comment}>
+					<span className={classes.from}><b>{special_text || name}</b></span>
+					<span>{comment}</span>
+					<div className={classes.date}>{dateString}</div>
 				</div>
 			</div>
 		);
@@ -34,17 +85,27 @@ class Comment extends Component<IProps, {}> {
 		// loop through coments here
 		const comments = this.props.comments;
 		const commentArr: any = [];
+		let count = 0;
 		comments.forEach((comment: any) => {
-			commentArr.push(this.renderCommentItem(comment));
+			commentArr.push(this.renderCommentItem(comment, count, comments.length));
+			if (!this.state.showMore) count++;
 		});
 		return commentArr;
 
 	}
 
+	showMore() {
+		this.setState({ showMore: !this.state.showMore });
+	}
+
 	render() {
-		if (this.props.comments.length > 0) {
+		const { classes, comments } = this.props;
+		if (comments.length > 0) {
 			return (
-				<div className='comments-container'>
+				<div className={classes.container}>
+					{comments.length > 3 ?
+						<div className={classes['show-more']} onClick={this.showMore}>{!this.state.showMore ? 'Show More Comments' : 'Show Less Comments'}</div>
+					: null }
 					{this.renderComments()}
 				</div>
 			);
@@ -53,4 +114,4 @@ class Comment extends Component<IProps, {}> {
 	}
 }
 
-export default Comment;
+export default withStyles(styles)(Comment);

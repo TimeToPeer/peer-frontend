@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {getQuestById, submitQuest, getQuestEntry} from 'Actions/index';
+import {getQuestById, submitQuest} from 'Actions/index';
 import {connect} from 'react-redux';
-import MenuBar from 'Components/dashboard/menu';
 import AvatarIcon from 'Common/avatar/avatar-icon';
 import {formatDate} from 'Helpers/main-helper';
 import QuestReponse from 'Components/quests/response';
@@ -26,7 +25,6 @@ class Quests extends Component<IProps, IState> {
 	componentDidMount() {
 		const { questId } = this.state;
 		this.props.dispatch(getQuestById({ questId }));
-		this.props.dispatch(getQuestEntry({ questId }));
 	}
 
 	onSubmit(currnetContent: any) {
@@ -51,12 +49,12 @@ class Quests extends Component<IProps, IState> {
 		const dateString = formatDate(create_time);
 
 		return (
-			<div>
+			<div className='quest-page'>
 				<div className='quest-container'>
-						<div className='quest-description'>
-							{description}
-						</div>
+					<div className='quest-description'>
+						{description}
 					</div>
+				</div>
 				<div className='teacher-info'>
 					<AvatarIcon profile={teacherProfile} />
 					<div className='info'>
@@ -66,19 +64,18 @@ class Quests extends Component<IProps, IState> {
 					<div className='post-button' onClick={this.responseMode}>
 						POST
 					</div>
-			</div>
+				</div>
 			</div>
 		);
 	}
 
 	render() {
-		if (this.props.quest.pending || this.props.entry.pending) {
+		if (this.props.quest.pending) {
 			return <div></div>;
 		}
 
 		return(
 			<div>
-				<MenuBar />
 				{this.state.responseMode ? <QuestReponse questId={this.state.questId} /> : this.renderQuestInfo() }
 			</div>
 		);
@@ -88,7 +85,6 @@ class Quests extends Component<IProps, IState> {
 const mapStateToProps = (state: any) => {
 	return {
 		quest: state.questsReducer,
-		entry: state.entryReducer,
 	};
 };
 

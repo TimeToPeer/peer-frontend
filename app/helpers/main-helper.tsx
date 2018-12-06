@@ -25,10 +25,26 @@ export const formatDate = (unixDate: string) => {
 	const date = currentDate.getDate();
 	const month = currentDate.getMonth();
 	const year = currentDate.getFullYear();
-	return (month + 1)  + '/' + date + '/' + year;
+	var hours = currentDate.getHours();
+	var minutes = currentDate.getMinutes();
+	const ampm = hours >= 12 ? 'PM' : 'AM';
+	hours = hours % 12;
+	hours = hours ? hours : 12; // the hour '0' should be '12'
+	const minString = minutes < 10 ? '0' + minutes : minutes;
+	var strTime = hours + ':' + minString + ' ' + ampm;
+	return (month + 1)  + '/' + date + '/' + year + ' ' + strTime;
 };
+
+export const formatDataWithoutTime = (unixDate: string) => {
+	const currentDate = new Date(unixDate);
+	const date = currentDate.getDate();
+	const month = currentDate.getMonth();
+	const year = currentDate.getFullYear();
+	return (month + 1)  + '/' + date + '/' + year;
+}
 
 export default {
 	mapIdToColor,
 	formatDate,
+	formatDataWithoutTime,
 };

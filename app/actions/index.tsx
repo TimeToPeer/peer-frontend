@@ -1,6 +1,6 @@
 import { LOGIN_REQUEST, LOGOUT_REQUEST, PROFILE_REQUEST, PROFILE_SAVED,
-	QUEST_ENTRY, QUEST_REQUEST, REQUEST_ERROR, QUEST_SUBMIT, QUEST_INVENTORY, QUEST_PEER_ENTRIES, SHOW_LOADING,
-	GET_COMMENTS, POST_COMMENT } from 'Types/index';
+	QUEST_ENTRY_ASSESSMENT, QUEST_REQUEST, REQUEST_ERROR, QUEST_SUBMIT, QUEST_INVENTORY, QUEST_PEER_ENTRIES, SHOW_LOADING,
+	GET_COMMENTS, POST_COMMENT, SUBMIT_ASSESSMENT, CLASSROOM_DATA, FETCHING_CLASSDATA, GET_SKILLS } from 'Types/index';
 import { mapTypeToUrl } from 'Helpers/fetch-helper';
 
 const sendDataToApi = (type: string, data: any, dispatchData?: any ) => {
@@ -92,7 +92,7 @@ export const submitQuest = (data: any) => {
 };
 
 export const getQuestEntry = (data: any) => {
-	return sendDataToApi(QUEST_ENTRY, data);
+	return sendDataToApi(QUEST_ENTRY_ASSESSMENT, data);
 };
 
 export const getPeerQuests = (data: any) => {
@@ -117,3 +117,23 @@ export const getQuestComments = (data: any) => {
 export const postQuestComment = (data: any) => {
 	return sendDataToApi(POST_COMMENT, data);
 };
+
+export const postAssessment = (data: any) => {
+	return sendDataToApi(SUBMIT_ASSESSMENT, data);
+}
+
+export const getClassroomData = (data: any) => {
+	return sendDataToApi(CLASSROOM_DATA, data);
+}
+
+export const fetchinClassroomData = () => {
+	return (dispatch: any) => {
+		dispatch({
+			type: FETCHING_CLASSDATA,
+		});
+	};
+}
+
+export const getSkills = () => {
+	return sendDataToApi(GET_SKILLS, {});
+}

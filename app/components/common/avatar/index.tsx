@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {mapIdToColor} from 'Helpers/main-helper';
 import MyPeers from 'Assets/images/people.svg';
+import AvatarIcon from 'Common/avatar/avatar-icon';
 
 interface IProps { profile: any; openAccount(open: boolean): void; }
 
@@ -24,11 +25,13 @@ class Avatar extends Component<IProps, {}> {
 
 	render() {
 		const { name, icon, personality } = this.props.profile;
-		const color = mapIdToColor(Number(icon));
-		const initials = this.getInitials(name);
+		const profile = {
+			name,
+			icon,
+		}
 		return(
 			<div className='avatar'>
-				<div className={`avatar-container ${color}`} onClick={() => this.props.openAccount(true)}>{initials}</div>
+				<AvatarIcon profile={profile} size='large' onClick={() => this.props.openAccount(true)} />
 				<div className='user-name'>{name.toUpperCase()}</div>
 				<div className='personality'>{personality}</div>
 				<div className='my-peers'>

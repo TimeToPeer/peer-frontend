@@ -1,13 +1,11 @@
 .info-container{
-    margin-top: 115px;
-    height: 30px;
+    margin: 30px 0 50px 0 !important;
     .quests-info, .peers-info, .skills-info{
         font-family: JosefinBold, Arial;
         font-size: 12pt;
         text-align: center;
         display: inline-block;
-        width: 160px;
-        width:33%;
+        width:100%;
         span { cursor: pointer; user-select: none; }
         img {
             width: 119px;
@@ -15,6 +13,7 @@
             display: block;
             margin: auto;
             display:none;
+            pointer-events: none;
         }
         .selected {
             img {

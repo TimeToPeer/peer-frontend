@@ -46,3 +46,5 @@ declare module "draft-js-buttons";
 declare module 'tui-image-editor';
 declare module 'emoji-picker-react';
 declare module 'react-svg-donut-chart';
+declare module 'javascript-time-ago';
+declare module 'javascript-time-ago/locale/en';
