@@ -89,7 +89,7 @@ class Quests extends Component<IProps, IState> {
     
 	renderQuests(entries: any) {
 		const entryArr: any = [];
-		if (entries.length > 0) entries.forEach((item: any) => {
+		if (entries && entries.length > 0) entries.forEach((item: any) => {
 			entryArr.push(<QuestCard key={item.id} {...item} />);
 		});
 		return entryArr;
@@ -103,11 +103,11 @@ class Quests extends Component<IProps, IState> {
         const { selectedId } = this.state;
         const entryArr: any = [];
         if (selectedId) {
-            if (entries.length > 0) entries.forEach((item: any) => {
+            if (entries && entries.length > 0) entries.forEach((item: any) => {
                 if(item.questId === selectedId) entryArr.push(item);
             });
         } else {
-            if (entries.length > 0) entries.forEach((item: any) => {
+            if (entries && entries.length > 0) entries.forEach((item: any) => {
                 entryArr.push(item);
             });
         }

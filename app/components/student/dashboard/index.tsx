@@ -113,7 +113,7 @@ class Dashboard extends Component<IProps, IState> {
 	getFilteredQuests(entries: any, selectedQuest: string) {
         const entryArr: any = [];
         
-		if (entries.length > 0) entries.forEach((item: any) => {
+		if (entries && entries.length > 0) entries.forEach((item: any) => {
 			if(item.questId === selectedQuest) entryArr.push(item);
 		});
         return entryArr;

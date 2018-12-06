@@ -72,7 +72,7 @@ class Quests extends Component<IProps, IState> {
 
 	renderQuests(entries: any) {
 		const entryArr: any = [];
-		if (entries.length > 0) entries.forEach((item: any) => {
+		if (entries && entries.length > 0) entries.forEach((item: any) => {
 			if (this.props.myId === item.created_by) {
 				entryArr.push(<QuestCard key={item.id} {...item} />);
 			}
