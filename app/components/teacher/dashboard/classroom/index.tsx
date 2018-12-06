@@ -43,7 +43,6 @@ class Main extends Component<IProps, IState> {
 			const entry = records.entry[rec.id];
 			const feedback = records.feedback.find((item:any)=> item.created_by === rec.id);
 			const comments = records.comments.filter((item:any)=> item.created_by === rec.id);
-			console.log(comments);
 			rows.push({
 				id: rec.id,
 				name: rec.name,

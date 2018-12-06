@@ -74,6 +74,7 @@ class Quests extends Component<IProps, IState> {
                 newQuests.push(
                     <NewQuest
                         key={i} id={data[item].id} title='' text={`QUEST ${formattedTime}`}
+                        hoverText={data[item].description}
                         color={mapIdToColor(getRandomInt(8))}
                         onClickHandler={this.onClickHandler}
                     />

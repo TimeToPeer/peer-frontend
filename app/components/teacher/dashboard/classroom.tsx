@@ -62,6 +62,9 @@ class Classroom extends Component<IProps, IState> {
         this.props.dispatch(showLoading(true));
         this.props.dispatch(getClassroomData({questId: this.state.selectedId}));
     }
+    componentWillUnmount() {
+        this.props.dispatch(fetchinClassroomData());
+    }
     
     onClickHandler(id: string) {
         this.props.dispatch(showLoading(true));
@@ -89,6 +92,7 @@ class Classroom extends Component<IProps, IState> {
                 newQuests.push(
                     <NewQuest
                         key={i} id={data[item].id} title='' text={`QUEST ${formattedTime}`}
+                        hoverText={data[item].description}
                         color={mapIdToColor(getRandomInt(8))}
                         onClickHandler={this.onClickHandler}
                     />
