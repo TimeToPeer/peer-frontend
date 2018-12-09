@@ -6,7 +6,7 @@ import Dashboard from 'Components/dashboard';
 import Quest from 'Components/quests';
 import Spinner from 'Common/spinner';
 import NavBar from 'Common/nav-bar';
-import Assessment from 'Components/assessment';
+import Assessment from 'Components/assessment.tsx';
 
 function PrivateRoute({ component: Component, ...rest }: any) {
 	const session = localStorage.getItem('key');
@@ -39,7 +39,7 @@ const Main = () => {
 					<Route exact path='/' component={LandingPage}/>
 					<PrivateRoute path='/dashboard' component={Dashboard} />
 					<PrivateRoute path='/quest/:id' component={Quest} />
-					<PrivateRoute path='/assessment/:id' component={Assessment} />
+					<PrivateRoute path='/assessment/:id?' component={Assessment} />
 					<Route component={LandingPage} />
 				</Switch>
 			</div>

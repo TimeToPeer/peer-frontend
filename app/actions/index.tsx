@@ -1,6 +1,6 @@
-import { LOGIN_REQUEST, LOGOUT_REQUEST, PROFILE_REQUEST, PROFILE_SAVED,
+import { LOGIN_REQUEST, LOGOUT_REQUEST, PROFILE_REQUEST, PROFILE_SAVED, FETCHING_ASSESSMENT,
 	QUEST_ENTRY_ASSESSMENT, QUEST_REQUEST, REQUEST_ERROR, QUEST_SUBMIT, QUEST_INVENTORY, QUEST_PEER_ENTRIES, SHOW_LOADING,
-	GET_COMMENTS, POST_COMMENT, SUBMIT_ASSESSMENT, CLASSROOM_DATA, FETCHING_CLASSDATA, GET_SKILLS } from 'Types/index';
+	GET_COMMENTS, POST_COMMENT, SUBMIT_ASSESSMENT, CLASSROOM_DATA, FETCHING_CLASSDATA, GET_SKILLS, SELECTED_QUEST_ENTRY } from 'Types/index';
 import { mapTypeToUrl } from 'Helpers/fetch-helper';
 
 const sendDataToApi = (type: string, data: any, dispatchData?: any ) => {
@@ -136,4 +136,21 @@ export const fetchinClassroomData = () => {
 
 export const getSkills = () => {
 	return sendDataToApi(GET_SKILLS, {});
+}
+
+export const selectedQuestEntry = (selected_id: any) => {
+	return (dispatch: any) => {
+		dispatch({
+			type: SELECTED_QUEST_ENTRY,
+			payload: selected_id
+		})
+	}
+}
+
+export const pendingAssessment = () => {
+	return (dispatch: any) => {
+		dispatch({
+			type: FETCHING_ASSESSMENT
+		})
+	}
 }

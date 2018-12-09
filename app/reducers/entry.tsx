@@ -19,7 +19,6 @@ export default (state:any= {pending: true}, action: any) => {
 		case SUBMIT_ASSESSMENT: {
 			const thisState = {...state};
 			if (action.payload.entry[0]) {
-				const fuck = thisState.entries[0];
 				const { teacher_creative, teacher_critical, teacher_responsible } = action.payload.entry[0];
 				thisState.entries[0].teacher_creative = teacher_creative;
 				thisState.entries[0].teacher_critical = teacher_critical;
@@ -27,7 +26,6 @@ export default (state:any= {pending: true}, action: any) => {
 			}
 			return {
                 ...thisState,
-                // feedback: state.feedback.concat(action.payload[0]),
 			};
         }
 		default:

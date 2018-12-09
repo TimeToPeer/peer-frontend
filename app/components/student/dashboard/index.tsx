@@ -90,7 +90,8 @@ class Dashboard extends Component<IProps, IState> {
 				);
 			} else {
 				newQuests.unshift(
-					<NewQuest key={i} id={data[item].id} title={data[item].title} color='hershey'
+					<NewQuest key={i} id={data[item].id} title={data[item].title}
+						color={mapIdToColor(getRandomInt(8))}
 						text='You have a new QUEST!'
 						hoverText={data[item].description}
 						image={questEntry.image}

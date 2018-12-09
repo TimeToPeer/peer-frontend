@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getSkills} from 'Actions/index';
 import ScoreWheel from 'Common/wheel/score'
-import Legend1 from 'Assets/images/hover1.png';
+import Legend1 from 'Assets/images/hover4.png';
 import Legend2 from 'Assets/images/hover3.png';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';

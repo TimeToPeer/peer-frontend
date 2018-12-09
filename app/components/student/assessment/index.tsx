@@ -9,7 +9,7 @@ interface IState { entryId: string; }
 class Assessment extends Component<IProps, IState> {
     constructor(props: any) {
         super(props);
-        const entryId = this.props.match.params.id;
+        const entryId = props.entryId;
 
         this.state = {
             entryId,

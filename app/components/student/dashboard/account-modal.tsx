@@ -70,6 +70,9 @@ class AccountModal extends Component<IMyProps, IMyState> {
 		const { name, class_code, school_code, personality, icon } = this.state;
 		this.props.dispatch(saveUser({ name, class_code, school_code, personality, icon }));
 		this.closeModal();
+		if (this.props.profile.class_code !== class_code) {
+			location.reload();
+		}
 	}
 
 	onChangeName(val: string) {

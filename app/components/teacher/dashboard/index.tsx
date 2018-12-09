@@ -70,7 +70,7 @@ class Dashboard extends Component<IProps, IState> {
 		if (currentMenuItem === 'quest-spanmenuitem') {
 			return <Quests entries={this.props.entries} inventory={this.props.quests.inventory} />;
 		} else if (currentMenuItem === 'skills-spanmenuitem') {
-			return <Classroom inventory={this.props.quests.inventory} />;
+			window.location.href = '/assessment';
 		} else {
 			return <Feed entries={this.props.entries} {...this.props.comments} disableComment={true} />;
 		}

@@ -2,13 +2,15 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import { withStyles } from '@material-ui/core/styles';
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import ScoreWheel from 'Common/wheel/score'
 import classnames from 'classnames';
-import Legend1 from 'Assets/images/hover1.png';
+import Legend1 from 'Assets/images/hover4.png';
 import Legend2 from 'Assets/images/hover3.png';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 import Comments from 'Common/comment';
+import { selectedQuestEntry, getQuestEntry, showLoading, pendingAssessment } from 'Actions/index';
 
 // Add locale-specific relative date/time formatting rules.
 TimeAgo.addLocale(en)
@@ -50,7 +52,7 @@ const styles = () => ({
 });
 
 interface IState { openAssessment: any; openComments: any; }
-interface IProps { row: any; classes: any; }
+interface IProps { row: any; classes: any; dispatch: any; }
 
 class Row extends Component<IProps, IState> {
     constructor (props: any) {
@@ -112,8 +114,11 @@ class Row extends Component<IProps, IState> {
     }
 
     clickToFeedback() {
-        const { row } = this.props;
-        window.location.href = '/assessment/'+row.feedback.quest_entry_id;
+        const { row, dispatch } = this.props;
+        dispatch(showLoading(true));
+        dispatch(selectedQuestEntry(row.feedback.quest_entry_id));
+        dispatch(getQuestEntry({entryId: row.feedback.quest_entry_id}));
+        dispatch(pendingAssessment());
     }
 
     render() {
@@ -158,4 +163,4 @@ class Row extends Component<IProps, IState> {
     }
 }
 
-export default withStyles(styles)(Row);
+export default connect()(withStyles(styles)(Row));

@@ -28,6 +28,8 @@ export const POST_COMMENT: string = 'POST_COMMENT';
 
 // assessment
 export const SUBMIT_ASSESSMENT: string = 'SUBMIT_ASSESSMENT';
+export const SELECTED_QUEST_ENTRY: string = 'SELECTED_QUEST_ENTRY';
+export const FETCHING_ASSESSMENT: string = 'FETCHING_ASSESSMENT';
 
 // class
 export const CLASSROOM_DATA: string = 'CLASSROOM_DATA';

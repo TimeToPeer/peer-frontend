@@ -6,7 +6,7 @@ import ScoreWheel from 'Common/wheel/score'
 import Comments from 'Common/comment';
 import EmojiInput from 'Common/inputs/emoji-input';
 import {postAssessment} from 'Actions/index';
-import Legend1 from 'Assets/images/hover1.png';
+import Legend1 from 'Assets/images/hover4.png';
 import Legend2 from 'Assets/images/hover3.png';
 
 interface IProps { dispatch: any; match: any; entries: any; comments: any; entry: any; feedback: any; }
