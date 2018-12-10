@@ -50,6 +50,9 @@ class MyImageEditor extends Component<IProps, IState> {
 
 	handleUrlImgSrc(event: any) {
 		this.setState({openImageUpload: false});
+		const canvas = this.myCanvas.current;
+		const context = canvas.getContext('2d');
+		context.clearRect(0, 0, canvas.width, canvas.height);
 		this.drawImage(this.state.imgSrc, false);
 	}
 
@@ -59,6 +62,9 @@ class MyImageEditor extends Component<IProps, IState> {
 
 	handleImgSrc(event: any) {
 		this.setState({openImageUpload: false});
+		const canvas = this.myCanvas.current;
+		const context = canvas.getContext('2d');
+		context.clearRect(0, 0, canvas.width, canvas.height);
 		this.drawImage(event.target.files[0], true);
 	}
 

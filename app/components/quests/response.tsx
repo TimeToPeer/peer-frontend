@@ -7,7 +7,7 @@ import OpenSvg from 'Assets/images/open.svg';
 import { showLoading, submitQuest } from 'Actions/index';
 
 interface IState { critical: number; creative: number; responsible: number; image: string; error: boolean; }
-interface IProps { dispatch: any; match: any; questId: any; }
+interface IProps { dispatch: any; match: any; questId: any; text: string; }
 
 class QuestResponse extends Component<IProps, IState> {
 	private assessment: any;
@@ -67,7 +67,7 @@ class QuestResponse extends Component<IProps, IState> {
 				<img className='open-assessment' src={OpenSvg} onClick={this.openAssessment} />
 				<div className='assessment' ref={this.assessment}>
 					<div className='heading-text'>
-						How can we better conserve energy or resource in our school?
+						{this.props.text}
 					</div>
 					<Wheel id='critical-wheel' onWheelClick={this.onWheelClick} type='student'
 						title='CRITICAL' description='I give feedback about my work.' />

@@ -73,10 +73,9 @@ class Quests extends Component<IProps, IState> {
 		if (this.props.quest.pending) {
 			return <div></div>;
 		}
-
 		return(
 			<div>
-				{this.state.responseMode ? <QuestReponse questId={this.state.questId} /> : this.renderQuestInfo() }
+				{this.state.responseMode ? <QuestReponse questId={this.state.questId} text={this.props.quest.description}/> : this.renderQuestInfo() }
 			</div>
 		);
 	}
