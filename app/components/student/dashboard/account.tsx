@@ -41,8 +41,8 @@ class Account extends Component<IProps, IState> {
 	}
 
 	checkIfProfileComplete(profile: any) {
-		const { class_code, name, school_code } = profile;
-		return class_code && name && school_code;
+		const { class_code, name } = profile;
+		return class_code && name;
 	}
 
 	render() {
