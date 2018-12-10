@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Login from 'Common/nav-bar/login';
 import {connect} from 'react-redux';
 import {logoutUser} from 'Actions/index';
+import Logo from 'Assets/images/peerlogo.png';
 
 interface IMyState { loginClicked: boolean; signOut: boolean; accountClicked: boolean; }
 interface IMyProps { loggedIn: boolean; history: any; dispatch: any; isProfileComplete: boolean; }
@@ -45,7 +46,7 @@ class NavBar extends Component<IMyProps, IMyState> {
 		return(
 			<div className='menu-container'>
 				<div className='center-container'>
-					<div className='logo-name' onClick={() => { window.location.href = '/'; } }>PEER</div>
+					<div className='logo-name' onClick={() => { window.location.href = '/'; } }><img src={Logo} /></div>
 					<div className='signin' onClick={() => this.openLoginModal(true)}>{loggedIn ? 'SIGN OUT' : 'SIGN IN' }</div>
 					<Login loginClicked={loginClicked} openLoginModal={this.openLoginModal} />
 				</div>
