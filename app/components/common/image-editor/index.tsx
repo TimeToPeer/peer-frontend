@@ -10,7 +10,7 @@ import VoiceIcon from 'Assets/images/toolbar-icons/voice-icon.svg';
 
 import 'Styles/fonts.scss';
 
-interface IState { openImageUpload: boolean; imgSrc: any; inputVal: string; imgSuccess: boolean; imgData: string; }
+interface IState { openImageUpload: boolean; imgSrc: any; inputVal: string; imgSuccess: boolean; imgData: string; imgError: boolean; }
 interface IProps { error: boolean; onSubmit(val: string, inputval: string): void; }
 
 class MyImageEditor extends Component<IProps, IState> {
@@ -28,6 +28,7 @@ class MyImageEditor extends Component<IProps, IState> {
 			inputVal: '',
 			imgSuccess: false,
 			imgData: '',
+			imgError: false,
 		};
 		this.myCanvas = createRef<HTMLDivElement>();
 		this.hiddenCanvas = createRef<HTMLDivElement>();
@@ -76,7 +77,7 @@ class MyImageEditor extends Component<IProps, IState> {
 		const img = new Image();
 		img.crossOrigin = 'anonymous';
 		img.onload = () => {
-			this.setState({imgSuccess: true});
+			this.setState({imgSuccess: true, imgError: false});
 			ctx.imageSmoothingEnabled = false;
 			const hRatio = canvas.width / img.width    ;
 			const vRatio = canvas.height / img.height  ;
@@ -90,6 +91,9 @@ class MyImageEditor extends Component<IProps, IState> {
 			ctx.drawImage(img, 0, 0, img.width, img.height,
 				centerX, centerY, img.width * ratio, img.height * ratio);
 		};
+		img.onerror = (error) => {
+			this.setState({imgError: true});
+		}
 		if (isFile) {
 			img.src = URL.createObjectURL(imgSrc);
 		} else {
@@ -162,6 +166,7 @@ class MyImageEditor extends Component<IProps, IState> {
 						<EmojiInput placeholder='Add a caption...' onChange={this.onInputChange} clearEditor={false} />
 					</div>
 					<div className='error-msg'>{ this.props.error ? 'You must include image, caption and self assessment' : ''}</div>
+					<div className='error-msg'>{ this.state.imgError ? 'Url blocked. Please either try another image or upload image from computer' : ''}</div>
 					<div className='button-container'>
 						<button>SAVE</button>
 						<button onClick={this.saveImage}>POST</button>
