@@ -119,15 +119,15 @@ class AccountModal extends Component<IMyProps, IMyState> {
 					</div>
 					<div className='account-heading'>ABOUT ME</div>
 					<div className='row'>
-						<AccountInput value={name} onChange={this.onChangeName} placeholder='STUDENT NAME' />
+						<AccountInput value={name} onChange={this.onChangeName} placeholder='STUDENT NAME' length={200} />
 						<ColorPicker userColor={this.state.icon} onChangeIcon={this.onChangeIcon} />
 					</div>
 					<div className='row'>
-						<AccountInput value={class_code} onChange={this.onChangeClassCode} placeholder='CLASS CODE'/>
-						<AccountInput value={school_code} onChange={this.onChangeSchool} placeholder='STUDENT SCHOOL'/>
+						<AccountInput value={class_code} onChange={this.onChangeClassCode} placeholder='CLASS CODE' length={30}/>
+						<AccountInput value={school_code} onChange={this.onChangeSchool} placeholder='STUDENT SCHOOL' length={10}/>
 					</div>
 					<div className='wide-row'>
-						<AccountInput value={personality} onChange={this.onChangePersonality} placeholder='ADD PERSONALITY (School President, Book Worm, Soccer Star, or Class Comedian?)'/>
+						<AccountInput value={personality} onChange={this.onChangePersonality} placeholder='ADD PERSONALITY (School President, Book Worm, Soccer Star, or Class Comedian?)' length={64}/>
 					</div>
 					<button onClick={this.submitChange}>SAVE</button>
 				</div>

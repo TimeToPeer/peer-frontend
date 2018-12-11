@@ -94,7 +94,6 @@ class Dashboard extends Component<IProps, IState> {
 						color={mapIdToColor(getRandomInt(8))}
 						text='You have a new QUEST!'
 						hoverText={data[item].description}
-						image={questEntry.image_url}
 						onClickHandler={this.onClickHandler}
 					/>
 				);

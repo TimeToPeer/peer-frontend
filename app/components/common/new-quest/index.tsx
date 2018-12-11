@@ -52,12 +52,13 @@ class NewQuest extends Component<IProps, IState> {
 		const fake = this.props.fake ? 'fake' : '';
 		const { id, title, image, classes, color } = this.props;
 		const bgColor = color ? color : 'white';
+		const imageHov = image ? imageUrl(image) : '';
 		return (
 			<div className={`new-quest-container ${fake}`} onClick={() => this.onClickHandler(id)}
 				onMouseOver={this.onMouseOver}
 				onMouseLeave={this.onMouseOut}
 			>
-				<Avatar aria-label='Avatar' className={classnames(classes['avatar-icon'], bgColor)} src={!this.state.hover ? imageUrl(image) : ''}>
+				<Avatar aria-label='Avatar' className={classnames(classes['avatar-icon'], bgColor)} src={!this.state.hover ? imageHov : ''}>
 					{this.state.overText}
 				</Avatar>
 				

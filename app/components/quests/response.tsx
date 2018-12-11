@@ -70,11 +70,11 @@ class QuestResponse extends Component<IProps, IState> {
 						{this.props.text}
 					</div>
 					<Wheel id='critical-wheel' onWheelClick={this.onWheelClick} type='student'
-						title='CRITICAL' description='I give feedback about my work.' />
+						title='CRITICAL' description='I can support my opinions with facts.' />
 					<Wheel id='creative-wheel' onWheelClick={this.onWheelClick} type='student'
-						title='CREATIVE' description={`I get new ideas or build on other people's ideas.`}/>
+						title='CREATIVE' description={`I can build on other people's ideas.`}/>
 					<Wheel id='responsible-wheel' onWheelClick={this.onWheelClick} type='student'
-						title='RESPONSIBLE' description='I seek out help or work to get more information.'/>
+						title='COMMUNICATION' description='I can present information clearly.'/>
 					<img className='close-assessment' src={CloseSvg} onClick={this.closeAssessment} />
 				</div>
 			</div>

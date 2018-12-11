@@ -87,7 +87,7 @@ class Row extends Component<IProps, IState> {
                 <ScoreWheel id={`creative-wheel-${id}`} score = {Number(creative)} teacher_score={Number(teacher_creative)}
                     title='CREATIVE' description='I give feedback about my work.' />
                 <ScoreWheel id={`responsible-wheel-${id}`} score = {Number(responsible)} teacher_score={Number(teacher_responsible)}
-                    title='RESPONSIBLE' description='I give feedback about my work.' />
+                    title='COMMUNICATION' description='I can present information clearly.' />
             </React.Fragment>
         )
     }

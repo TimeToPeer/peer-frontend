@@ -47,11 +47,11 @@ class Assessment extends Component<IProps, IState> {
         return (
             <React.Fragment>
                 <Wheel id='critical-wheel' onWheelClick={this.onWheelClick} type='teacher'
-                    title='CRITICAL' description='I give feedback about my work.' />
+                    title='CRITICAL' description='I can support my opinions with facts.' />
                 <Wheel id='creative-wheel' onWheelClick={this.onWheelClick} type='teacher'
-                    title='CREATIVE' description={`I get new ideas or build on other people's ideas.`}/>
+                    title='CREATIVE' description={`I can build on other people's ideas.`}/>
                 <Wheel id='responsible-wheel' onWheelClick={this.onWheelClick} type='teacher'
-                    title='RESPONSIBLE' description='I seek out help or work to get more information.'/>
+                    title='COMMUNICATION' description='I can present information clearly.'/>
             </React.Fragment>
         )
     }
@@ -68,7 +68,7 @@ class Assessment extends Component<IProps, IState> {
                 <ScoreWheel id='creative-wheel' score = {Number(creative)} teacher_score={Number(teacher_creative)}
                     title='CREATIVE' description='I give feedback about my work.' />
                 <ScoreWheel id='responsible-wheel' score = {Number(responsible)} teacher_score={Number(teacher_responsible)}
-                    title='RESPONSIBLE' description='I give feedback about my work.' />
+                    title='COMMUNICATION' description='I give feedback about my work.' />
             </React.Fragment>
         )
     }

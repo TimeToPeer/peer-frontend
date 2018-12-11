@@ -118,12 +118,12 @@ class AccountModal extends Component<IMyProps, IMyState> {
 						<img src={closeIcon} />
 					</div>
 					<div className='row'>
-						<AccountInput value={name} onChange={this.onChangeName} placeholder='STUDENT NAME' />
+						<AccountInput value={name} onChange={this.onChangeName} placeholder='STUDENT NAME' length={200} />
 						<ColorPicker userColor={this.state.icon} onChangeIcon={this.onChangeIcon} />
 					</div>
 					<div className='row'>
-						<AccountInput value={class_code} onChange={this.onChangeClassCode} placeholder='CLASS CODE'/>
-						<AccountInput value={school_code} onChange={this.onChangeSchool} placeholder='STUDENT SCHOOL'/>
+						<AccountInput value={class_code} onChange={this.onChangeClassCode} placeholder='CLASS CODE' length={30}/>
+						<AccountInput value={school_code} onChange={this.onChangeSchool} placeholder='STUDENT SCHOOL' length={10}/>
 					</div>
                     <div className='action-container'>
                         <div className='wide-row'>

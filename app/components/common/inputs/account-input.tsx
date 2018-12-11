@@ -3,7 +3,7 @@ import React, {Component, ChangeEvent} from 'react';
 import editInputSvg from 'Assets/images/editInput.svg';
 
 interface IMyState { value: string; }
-interface IMyProps { placeholder: string; value: string; onChange(val: string): void; }
+interface IMyProps { placeholder: string; length: number; value: string; onChange(val: string): void; }
 
 class AccountInput extends Component<IMyProps, IMyState> {
 	constructor(props: any) {
@@ -24,7 +24,7 @@ class AccountInput extends Component<IMyProps, IMyState> {
 		return (
 			<div className='account-input-field'>
 				<img src={editInputSvg} />
-				<input value={this.state.value} onChange={this.onChangeInput} placeholder={this.props.placeholder} />
+				<input value={this.state.value} onChange={this.onChangeInput} placeholder={this.props.placeholder} maxLength={this.props.length} />
 			</div>
 		);
 	}
