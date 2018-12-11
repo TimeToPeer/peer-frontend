@@ -8,6 +8,7 @@ const path = require('path');
 const compiler = webpack(webpackConfig);
 
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, '../quest_images')));
 
 app.use(webpackDevMiddleware(compiler, {
     hot:true,

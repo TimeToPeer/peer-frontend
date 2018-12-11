@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
+import {imageUrl} from 'Helpers/main-helper';
 
 const styles = () => ({
 	'avatar-icon': {
@@ -56,7 +57,7 @@ class NewQuest extends Component<IProps, IState> {
 				onMouseOver={this.onMouseOver}
 				onMouseLeave={this.onMouseOut}
 			>
-				<Avatar aria-label='Avatar' className={classnames(classes['avatar-icon'], bgColor)} src={!this.state.hover ? image : ''}>
+				<Avatar aria-label='Avatar' className={classnames(classes['avatar-icon'], bgColor)} src={!this.state.hover ? imageUrl(image) : ''}>
 					{this.state.overText}
 				</Avatar>
 				

@@ -7,7 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
-import {formatDate} from 'Helpers/main-helper';
+import {formatDate, imageUrl} from 'Helpers/main-helper';
 import Comments from 'Common/comment';
 import EmojiInput from 'Common/inputs/emoji-input';
 import {postQuestComment} from 'Actions/index';
@@ -64,7 +64,7 @@ const styles = (theme: any) => ({
 });
 
 interface IProps { classes: any; profile: any; dispatch: any; disableComment: boolean; feedback?: any;
-	image: string; name: string; icon: string; created_on: string; entry: string; comments: any; id: number; }
+	image_url: string; name: string; icon: string; created_on: string; entry: string; comments: any; id: number; }
 interface IState { expanded: boolean; comment: string; clearEditor: boolean; }
 
 class FeedCard extends React.Component<IProps, IState> {
@@ -96,7 +96,7 @@ class FeedCard extends React.Component<IProps, IState> {
 
   	render() {
 		const { classes } = this.props;
-		const { name, icon, created_on, image, entry, comments, disableComment } = this.props;
+		const { name, icon, created_on,  image_url: imgUrl, entry, comments, disableComment } = this.props;
 		const profile = {
 			name,
 			icon,
@@ -111,7 +111,7 @@ class FeedCard extends React.Component<IProps, IState> {
 				/>
 				<CardMedia
 					className={classes.media}
-					image={image}
+					image={imageUrl(imgUrl)}
 				/>
 				<CardContent>
 					<Typography component='div' className={classes.content}>

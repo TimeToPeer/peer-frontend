@@ -43,8 +43,21 @@ export const formatDataWithoutTime = (unixDate: string) => {
 	return (month + 1)  + '/' + date + '/' + year;
 }
 
+export const imageUrl = (imageUrl: string) => {
+	let url = '';
+	if (document.location.hostname === 'localhost') {
+		url = 'http://localhost:3000';
+	} else {
+		url = 'https://timetopeer.ca';
+	}
+	url += '/' + imageUrl;
+	return url;
+}
+
+
 export default {
 	mapIdToColor,
 	formatDate,
 	formatDataWithoutTime,
+	imageUrl,
 };

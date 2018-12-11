@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import {formatDate} from 'Helpers/main-helper';
 import {postQuestComment} from 'Actions/index';
 import Grid from '@material-ui/core/Grid';
+import {imageUrl} from 'Helpers/main-helper';
 
 const styles = () => ({
 	card: {
@@ -41,7 +42,7 @@ const styles = () => ({
 });
 
 interface IProps { classes: any; profile: any; dispatch: any;
-	image: string; name: string; icon: string; created_on: string; entry: string; id: number; }
+	image: string; name: string; icon: string; created_on: string; entry: string; id: number; image_url: string; }
 
 class FeedCard extends React.Component<IProps, {}> {
 	constructor(props: any) {
@@ -56,11 +57,12 @@ class FeedCard extends React.Component<IProps, {}> {
 
   	render() {
 		const { classes } = this.props;
-		const { name, icon, created_on, image, entry } = this.props;
+		const { name, icon, created_on, image_url: imgUrl, entry } = this.props;
 		const profile = {
 			name,
 			icon,
 		};
+		console.log(this.props);
 		const dateString = formatDate(created_on);
 		return (
 			<Grid item sm={4} xs={12}>
@@ -72,7 +74,7 @@ class FeedCard extends React.Component<IProps, {}> {
 					/>
 					<CardMedia
 						className={classes.media}
-						image={image}
+						image={imageUrl(imgUrl)}
 					/>
 					<CardContent className={classes['content-container']}>
 						<Typography component='p' className={classes.content} >
