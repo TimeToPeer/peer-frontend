@@ -7,6 +7,7 @@ import BrushIcon from 'Assets/images/toolbar-icons/brush-icon.svg';
 import VideoIcon from 'Assets/images/toolbar-icons/video-icon.svg';
 import TextIcon from 'Assets/images/toolbar-icons/text-icon.svg';
 import VoiceIcon from 'Assets/images/toolbar-icons/voice-icon.svg';
+import ImageDropzone from './image-dropzone';
 
 import 'Styles/fonts.scss';
 
@@ -61,12 +62,12 @@ class MyImageEditor extends Component<IProps, IState> {
 		this.setState({openImageUpload: true});
 	}
 
-	handleImgSrc(event: any) {
+	handleImgSrc(file: any) {
 		this.setState({openImageUpload: false});
 		const canvas = this.myCanvas.current;
 		const context = canvas.getContext('2d');
 		context.clearRect(0, 0, canvas.width, canvas.height);
-		this.drawImage(event.target.files[0], true);
+		this.drawImage(file, true);
 	}
 
 	drawImage(imgSrc: string, isFile: boolean) {
@@ -149,7 +150,8 @@ class MyImageEditor extends Component<IProps, IState> {
 								offsetY={15}
 							>
 								<div className='file-input-container'>
-									<input className='file-input' type='file' onChange={this.handleImgSrc} />
+									{/* <input className='file-input' type='file' onChange={this.handleImgSrc} /> */}
+									<ImageDropzone onChange={this.handleImgSrc} />
 									<div className='url-input-label'>---or insert URL from the web---</div>
 									<input className='url-input' onChange={this.urlInputChange} />
 									<button className='url-import' onClick={this.handleUrlImgSrc}>import</button>
