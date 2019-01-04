@@ -41,8 +41,8 @@ const styles = () => ({
 	},
 });
 
-interface IProps { classes: any; profile: any; dispatch: any;
-	image: string; name: string; icon: string; created_on: string; entry: string; id: number; image_url: string; }
+interface IProps { classes: any; profile: any; dispatch: any; first_name: string; last_name: string;
+	image: string; icon: string; created_on: string; entry: string; id: number; image_url: string; }
 
 class FeedCard extends React.Component<IProps, {}> {
 	constructor(props: any) {
@@ -57,11 +57,12 @@ class FeedCard extends React.Component<IProps, {}> {
 
   	render() {
 		const { classes } = this.props;
-		const { name, icon, created_on, image_url: imgUrl, entry } = this.props;
+		const { first_name, last_name, icon, created_on, image_url: imgUrl, entry } = this.props;
 		const profile = {
-			name,
+			first_name,
+			last_name,
 			icon,
-		};
+		}
 		const dateString = formatDate(created_on);
 		return (
 			<Grid item sm={4} xs={12}>

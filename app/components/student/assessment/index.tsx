@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {getQuestEntry} from 'Actions/index';
 import Feed from 'Common/feed';
 
-interface IProps { dispatch: any; match: any; entries: any; comments: any; feedback: any; }
+interface IProps { dispatch: any; entries: any; comments: any; feedback: any; entryId: any; }
 interface IState { entryId: string; }
 
 class Assessment extends Component<IProps, IState> {

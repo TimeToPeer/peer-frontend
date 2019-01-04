@@ -56,11 +56,12 @@ class Comment extends Component<IProps, IState> {
 
 	renderCommentItem(item: any, count: number, length: number) {
 		// render each comments here
-		const { name, icon, comment, created_on, id, special_text } = item;
+		const { first_name, last_name, icon, comment, created_on, id, special_text } = item;
 		const profile = {
-			name,
+			first_name,
+			last_name,
 			icon,
-		};
+		}
 		const { classes } = this.props;
 		let show = '';
 		if (length <= 3 || this.state.showMore) {

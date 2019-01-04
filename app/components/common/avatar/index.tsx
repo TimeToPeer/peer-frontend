@@ -24,15 +24,16 @@ class Avatar extends Component<IProps, {}> {
 	}
 
 	render() {
-		const { name, icon, personality } = this.props.profile;
+		const { first_name, last_name, icon, personality } = this.props.profile;
 		const profile = {
-			name,
+			first_name,
+			last_name,
 			icon,
 		}
 		return(
 			<div className='avatar'>
 				<AvatarIcon profile={profile} size='large' onClick={() => this.props.openAccount(true)} />
-				<div className='user-name'>{name.toUpperCase()}</div>
+				<div className='user-name'>{first_name.toUpperCase()} {last_name.toUpperCase()}</div>
 				<div className='personality'>{personality}</div>
 				<div className='my-peers'>
 					<img src={MyPeers} />

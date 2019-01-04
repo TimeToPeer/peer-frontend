@@ -4,7 +4,7 @@ import {getQuestEntry, getQuests, selectedQuestEntry, showLoading} from 'Actions
 import Feed from 'Common/feed';
 import Classroom from 'Components/teacher/dashboard/classroom.tsx';
 
-interface IProps { dispatch: any; match: any; entries: any; comments: any; feedback: any; quests: any; entryId: any; }
+interface IProps { dispatch: any; entries: any; comments: any; feedback: any; quests: any; entryId: any; }
 interface IState { entryId: string; showClassroom: boolean; }
 
 class Assessment extends Component<IProps, IState> {

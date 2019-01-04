@@ -7,7 +7,7 @@ import OpenSvg from 'Assets/images/open.svg';
 import { showLoading, submitQuest } from 'Actions/index';
 
 interface IState { critical: number; creative: number; responsible: number; image: string; error: boolean; }
-interface IProps { dispatch: any; match: any; questId: any; text: string; }
+interface IProps { dispatch: any; questId: any; text: string; }
 
 class QuestResponse extends Component<IProps, IState> {
 	private assessment: any;

@@ -48,20 +48,21 @@ class AvatarIcon extends Component<IProps, {}> {
 		return false;
 	}
 
-	getInitials(name: string) {
-		const initials = name.match(/\b\w/g) || [];
-		return ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+	getInitials(first_name: string, last_name: string) {
+		const first_initials = first_name.charAt(0).toUpperCase();
+		const last_initials = last_name.charAt(0).toUpperCase();
+		return first_initials + last_initials;
 	}
 
 	render() {
-		const { name, icon } = this.props.profile;
+		const { first_name, last_name, icon } = this.props.profile;
 		const {  classes, size } = this.props;
 		const color = mapIdToColor(Number(icon));
-		const initials = this.getInitials(name);
+		const initials = this.getInitials(first_name, last_name);
 		return(
 			<div className={classes['avatar-icon-container']} onClick={() => this.props.onClick(true)}>
-				<Avatar aria-label='Avatar' className={classnames(classes['avatar-icon'], color, classes[size])}>
-					{initials}
+				<Avatar className={classnames(classes['avatar-icon'], color, classes[size])}>
+					<span>{initials}</span>
 				</Avatar>
 			</div>
 		);

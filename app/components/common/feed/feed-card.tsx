@@ -64,7 +64,8 @@ const styles = (theme: any) => ({
 });
 
 interface IProps { classes: any; profile: any; dispatch: any; disableComment: boolean; feedback?: any;
-	image_url: string; name: string; icon: string; created_on: string; entry: string; comments: any; id: number; }
+	image_url: string; first_name: string; last_name: string; icon: string; created_on: string;
+	entry: string; comments: any; id: number; }
 interface IState { expanded: boolean; comment: string; clearEditor: boolean; }
 
 class FeedCard extends React.Component<IProps, IState> {
@@ -96,11 +97,12 @@ class FeedCard extends React.Component<IProps, IState> {
 
   	render() {
 		const { classes } = this.props;
-		const { name, icon, created_on,  image_url: imgUrl, entry, comments, disableComment } = this.props;
+		const { first_name, last_name, icon, created_on,  image_url: imgUrl, entry, comments, disableComment } = this.props;
 		const profile = {
-			name,
+			first_name,
+			last_name,
 			icon,
-		};
+		}
 		const dateString = formatDate(created_on);
 		return (
 			<Card className={classes.card}>

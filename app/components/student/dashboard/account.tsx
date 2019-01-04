@@ -47,10 +47,11 @@ class Account extends Component<IProps, IState> {
 
 	render() {
 		const { accountClicked } = this.state;
-		const { name, icon, personality } = this.props.profile;
+		const { first_name, last_name, icon, personality } = this.props.profile;
 		const isProfileComplete = this.checkIfProfileComplete(this.props.profile);
 		const profile = {
-			name,
+			first_name,
+			last_name,
 			icon,
 		}
 		return(
@@ -59,7 +60,7 @@ class Account extends Component<IProps, IState> {
 				{!isProfileComplete ? null :
 					<div>
 						<AvatarIcon profile={profile} size='large' onClick={() => this.openAccount(true)} />
-						<div className='user-name'>{name.toUpperCase()}</div>
+						<div className='user-name'>{first_name.toUpperCase()} {last_name.toUpperCase()}</div>
 						<div className='personality'>{personality}</div>
 						<div className='my-peers'>
 							<img src={MyPeers} />

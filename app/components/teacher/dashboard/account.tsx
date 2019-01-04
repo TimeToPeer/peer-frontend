@@ -46,10 +46,11 @@ class Account extends Component<IProps, IState> {
 
 	render() {
 		const { accountClicked } = this.state;
-		const { name, icon } = this.props.profile;
+		const { first_name, last_name, icon } = this.props.profile;
 		const isProfileComplete = this.checkIfProfileComplete(this.props.profile);
 		const profile = {
-			name,
+			first_name,
+			last_name,
 			icon,
 		}
 		return(

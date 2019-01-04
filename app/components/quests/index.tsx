@@ -41,9 +41,10 @@ class Quests extends Component<IProps, IState> {
 	}
 
 	renderQuestInfo() {
-		const { title, name, icon, create_time, description } = this.props.quest;
+		const { title, first_name, last_name, icon, create_time, description } = this.props.quest;
 		const teacherProfile = {
-			name,
+			first_name,
+			last_name,
 			icon,
 		};
 		const dateString = formatDate(create_time);
@@ -75,7 +76,10 @@ class Quests extends Component<IProps, IState> {
 		}
 		return(
 			<div>
-				{this.state.responseMode ? <QuestReponse questId={this.state.questId} text={this.props.quest.description}/> : this.renderQuestInfo() }
+				{this.state.responseMode ?
+					<QuestReponse questId={this.state.questId} text={this.props.quest.description}/>
+					: this.renderQuestInfo()
+				}
 			</div>
 		);
 	}
