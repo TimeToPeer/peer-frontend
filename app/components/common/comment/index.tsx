@@ -70,6 +70,7 @@ class Comment extends Component<IProps, IState> {
 			show = length-count > 3 ? 'hide' : 'show';
 		}
 		const dateString = formatDate(created_on);
+		const name = `${first_name} ${last_name}`;
 		return (
 			<div className={classnames(classes['comment-container'], classes[show])} key={id}>
 				<AvatarIcon profile={profile} size='small' />

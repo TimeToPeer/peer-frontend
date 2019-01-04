@@ -26,7 +26,7 @@ class WheelComponent extends Component<IProps, {}> {
 		const wheelContainer = document.getElementById(id);
 		const circle: any = wheelContainer.getElementsByClassName('circle-piece');
 		for (let i = 0; i < score; i++) {
-			circle[i].style.stroke = '#fee8ef';
+			circle[i].style.stroke = '#F4BAE2';
 		}
 		for (let i = score; i < 8; i++) {
 			circle[i].style.stroke = '#f8e8fb';

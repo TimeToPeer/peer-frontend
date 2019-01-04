@@ -64,7 +64,7 @@ class Quests extends Component<IProps, IState> {
             return Math.floor(Math.random() * Math.floor(max));
         }
         
-        if (active) newQuests.push(<NewQuest key={'new'} id={0} title='' text='+ NEW' />);
+        if (active) newQuests.push(<NewQuest key={'new'} id={0} title='' text='+ NEW' hideButton={true} />);
 		for (const item in data) {
 			if (!data.hasOwnProperty(item)) {
 				continue;
@@ -77,13 +77,14 @@ class Quests extends Component<IProps, IState> {
                         hoverText={data[item].description}
                         color={mapIdToColor(getRandomInt(8))}
                         onClickHandler={this.onClickHandler}
+                        hideButton={true}
                     />
                 );
                 i++;
             }
         } 
         for(let i=0; i < 8; i++) {
-            newQuests.push(<NewQuest key={`fake${i}`} fake={true} id='0' text='N/A' color={mapIdToColor(getRandomInt(8))} />);
+            newQuests.push(<NewQuest key={`fake${i}`} fake={true} id='0' text='N/A' color={mapIdToColor(getRandomInt(8))} hideButton={true} />);
         }
 		return newQuests;
     }

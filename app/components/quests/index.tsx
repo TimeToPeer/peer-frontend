@@ -59,11 +59,11 @@ class Quests extends Component<IProps, IState> {
 				<div className='teacher-info'>
 					<AvatarIcon profile={teacherProfile} />
 					<div className='info'>
-						<div className='heading'>{`${title} by ${name}`}</div>
+						<div className='heading'>{`${title} by ${first_name} ${last_name}`}</div>
 						<div className='date'>{dateString}</div>
 					</div>
 					<div className='post-button' onClick={this.responseMode}>
-						POST
+						START
 					</div>
 				</div>
 			</div>

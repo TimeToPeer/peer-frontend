@@ -29,7 +29,7 @@ class Dashboard extends Component<IProps, IState> {
 			isLoading: true,
 			loginClicked: false,
 			signOut: false,
-			currentMenuItem: 'peers-spanmenuitem',
+			currentMenuItem: 'quest-spanmenuitem',
 			selectedQuest: null,
 		};
 
@@ -48,8 +48,8 @@ class Dashboard extends Component<IProps, IState> {
 	}
 
 	checkIfProfileComplete(profile: any) {
-		const { class_code, name } = profile;
-		return class_code && name;
+		const { class_code, first_name, last_name } = profile;
+		return class_code && first_name && last_name;
 	}
 
 	onClickHandler(id: string) {

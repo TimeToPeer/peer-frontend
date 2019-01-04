@@ -1,7 +1,7 @@
 .image-editor {
     margin-top: 30px;
+    background-color: rgba(255,214,151,0.5);
     .canvas-container {
-        background-color: rgba(254,238,222,0.5);
         .canvas-toolbar{
             padding: 12px 61px;
 
@@ -107,7 +107,18 @@
                     }
                 }
             }
-        }   
+        }
+    }
+    .caption-input {
+        .emoji-input {
+            .DraftEditor-root {
+                border-top: none;
+                background-color: white;
+                border-radius: 5px;
+                padding: 14px 14px;
+            }
+            padding-bottom: 20px;
+        }
     }
 
     .footer {

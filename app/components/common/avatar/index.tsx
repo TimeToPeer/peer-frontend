@@ -18,11 +18,6 @@ class Avatar extends Component<IProps, {}> {
 		return false;
 	}
 
-	getInitials(name: string) {
-		const initials = name.match(/\b\w/g) || [];
-		return ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
-	}
-
 	render() {
 		const { first_name, last_name, icon, personality } = this.props.profile;
 		const profile = {

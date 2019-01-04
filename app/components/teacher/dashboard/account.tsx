@@ -34,14 +34,9 @@ class Account extends Component<IProps, IState> {
 		}
 	}
 
-	getInitials(name: string) {
-		const initials = name.match(/\b\w/g) || [];
-		return ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
-	}
-
 	checkIfProfileComplete(profile: any) {
-		const { class_code, name } = profile;
-		return class_code && name;
+		const { class_code, first_name, last_name } = profile;
+		return class_code && first_name && last_name;
 	}
 
 	render() {

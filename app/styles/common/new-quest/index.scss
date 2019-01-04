@@ -2,14 +2,23 @@
     width: 163px;
     display: inline-block;
     margin-top: 37px;
-    margin-right: 30px;
+    margin-right: 5px;
     white-space: normal;
+    position: relative;
     
     .quest-title {
         text-align: center;
         font-family: JosefinRegular, Arial;
         font-size: 10pt;
         margin-top: 13px;
+    }
+    .new-quest-button{
+        position: absolute;
+        bottom: 32px;
+        right: 33px;
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
     }
 }
 

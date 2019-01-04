@@ -40,7 +40,7 @@ const styles = () => ({
 });
 
 interface IProps { classes: any; profile: any; dispatch: any;
-	image_url: string; name: string; icon: string; created_on: string; entry: string; comments: any; id: number; }
+	image_url: string; created_on: string; entry: string; comments: any; id: number; }
 
 
 class FeedCard extends Component<IProps, {}> {

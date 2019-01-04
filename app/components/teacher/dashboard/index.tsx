@@ -56,8 +56,8 @@ class Dashboard extends Component<IProps, IState> {
 	}
 
 	checkIfProfileComplete(profile: any) {
-		const { class_code, name } = profile;
-		return class_code && name;
+		const { class_code, first_name, last_name } = profile;
+		return class_code && first_name && last_name;
 	}
 
 	handleMenuClick(id: string) {
@@ -91,7 +91,7 @@ class Dashboard extends Component<IProps, IState> {
 						<div className='hotspot'>
 							<Account profile={this.props.profile}  />
                             <div className='teacher-info'>
-                                <div className='user-name'>{profile.name.toUpperCase()}</div>
+                                <div className='user-name'>{profile.first_name.toUpperCase()} {profile.last_name.toUpperCase()}</div>
                                 <div className='grade'>GRADE</div>
                                 <div className='student-number'>Number of Students</div>
                             </div>

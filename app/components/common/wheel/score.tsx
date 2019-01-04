@@ -28,7 +28,7 @@ class Score extends Component<IProps, {}> {
 		const wheelContainer = document.getElementById(id);
         const circle: any = wheelContainer.getElementsByClassName('circle-piece');
 		for (let i = 0; i < rScore; i++) {
-			circle[i].style.stroke = '#fee8ef';
+			circle[i].style.stroke = '#F4BAE2';
 		}
 		for (let i = rScore; i < 8; i++) {
 			circle[i].style.stroke = '#eae8e3';

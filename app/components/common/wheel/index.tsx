@@ -19,7 +19,7 @@ class WheelComponent extends Component<IProps, {}> {
 		super(props);
 		this.addBoundMouseOutEvent = this.addBoundMouseOutEvent.bind(this);
 		this.addMouseOverEvent = this.addMouseOverEvent.bind(this);
-		this.stroke = this.props.type === 'teacher' ? '#dfe8d3' : '#fee8ef';
+		this.stroke = this.props.type === 'teacher' ? '#dfe8d3' : '#F4BAE2';
 	}
 
 	addBoundMouseOutEvent(event: any) {

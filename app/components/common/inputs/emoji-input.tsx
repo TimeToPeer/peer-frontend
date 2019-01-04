@@ -37,6 +37,7 @@ class EmojiInput extends Component<IProps, IState> {
 					placeholder={this.props.placeholder}
 					onFocus={() => this.setState({ hasFocus: true })}
 					onBlur={() => this.setState({ hasFocus: false })}
+					spellCheck={true}
 				/>
 			</div>
 		);

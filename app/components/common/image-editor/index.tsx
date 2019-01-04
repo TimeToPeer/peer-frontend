@@ -1,6 +1,5 @@
 import React, {Component, createRef} from 'react';
 import Popup from 'reactjs-popup';
-import EmojiInput from 'Common/inputs/emoji-input';
 import ImageIcon from 'Assets/images/toolbar-icons/image-icon.svg';
 import EmojiIcon from 'Assets/images/toolbar-icons/emoji-icon.svg';
 import BrushIcon from 'Assets/images/toolbar-icons/brush-icon.svg';
@@ -11,8 +10,8 @@ import ImageDropzone from './image-dropzone';
 
 import 'Styles/fonts.scss';
 
-interface IState { openImageUpload: boolean; imgSrc: any; inputVal: string; imgSuccess: boolean; imgData: string; imgError: boolean; }
-interface IProps { error: boolean; onSubmit(val: string, inputval: string): void; }
+interface IState { openImageUpload: boolean; imgSrc: any; imgSuccess: boolean; imgData: string; imgError: boolean; }
+interface IProps { error: boolean; onImageSave(val: string): void; }
 
 class MyImageEditor extends Component<IProps, IState> {
 	private myCanvas: any;
@@ -26,7 +25,6 @@ class MyImageEditor extends Component<IProps, IState> {
 		this.state = {
 			openImageUpload: false,
 			imgSrc: '',
-			inputVal: '',
 			imgSuccess: false,
 			imgData: '',
 			imgError: false,
@@ -41,7 +39,6 @@ class MyImageEditor extends Component<IProps, IState> {
 		this.saveImage = this.saveImage.bind(this);
 		this.urlInputChange = this.urlInputChange.bind(this);
 		this.handleUrlImgSrc = this.handleUrlImgSrc.bind(this);
-		this.onInputChange = this.onInputChange.bind(this);
 
 		this.imgPos = {};
 	}
@@ -91,6 +88,7 @@ class MyImageEditor extends Component<IProps, IState> {
 			this.imgPos.height =  img.height * ratio;
 			ctx.drawImage(img, 0, 0, img.width, img.height,
 				centerX, centerY, img.width * ratio, img.height * ratio);
+			this.saveImage();
 		};
 		img.onerror = (error) => {
 			this.setState({imgError: true});
@@ -100,10 +98,6 @@ class MyImageEditor extends Component<IProps, IState> {
 		} else {
 			img.src = imgSrc;
 		}
-	}
-
-	onInputChange(val: string) {
-		this.setState({ inputVal: val });
 	}
 
 	saveImage() {
@@ -119,60 +113,46 @@ class MyImageEditor extends Component<IProps, IState> {
 			hiddenCtx.putImageData(imgData, 0, 0);
 		}
 		const canvas64 = this.state.imgSuccess ? hiddenCanvas.toDataURL() : '';
-		this.props.onSubmit(canvas64, this.state.inputVal);
+		this.props.onImageSave(canvas64);
 	}
 
 	render() {
 		return(
-			<div className='image-editor'>
-				<div className='canvas-container'>
-					<canvas ref={this.myCanvas} width='1024' height='716' />
-					<canvas ref={this.hiddenCanvas} width='1024' height='716' style={{display: 'none'}}/>
-					<div className='over-text' ref={this.overlayText}>
-						<span className='text-big'>
-							LET'S POST <br /> SOMETHING
-						</span>
-						<span className='text-small'>
-							Put in your two bits <br /> Post to your PEERS network!
-						</span>
-					</div>
-					<div className='canvas-toolbar'>
-						<div className='toolbar-item'><img className='not-available' src={EmojiIcon} /></div>
-						<div className='toolbar-item'><img className='not-available' src={BrushIcon} /></div>
-						<div className='toolbar-item'>
-							<Popup
-								trigger={
-									<img src={ImageIcon} onClick={this.saveImage} />
-								}
-								position='top center'
-								open={this.state.openImageUpload}
-								onOpen={this.importImage}
-								offsetY={15}
-							>
-								<div className='file-input-container'>
-									{/* <input className='file-input' type='file' onChange={this.handleImgSrc} /> */}
-									<ImageDropzone onChange={this.handleImgSrc} />
-									<div className='url-input-label'>---or insert URL from the web---</div>
-									<input className='url-input' onChange={this.urlInputChange} />
-									<button className='url-import' onClick={this.handleUrlImgSrc}>import</button>
-								</div>
-							</Popup>
-						</div>
-						<div className='toolbar-item'><img className='not-available' src={VideoIcon} /></div>
-						<div className='toolbar-item'><img className='not-available' src={TextIcon} /></div>
-						<div className='toolbar-item'><img className='not-available' src={VoiceIcon} /></div>
-					</div>
+			<div className='canvas-container'>
+				<canvas ref={this.myCanvas} width='1024' height='716' />
+				<canvas ref={this.hiddenCanvas} width='1024' height='716' style={{display: 'none'}}/>
+				<div className='over-text' ref={this.overlayText}>
+					<span className='text-big'>
+						LET'S POST <br /> SOMETHING
+					</span>
+					<span className='text-small'>
+						Put in your two bits <br /> Post to your PEERS network!
+					</span>
 				</div>
-				<div className='footer'>
-					<div className='caption-input'>
-						<EmojiInput placeholder='Add a caption...' onChange={this.onInputChange} clearEditor={false} />
+				<div className='canvas-toolbar'>
+					<div className='toolbar-item'><img className='not-available' src={EmojiIcon} /></div>
+					<div className='toolbar-item'><img className='not-available' src={BrushIcon} /></div>
+					<div className='toolbar-item'>
+						<Popup
+							trigger={
+								<img src={ImageIcon} onClick={this.saveImage} />
+							}
+							position='top center'
+							open={this.state.openImageUpload}
+							onOpen={this.importImage}
+							offsetY={15}
+						>
+							<div className='file-input-container'>
+								<ImageDropzone onChange={this.handleImgSrc} />
+								<div className='url-input-label'>---or insert URL from the web---</div>
+								<input className='url-input' onChange={this.urlInputChange} />
+								<button className='url-import' onClick={this.handleUrlImgSrc}>import</button>
+							</div>
+						</Popup>
 					</div>
-					<div className='error-msg'>{ this.props.error ? 'You must include image, caption and self assessment' : ''}</div>
-					<div className='error-msg'>{ this.state.imgError ? 'Url blocked. Please either try another image or upload image from computer' : ''}</div>
-					<div className='button-container'>
-						<button>SAVE</button>
-						<button onClick={this.saveImage}>POST</button>
-					</div>
+					<div className='toolbar-item'><img className='not-available' src={VideoIcon} /></div>
+					<div className='toolbar-item'><img className='not-available' src={TextIcon} /></div>
+					<div className='toolbar-item'><img className='not-available' src={VoiceIcon} /></div>
 				</div>
 			</div>
 		);

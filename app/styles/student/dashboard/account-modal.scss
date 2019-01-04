@@ -1,13 +1,12 @@
 .student-account-modal {
     position: absolute;
-    top: 59%;
+    top: 50%;
     left: 50%;
     width: 742px;
-    height: 583px;
     background-color: $hershey;
     text-align: center;
     outline: none;
-    margin: -432px 0 0 -340px;
+    transform: translate(-50%, -50%);
     padding: 20px;
 
     .close-btn {

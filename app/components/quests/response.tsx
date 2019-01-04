@@ -2,11 +2,10 @@ import React, {Component, createRef} from 'react';
 import {connect} from 'react-redux';
 import MyImageEditor from 'Common/image-editor';
 import Wheel from 'Common/wheel';
-import CloseSvg from 'Assets/images/close.svg';
-import OpenSvg from 'Assets/images/open.svg';
+import EmojiInput from 'Common/inputs/emoji-input';
 import { showLoading, submitQuest } from 'Actions/index';
 
-interface IState { critical: number; creative: number; responsible: number; image: string; error: boolean; }
+interface IState { critical: number; creative: number; responsible: number; image: string; error: boolean; caption: string; }
 interface IProps { dispatch: any; questId: any; text: string; }
 
 class QuestResponse extends Component<IProps, IState> {
@@ -14,9 +13,9 @@ class QuestResponse extends Component<IProps, IState> {
 	constructor(props: any) {
 		super(props);
 		this.onWheelClick = this.onWheelClick.bind(this);
-		this.openAssessment = this.openAssessment.bind(this);
-		this.closeAssessment = this.closeAssessment.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.onImageSave = this.onImageSave.bind(this);
+		this.onInputChange = this.onInputChange.bind(this);
 
 		this.assessment = createRef();
 
@@ -26,6 +25,7 @@ class QuestResponse extends Component<IProps, IState> {
 			responsible: 0,
 			image: '',
 			error: false,
+			caption: '',
 		};
 	}
 
@@ -35,48 +35,71 @@ class QuestResponse extends Component<IProps, IState> {
 		this.setState({ [target]: valNum } as any);
 	}
 
-	closeAssessment() {
-		this.assessment.current.style.right = '-270px';
+	onImageSave(canvas64: string) {
+		this.setState({image: canvas64});
 	}
 
-	openAssessment() {
-		this.assessment.current.style.right = '0';
-	}
-
-	onSubmit(imgVal: string, inputVal: string) {
-		const { critical, creative, responsible } = this.state;
+	onSubmit() {
+		const { critical, creative, responsible, caption, image } = this.state;
+		if (!critical || !creative || !responsible || !caption || !image ) {
+			return;
+		}
 		const { questId } = this.props;
-		if (critical < 1 || creative < 1 || responsible < 1 || inputVal.length === 0 || imgVal.length === 0) {
+		if (critical < 1 || creative < 1 || responsible < 1 || caption.length === 0 || image.length === 0) {
 			if (critical < 1 || creative < 1 || responsible < 1 ) {
 				this.assessment.current.style.right = '0';
 			}
 			this.setState({ error: true });
-		} else if (critical > 0 && creative > 0 && responsible > 0 && inputVal.length > 0 && imgVal.length > 0) {
+		} else if (critical > 0 && creative > 0 && responsible > 0 && caption.length > 0 && image.length > 0) {
 			this.setState({ error: false });
 			this.props.dispatch(showLoading(true));
 			this.props.dispatch(submitQuest({
-				questId, entry: inputVal, imgVal, critical, creative, responsible,
+				questId, entry: caption, imgVal: image, critical, creative, responsible,
 			}));
 		}
 	}
 
+	onInputChange(val: string) {
+		this.setState({ caption: val });
+	}
+
 	render() {
+		const { image, caption, critical, responsible, creative } = this.state;
+		const hasAssessment = critical && responsible && creative;
+		const metRequirement = image && caption && hasAssessment;
 		return(
 			<div className='response-container'>
-				<MyImageEditor onSubmit={this.onSubmit} error={this.state.error} />
-				<img className='open-assessment' src={OpenSvg} onClick={this.openAssessment} />
-				<div className='assessment' ref={this.assessment}>
-					<div className='heading-text'>
-						{this.props.text}
+				<div className='response-status'>
+					<div className='response-title'>QUEST goes here...</div>
+					<ul className="progressbar">
+						<li className={image ? 'active' : ''}><span>SHOW</span></li>
+						<li className={caption ? 'active' : ''}>EXPLAIN</li>
+						<li className={hasAssessment ? 'active' : ''}>ASSESS</li>
+						<li className={metRequirement ? 'active' : ''} onClick={this.onSubmit}></li>
+					</ul>
+				</div>
+				<div className='image-editor'>
+					<MyImageEditor onImageSave={this.onImageSave} error={this.state.error} />
+					<div className='caption-input'>
+						<EmojiInput placeholder='Write your thoughts here...' onChange={this.onInputChange} clearEditor={false} />
 					</div>
+				</div>
+				<div className='assessment' ref={this.assessment}>
 					<Wheel id='critical-wheel' onWheelClick={this.onWheelClick} type='student'
 						title='CRITICAL' description='I can support my opinions with facts.' />
 					<Wheel id='creative-wheel' onWheelClick={this.onWheelClick} type='student'
 						title='CREATIVE' description={`I can build on other people's ideas.`}/>
 					<Wheel id='responsible-wheel' onWheelClick={this.onWheelClick} type='student'
 						title='COMMUNICATION' description='I can present information clearly.'/>
-					<img className='close-assessment' src={CloseSvg} onClick={this.closeAssessment} />
 				</div>
+				{/* <div className='footer'>
+					<div className='error-msg'>{ this.props.error ? 'You must include image, caption and self assessment' : ''}</div>
+					<div className='error-msg'>{ this.state.imgError ? 'Url blocked. Please either try another image or upload image from computer' : ''}</div>
+					<div className='button-container'>
+						<button>SAVE</button>
+						<button onClick={this.saveImage}>POST</button>
+					</div>
+				</div> */}
 			</div>
 		);
 	}

@@ -6,7 +6,8 @@ import closeIcon from 'Assets/images/close.svg';
 import AccountInput from 'Components/common/inputs/account-input';
 import ColorPicker from 'Common/color-selector';
 
-interface IMyState { modalIsOpen: boolean; valid: boolean; name: string; class_code: string; school_code: string; profile: any; personality: string; saved: boolean; icon: number; }
+interface IMyState { modalIsOpen: boolean; valid: boolean; first_name: string; last_name: string;
+	class_code: string; school_code: string; profile: any; personality: string; saved: boolean; icon: number; }
 interface IMyProps { dispatch: any; accountClicked: boolean; isProfileComplete: boolean; profile: any; openAccount(openAccount: boolean): void; }
 
 class AccountModal extends Component<IMyProps, IMyState> {
@@ -14,7 +15,8 @@ class AccountModal extends Component<IMyProps, IMyState> {
 		if (props.profile !== state.profile) {
 			return {
 				profile: props.profile,
-				name: props.profile.name || '',
+				first_name: props.profile.first_name || '',
+				last_name: props.profile.last_name || '',
 				class_code: props.profile.class_code || '',
 				school_code: props.profile.school_code || '',
 				personality: props.profile.personality || '',
@@ -35,7 +37,8 @@ class AccountModal extends Component<IMyProps, IMyState> {
 			modalIsOpen: false,
 			valid: true,
 			profile: {},
-			name: '',
+			first_name: '',
+			last_name: '',
 			class_code: '',
 			school_code: '',
 			personality: '',
@@ -46,7 +49,8 @@ class AccountModal extends Component<IMyProps, IMyState> {
 		this.openModal = this.openModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
 		this.submitChange = this.submitChange.bind(this);
-		this.onChangeName = this.onChangeName.bind(this);
+		this.onChangeFName = this.onChangeFName.bind(this);
+		this.onChangeLName = this.onChangeLName.bind(this);
 		this.onChangeClassCode = this.onChangeClassCode.bind(this);
 		this.onChangeSchool = this.onChangeSchool.bind(this);
 		this.onChangePersonality = this.onChangePersonality.bind(this);
@@ -67,17 +71,22 @@ class AccountModal extends Component<IMyProps, IMyState> {
 
 	submitChange() {
 		// save changes
-		const { name, class_code, school_code, personality, icon } = this.state;
-		this.props.dispatch(saveUser({ name, class_code, school_code, personality, icon }));
+		const { first_name, last_name, class_code, school_code, personality, icon } = this.state;
+		this.props.dispatch(saveUser({ first_name, last_name, class_code, school_code, personality, icon }));
 		this.closeModal();
 		if (this.props.profile.class_code !== class_code) {
 			location.reload();
 		}
 	}
 
-	onChangeName(val: string) {
-		this.setState({ name: val });
+	onChangeFName(val: string) {
+		this.setState({ first_name: val });
 	}
+
+	onChangeLName(val: string) {
+		this.setState({ last_name: val });
+	}
+
 
 	onChangeClassCode(val: string) {
 		this.setState({ class_code: val });
@@ -96,7 +105,7 @@ class AccountModal extends Component<IMyProps, IMyState> {
 	}
 
 	render() {
-		const { pending, name, class_code, school_code, personality } = this.props.profile;
+		const { pending, first_name, last_name, class_code, personality } = this.props.profile;
 		if (pending) {
 			return (
 				<div></div>
@@ -119,12 +128,12 @@ class AccountModal extends Component<IMyProps, IMyState> {
 					</div>
 					<div className='account-heading'>ABOUT ME</div>
 					<div className='row'>
-						<AccountInput value={name} onChange={this.onChangeName} placeholder='STUDENT NAME' length={200} />
-						<ColorPicker userColor={this.state.icon} onChangeIcon={this.onChangeIcon} />
+						<AccountInput value={first_name} onChange={this.onChangeFName} placeholder='FIRST NAME' length={200} />
+						<AccountInput value={last_name} onChange={this.onChangeLName} placeholder='LAST NAME' length={200}/>
 					</div>
 					<div className='row'>
 						<AccountInput value={class_code} onChange={this.onChangeClassCode} placeholder='CLASS CODE' length={30}/>
-						<AccountInput value={school_code} onChange={this.onChangeSchool} placeholder='STUDENT SCHOOL' length={10}/>
+						<ColorPicker userColor={this.state.icon} onChangeIcon={this.onChangeIcon} />
 					</div>
 					<div className='wide-row'>
 						<AccountInput value={personality} onChange={this.onChangePersonality} placeholder='ADD PERSONALITY (School President, Book Worm, Soccer Star, or Class Comedian?)' length={64}/>
