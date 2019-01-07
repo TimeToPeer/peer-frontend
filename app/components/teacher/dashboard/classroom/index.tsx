@@ -42,9 +42,10 @@ class Main extends Component<IProps, IState> {
 			const entry = records.entry[rec.id];
 			const feedback = records.feedback.find((item:any)=> item.created_by === rec.id);
 			const comments = records.comments.filter((item:any)=> item.created_by === rec.id);
+			const name = `${rec.first_name} ${rec.last_name}`;
 			rows.push({
 				id: rec.id,
-				name: rec.name,
+				name: name,
 				posts: entry ? entry.post_count : 0,
 				assessed: entry ? entry : {},
 				feedback: feedback ? feedback : '',
