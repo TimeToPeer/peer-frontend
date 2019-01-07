@@ -33,7 +33,7 @@ const styles = () => ({
 	},
 });
 
-interface IProps { profile: any; classes: any; size?: string; onClick?(bool: boolean):void; }
+interface IProps { profile: any; classes: any; size?: string; first_name: string; last_name: string; icon: any; onClick?(bool: boolean):void; }
 
 class AvatarIcon extends Component<IProps, {}> {
    	constructor(props: any) {
@@ -41,7 +41,10 @@ class AvatarIcon extends Component<IProps, {}> {
 	}
 
 	shouldComponentUpdate(nextProps: any, nextState: any) {
-		if (nextProps.profile !== this.props.profile) {
+		const { first_name, last_name, icon } = this.props.profile;
+		if (nextProps.profile.first_name !== first_name ||
+			nextProps.profile.last_name !== last_name ||
+			nextProps.profile.icon !== icon) {
 			return true;
 		}
 

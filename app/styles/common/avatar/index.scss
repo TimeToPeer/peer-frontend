@@ -25,6 +25,9 @@
         font-family: JosefinRegular, Arial;
         font-size: 12pt;
         margin-top: 13px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .personality {
@@ -32,6 +35,9 @@
         color: $mainFontColor;
         font-family: GothicRegular, Arial;
         font-size: 9pt;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .my-peers {

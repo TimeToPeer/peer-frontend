@@ -95,7 +95,7 @@ class Quests extends Component<IProps, IState> {
 						<Card className={classes.card} onClick={this.onCardClick}>
 							<CardContent className={classes['content-container']}>
 								<Typography component='p' className={classes.content} >
-									SUBMIT A NEW ENTRY!
+									NEW POST
 								</Typography>
 							</CardContent>
 						</Card>

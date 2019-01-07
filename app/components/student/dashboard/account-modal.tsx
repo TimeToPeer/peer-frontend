@@ -128,8 +128,8 @@ class AccountModal extends Component<IMyProps, IMyState> {
 					</div>
 					<div className='account-heading'>ABOUT ME</div>
 					<div className='row'>
-						<AccountInput value={first_name} onChange={this.onChangeFName} placeholder='FIRST NAME' length={200} />
-						<AccountInput value={last_name} onChange={this.onChangeLName} placeholder='LAST NAME' length={200}/>
+						<AccountInput value={first_name} onChange={this.onChangeFName} placeholder='FIRST NAME' length={100} />
+						<AccountInput value={last_name} onChange={this.onChangeLName} placeholder='LAST NAME' length={100}/>
 					</div>
 					<div className='row'>
 						<AccountInput value={class_code} onChange={this.onChangeClassCode} placeholder='CLASS CODE' length={30}/>

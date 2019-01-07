@@ -7,6 +7,7 @@ import Quest from 'Components/quests';
 import Spinner from 'Common/spinner';
 import NavBar from 'Common/nav-bar';
 import Assessment from 'Components/assessment.tsx';
+import ScrollUpSvg from 'Assets/images/up.svg';
 
 function PrivateRoute({ component: Component, ...rest }: any) {
 	const session = localStorage.getItem('key');
@@ -27,7 +28,12 @@ function PrivateRoute({ component: Component, ...rest }: any) {
 		}
 		/>
 	);
-	}
+}
+
+function scrollTop() {
+	document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
 
 const Main = () => {
 	return (
@@ -43,6 +49,7 @@ const Main = () => {
 					<Route component={LandingPage} />
 				</Switch>
 			</div>
+			<img id="scrollUpBtn" className='scroll-up-button' src={ScrollUpSvg} onClick={scrollTop} />
 		</main>
 	);
 };

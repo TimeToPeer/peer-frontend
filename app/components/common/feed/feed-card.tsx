@@ -104,6 +104,7 @@ class FeedCard extends React.Component<IProps, IState> {
 			icon,
 		}
 		const dateString = formatDate(created_on);
+		const name = `${first_name} ${last_name}`.toUpperCase();
 		return (
 			<Card className={classes.card}>
 				<CardHeader

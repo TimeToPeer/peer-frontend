@@ -1,3 +1,13 @@
+
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
+
+// Add locale-specific relative date/time formatting rules.
+TimeAgo.addLocale(en)
+// Create relative date/time formatter.
+const timeAgo = new TimeAgo('en-US')
+
+
 export const mapIdToColor = (id: number) => {
 	if (id === 0) {
 		return 'caramel';
@@ -21,7 +31,9 @@ export const mapIdToColor = (id: number) => {
 };
 
 export const formatDate = (unixDate: string) => {
-	const currentDate = new Date(unixDate);
+	const TWENTY_FOUR_HOURS = 60*60*1000*24*2;
+	const now: any = new Date();
+	const currentDate: any = new Date(unixDate);
 	const date = currentDate.getDate();
 	const month = currentDate.getMonth();
 	const year = currentDate.getFullYear();
@@ -32,16 +44,11 @@ export const formatDate = (unixDate: string) => {
 	hours = hours ? hours : 12; // the hour '0' should be '12'
 	const minString = minutes < 10 ? '0' + minutes : minutes;
 	var strTime = hours + ':' + minString + ' ' + ampm;
+	if (now - currentDate < TWENTY_FOUR_HOURS) {
+		return timeAgo.format(currentDate, 'twitter') + ' ago';
+	}
 	return (month + 1)  + '/' + date + '/' + year + ' ' + strTime;
 };
-
-export const formatDataWithoutTime = (unixDate: string) => {
-	const currentDate = new Date(unixDate);
-	const date = currentDate.getDate();
-	const month = currentDate.getMonth();
-	const year = currentDate.getFullYear();
-	return (month + 1)  + '/' + date + '/' + year;
-}
 
 export const imageUrl = (imageUrl: string) => {
 	let url = '';
@@ -58,6 +65,5 @@ export const imageUrl = (imageUrl: string) => {
 export default {
 	mapIdToColor,
 	formatDate,
-	formatDataWithoutTime,
 	imageUrl,
 };

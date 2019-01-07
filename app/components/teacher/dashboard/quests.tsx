@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import CardHeader from '@material-ui/core/CardHeader';
-import {mapIdToColor, formatDataWithoutTime} from 'Helpers/main-helper';
+import {mapIdToColor, formatDate} from 'Helpers/main-helper';
 
 
 const styles = () => ({
@@ -70,7 +70,7 @@ class Quests extends Component<IProps, IState> {
 				continue;
             }
             if (!!+data[item].active === active) {
-                const formattedTime = formatDataWithoutTime(data[item].create_time);
+                const formattedTime = formatDate(data[item].create_time);
                 newQuests.push(
                     <NewQuest
                         key={i} id={data[item].id} title='' text={`QUEST ${formattedTime}`}
