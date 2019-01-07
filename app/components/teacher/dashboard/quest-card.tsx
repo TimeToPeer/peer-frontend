@@ -64,6 +64,7 @@ class FeedCard extends React.Component<IProps, {}> {
 			icon,
 		}
 		const dateString = formatDate(created_on);
+		const name = `${first_name} ${last_name}`
 		return (
 			<Grid item sm={4} xs={12}>
 				<Card className={classes.card} onClick={this.onCardClick}>
