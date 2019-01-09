@@ -141,6 +141,8 @@ class FeedCard extends React.Component<IProps, IState> {
 				{disableComment ? null :
 					<div>
 						<EmojiInput placeholder={'Add a comment..'} onChange={this.onChangeCommentInput} clearEditor={this.state.clearEditor} />
+						<span className='glow'></span>
+						<span className='grow'></span>
 						<button className={classes.submit} onClick={this.submitComment}>Submit</button>
 					</div>
                 }
