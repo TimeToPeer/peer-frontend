@@ -1,16 +1,16 @@
 import React, {Component, createRef} from 'react';
 import Wheel from './wheel';
-import ReactDOM from 'react-dom';
+import Colors from 'Styles/colors.scss';
 
 const dataPie = [
-	{value: 12.5, stroke: '#eae8e3'},
-	{value: 12.5, stroke: '#eae8e3'},
-	{value: 12.5, stroke: '#eae8e3'},
-	{value: 12.5, stroke: '#eae8e3'},
-	{value: 12.5, stroke: '#eae8e3'},
-	{value: 12.5, stroke: '#eae8e3'},
-	{value: 12.5, stroke: '#eae8e3'},
-	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: `${Colors.hershey}`},
+	{value: 12.5, stroke: `${Colors.hershey}`},
+	{value: 12.5, stroke: `${Colors.hershey}`},
+	{value: 12.5, stroke: `${Colors.hershey}`},
+	{value: 12.5, stroke: `${Colors.hershey}`},
+	{value: 12.5, stroke: `${Colors.hershey}`},
+	{value: 12.5, stroke: `${Colors.hershey}`},
+	{value: 12.5, stroke: `${Colors.hershey}`},
 ];
 
 interface IProps { id: string; title: string; description: string;
@@ -28,18 +28,18 @@ class Score extends Component<IProps, {}> {
 		const wheelContainer = document.getElementById(id);
         const circle: any = wheelContainer.getElementsByClassName('circle-piece');
 		for (let i = 0; i < rScore; i++) {
-			circle[i].style.stroke = '#F4BAE2';
+			circle[i].style.stroke = `${Colors.grape}`;
 		}
 		for (let i = rScore; i < 8; i++) {
-			circle[i].style.stroke = '#eae8e3';
+			circle[i].style.stroke = `${Colors.hershey}`;
         }
         const teach_wheelContainer = document.getElementById(id+'-teacher');
         const teach_circle: any = teach_wheelContainer.getElementsByClassName('circle-piece');
 		for (let i = 0; i < rTeacherScore; i++) {
-			teach_circle[i].style.stroke = '#dfe8d3';
+			teach_circle[i].style.stroke = `${Colors.sour}`;
 		}
 		for (let i = rTeacherScore; i < 8; i++) {
-			teach_circle[i].style.stroke = '#eae8e3';
+			teach_circle[i].style.stroke = `${Colors.hershey}`;
 		}
 	}
 

@@ -20,7 +20,8 @@
             "Reducers/*": ["app/reducers/*"],
             "Types/*": ["app/types/*"],
             "Helpers/*": ["app/helpers/*"],
-            "Common/*": ["app/components/common/*"]
+            "Common/*": ["app/components/common/*"],
+            "Selectors/*": ["app/selectors/*"]
         }
     },
     "include": [

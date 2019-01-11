@@ -91,7 +91,7 @@ class Assessment extends Component<IProps, IState> {
                 <div className='assesssment-wheel-container'>
                     {wheels}
                 </div>
-                <Comments comments={this.props.feedback} />
+                <Comments comments={this.props.feedback} showThumbs={false} />
                 <EmojiInput placeholder='Give feedback...' onChange={this.onInputChange} clearEditor={false} />
                 <button className='feedback-submit' onClick={this.submitComment}>Submit</button>
             </CardContent>

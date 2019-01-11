@@ -1,15 +1,16 @@
 import React, {Component, createRef} from 'react';
 import Wheel from './wheel';
+import Colors from 'Styles/colors.scss';
 
 const dataPie = [
-	{value: 12.5, stroke: '#eae8e3'},
-	{value: 12.5, stroke: '#eae8e3'},
-	{value: 12.5, stroke: '#eae8e3'},
-	{value: 12.5, stroke: '#eae8e3'},
-	{value: 12.5, stroke: '#eae8e3'},
-	{value: 12.5, stroke: '#eae8e3'},
-	{value: 12.5, stroke: '#eae8e3'},
-	{value: 12.5, stroke: '#eae8e3'},
+	{value: 12.5, stroke: `${Colors.hershey}`},
+	{value: 12.5, stroke: `${Colors.hershey}`},
+	{value: 12.5, stroke: `${Colors.hershey}`},
+	{value: 12.5, stroke: `${Colors.hershey}`},
+	{value: 12.5, stroke: `${Colors.hershey}`},
+	{value: 12.5, stroke: `${Colors.hershey}`},
+	{value: 12.5, stroke: `${Colors.hershey}`},
+	{value: 12.5, stroke: `${Colors.hershey}`},
 ];
 
 interface IProps { id: string; title: string; description: string; type: string, onWheelClick(id: string, val: string): void; }
@@ -19,7 +20,7 @@ class WheelComponent extends Component<IProps, {}> {
 		super(props);
 		this.addBoundMouseOutEvent = this.addBoundMouseOutEvent.bind(this);
 		this.addMouseOverEvent = this.addMouseOverEvent.bind(this);
-		this.stroke = this.props.type === 'teacher' ? '#dfe8d3' : '#F4BAE2';
+		this.stroke = this.props.type === 'teacher' ? `${Colors.sour}` : `${Colors.grape}`;
 	}
 
 	addBoundMouseOutEvent(event: any) {
@@ -27,7 +28,7 @@ class WheelComponent extends Component<IProps, {}> {
 		const circle: any = wheelContainer.querySelectorAll('.circle-piece:not(.selected)' );
 
 		for (const c of circle) {
-			c.style.stroke = '#eae8e3';
+			c.style.stroke = `${Colors.hershey}`;
 		}
 	}
 
@@ -40,7 +41,7 @@ class WheelComponent extends Component<IProps, {}> {
 		}
 		const sup = Number(targetId) + 1;
 		for (let j = sup; j < 8; j++) {
-			circle[j].style.stroke = '#eae8e3';
+			circle[j].style.stroke = `${Colors.hershey}`;
 		}
 	}
 
@@ -62,7 +63,7 @@ class WheelComponent extends Component<IProps, {}> {
 					circle[i].removeEventListener('mouseover', this.addMouseOverEvent);
 				}
 				for (let i = Number(targetId) + 1; i < 8; i++) {
-					circle[i].style.stroke = '#eae8e3';
+					circle[i].style.stroke = `${Colors.hershey}`;
 					circle[i].classList.remove('selected');
 					circle[i].addEventListener('mouseover', this.addMouseOverEvent);
 				}

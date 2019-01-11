@@ -4,9 +4,11 @@ export default (state = { comments: [{}] }, action: any) => {
 	switch (action.type) {
 		case QUEST_PEER_ENTRIES:
 			let comments = action.payload.comments;
+			let votes = action.payload.votes;
 			return {
 				...state,
 				comments,
+				votes,
 			};
 		case POST_COMMENT: {
 			return {

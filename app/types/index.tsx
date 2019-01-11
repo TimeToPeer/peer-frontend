@@ -25,6 +25,7 @@ export const SHOW_LOADING: string = 'SHOW_LOADING';
 // comments
 export const GET_COMMENTS: string = 'GET_COMMENTS';
 export const POST_COMMENT: string = 'POST_COMMENT';
+export const VOTE_COMMENT: string = 'VOTE_COMMENT';
 
 // assessment
 export const SUBMIT_ASSESSMENT: string = 'SUBMIT_ASSESSMENT';

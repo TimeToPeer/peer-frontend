@@ -67,7 +67,8 @@ module.exports = {
             'Reducers': path.resolve(__dirname, 'app/reducers'),
             'Types': path.resolve(__dirname, 'app/types'),
             'Helpers': path.resolve(__dirname, 'app/helpers'),
-            'Common': path.resolve(__dirname, 'app/components/common')
+            'Common': path.resolve(__dirname, 'app/components/common'),
+            'Selectors': path.resolve(__dirname, 'app/selectors'),
         }
     },
     devtool: 'source-map'

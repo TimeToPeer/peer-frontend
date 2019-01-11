@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import authReducer from 'Reducers/auth';
 import profileReducer from 'Reducers/profile';
 import questsReducer from 'Reducers/quests';
@@ -26,9 +26,14 @@ const reducers = combineReducers({
 	classroomReducer,
 });
 
-const store = createStore(
-	reducers,
+declare global {
+	interface Window {
+		__REDUX_DEVTOOLS_EXTENSION_COMPOSE__? : typeof compose;
+	}
+}
+const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] || compose;
+const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
 	applyMiddleware(thunk),
-);
+));
 
 export default store;

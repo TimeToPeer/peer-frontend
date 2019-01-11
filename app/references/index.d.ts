@@ -1,6 +1,7 @@
 declare module '*.png'
 declare module '*.svg'
 declare module '*.css'
+declare module '*.scss'
 
 declare module "draft-js-plugins-editor" {
     export type PluginsEditorProps = Draft.EditorProps | {

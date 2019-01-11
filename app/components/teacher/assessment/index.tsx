@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getQuestEntry, getQuests, selectedQuestEntry, showLoading} from 'Actions/index';
+import {getQuests, selectedQuestEntry, showLoading} from 'Actions/index';
 import Feed from 'Common/feed';
 import Classroom from 'Components/teacher/dashboard/classroom.tsx';
 

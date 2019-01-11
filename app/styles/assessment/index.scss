@@ -22,12 +22,12 @@
     .feedback-submit {
         float: left;
 		background-color: white;
-		border: 2px solid #f0f4f6;
+		border: 2px solid $salt;
 		height: 40px;
 		font-size: 12pt;
 		margin: 5px 24px 14px 0;
 		&:hover {
-			border-color: '#f8e8fb';
+			border-color: $grape;
 		};
 		margin-left: 24px;
     }

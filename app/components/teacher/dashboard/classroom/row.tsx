@@ -11,6 +11,7 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 import Comments from 'Common/comment';
 import { selectedQuestEntry, getQuestEntry, showLoading, pendingAssessment } from 'Actions/index';
+import Colors from 'Styles/colors.scss';
 
 // Add locale-specific relative date/time formatting rules.
 TimeAgo.addLocale(en)
@@ -36,11 +37,11 @@ const styles = () => ({
     },
     row: {
         '&:hover': {
-            backgroundColor: '#fffbe2',
+            backgroundColor: `${Colors.lemon}`,
         }
     },
     selected: {
-        backgroundColor: '#fffbe2',
+        backgroundColor:  `${Colors.lemon}`,
     },
     cursor: {
         cursor: 'pointer',

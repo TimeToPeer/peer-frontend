@@ -1,13 +1,13 @@
 $mainFontColor: #434343;
 
-$caramel: #FFD697;
+$caramel: #CABFAB;
 $salt: #D1E0E6;
 $grape: #F4BAE2;
 $bubble: #FEBCC5;
 $hershey: #D9D7E1;
 $sour: #D0DDBE;
-$peach: rgba(255, 238, 167, 0.75);
-$lemon: #fffbe2;
+$peach: #FFD697;
+$lemon: #FFEEA7;
 
 .caramel {
     background-color: $caramel !important;
@@ -36,4 +36,15 @@ $lemon: #fffbe2;
 .white {
     background-color: white !important;
     border: 2px $hershey solid;
+}
+
+:export {
+    caramel: $caramel;
+    salt: $salt;
+    grape: $grape;
+    bubble: $bubble;
+    hershey: $hershey;
+    sour: $sour;
+    peach: $peach;
+    lemon: $lemon;
 }

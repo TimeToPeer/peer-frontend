@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST, LOGOUT_REQUEST, PROFILE_REQUEST, PROFILE_SAVED,
+import { LOGIN_REQUEST, LOGOUT_REQUEST, PROFILE_REQUEST, PROFILE_SAVED, VOTE_COMMENT,
 	QUEST_REQUEST, QUEST_SUBMIT, QUEST_ENTRY_ASSESSMENT, QUEST_INVENTORY, QUEST_PEER_ENTRIES,
 	GET_COMMENTS, POST_COMMENT, SUBMIT_ASSESSMENT, CLASSROOM_DATA, GET_SKILLS} from 'Types/index';
 
@@ -39,6 +39,8 @@ export const mapTypeToUrl = (type: string) => {
 			return url += '/get/quests/classroom';
 		case GET_SKILLS:
 			return url += '/get/quests/skills';
+		case VOTE_COMMENT:
+			return url += '/post/quests/comment/vote';
 		default:
 			return url += '';
 	}

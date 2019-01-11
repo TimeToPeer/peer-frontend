@@ -3,6 +3,12 @@ import AvatarIcon from 'Common/avatar/avatar-icon';
 import {formatDate} from 'Helpers/main-helper';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
+import ThumbsUp from 'Assets/images/thumbsup.png';
+import ThumbsDown from 'Assets/images/thumbsdown.png';
+import Glowing from 'Assets/images/glowing.png';
+import Growing from 'Assets/images/growing.png';
+import Colors from 'Styles/colors.scss';
+import CommentItem from 'Components/common/comment/item';
 
 const styles = () => ({
 	'comment': {
@@ -37,11 +43,42 @@ const styles = () => ({
 	},
 	date: {
 		fontSize: '10pt',
+	},
+	'thumbs-up-down': {
+		fontSize: '8pt',
+		'& img': {
+			width: '21px',
+			height:'19px',
+			verticalAlign: 'middle',
+			marginRight: '3px',
+		},
+	},
+	glowing: {
+		width: '36px',
+		verticalAlign: 'top',
+		marginLeft: '5px',
+	},
+	growing: {
+		width: '37px',
+		verticalAlign: 'top',
+		marginLeft: '5px',
+	},
+	vote: {
+		cursor: 'pointer',
+		padding: '5px 3px',
+    	borderRadius: '5px',
+		'&:hover': {
+			backgroundColor: `${Colors.salt}`,
+		},
+		marginRight: '20px',
+	},
+	active: {
+		color: `${Colors.grape}`
 	}
 });
 
-interface IProps { comments: any; classes: any; }
-interface IState { showMore: boolean; }
+interface IProps { comments: any; classes: any; showThumbs: boolean; onVoteClick(type: string): void; }
+interface IState { showMore: boolean; vote: string; }
 
 class Comment extends Component<IProps, IState> {
 	constructor(props: any) {
@@ -51,35 +88,14 @@ class Comment extends Component<IProps, IState> {
 
 		this.state = {
 			showMore: false,
+			vote: '',
 		}
 	}
 
+
 	renderCommentItem(item: any, count: number, length: number) {
-		// render each comments here
-		const { first_name, last_name, icon, comment, created_on, id, special_text } = item;
-		const profile = {
-			first_name,
-			last_name,
-			icon,
-		}
-		const { classes } = this.props;
-		let show = '';
-		if (length <= 3 || this.state.showMore) {
-			show = 'show';
-		} else {
-			show = length-count > 3 ? 'hide' : 'show';
-		}
-		const dateString = formatDate(created_on);
-		const name = `${first_name} ${last_name}`;
 		return (
-			<div className={classnames(classes['comment-container'], classes[show])} key={id}>
-				<AvatarIcon profile={profile} size='small' />
-				<div className={classes.comment}>
-					<span className={classes.from}><b>{special_text || name}</b></span>
-					<span>{comment}</span>
-					<div className={classes.date}>{dateString}</div>
-				</div>
-			</div>
+			<CommentItem key={item.id} count={count} commentItem={item} length={length} showThumbs={this.props.showThumbs} showMore={this.state.showMore} />
 		);
 	}
 
