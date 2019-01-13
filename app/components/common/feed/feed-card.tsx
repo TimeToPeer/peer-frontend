@@ -106,6 +106,14 @@ const styles = (theme: any) => ({
 		borderColor: '#cccccc !important',
 		color: '#cccccc',
 		cursor: 'not-allowed',
+	},
+	minimum: {
+		color: 'grey',
+		fontSize: '12px',
+		padding: '0 24px',
+	},
+	hide: {
+		opacity: 0,
 	}
 });
 
@@ -118,8 +126,11 @@ class FeedCard extends React.Component<IProps, IState> {
 	static getDerivedStateFromProps(props: any, state: any) {
 		if (!props.noError) {
 			return {disableCommentClick: false};
-		} 
-		if (state.disableCommentClick && (state.glow || state.grow)) {
+		}
+		if ((!state.glow && !state.grow) || state.comment.trim().length < 50) {
+			return {disableCommentClick: true};
+		}
+		if (state.disableCommentClick && (state.glow || state.grow ) && state.comment.trim().length >= 50) {
 			return {disableCommentClick: false};
 		}
 		return {};
@@ -167,7 +178,7 @@ class FeedCard extends React.Component<IProps, IState> {
 	}
 
 	submitComment() {
-		if (this.state.comment.trim().length > 0) {
+		if (this.state.comment.trim().length >= 50 ) {
 			this.setState({posting: true, disableCommentClick: true});
 			// dispatch post comment
 			const { comment, glow, grow } = this.state;
@@ -194,6 +205,8 @@ class FeedCard extends React.Component<IProps, IState> {
 		const growClass = grow ? 'growing': 'grow';
 		const disabledCommentClass = disableCommentClick ? 'inactive' : 'active';
 		const showVote = currentUserId === created_by && !feedback;
+		const commentLength = this.state.comment.trim().length;
+		const showCommentLengthText = this.state.comment.trim().length >= 50 ? 'hide' : '';
 		return (
 			<Card className={classes.card}>
 				<CardHeader
@@ -230,6 +243,7 @@ class FeedCard extends React.Component<IProps, IState> {
 				{disableComment ? null :
 					<div>
 						<EmojiInput placeholder={'Add a comment..'} onChange={this.onChangeCommentInput} clearEditor={this.state.clearEditor} />
+						<div className={classnames(classes.minimum, classes[showCommentLengthText])}>Minimum characters remaining to post: {50 - commentLength} </div>
 						<div className={classes.typeContainer}>
 							<img className={classnames(classes[glowClass], classes.icon)} src={glowSrc} onClick={this.onGlowClick} title="What are their streights?"/>
 							<img className={classnames(classes[growClass], classes.icon)} src={growSrc} onClick={this.onGrowClick} title="What do they need to work on?" />
