@@ -98,7 +98,7 @@ class Row extends Component<IProps, IState> {
         const showAssessCell = this.state.openAssessment ? 'contentShow' : 'contentHide';
         return (
             <TableRow className={classnames(classes.exp, classes[openAssessRow])}>
-                <TableCell colSpan={5} className={classes[showAssessCell]}>
+                <TableCell colSpan={6} className={classes[showAssessCell]}>
                     <div className='assessment-container table-row'>
                         <div className='assesssment-wheel-container'>
                             {
@@ -129,7 +129,7 @@ class Row extends Component<IProps, IState> {
         const assessment = this.renderAssessment();
         const comments = (
             <TableRow className={classnames(classes.exp, classes[openCommentRow], classes.comments)}>
-              <TableCell colSpan={5} className={classnames(classes[showCommentCell], classes.comments)}>
+              <TableCell colSpan={6} className={classnames(classes[showCommentCell], classes.comments)}>
                 {row.comments.length > 0 ? <Comments comments={row.comments} /> : 'No comments...' }
               </TableCell>
             </TableRow>
