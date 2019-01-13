@@ -71,8 +71,9 @@ class AccountModal extends Component<IMyProps, IMyState> {
 
 	submitChange() {
 		// save changes
+		const { id } = this.props.profile;
 		const { first_name, last_name, class_code, school_code, personality, icon } = this.state;
-		this.props.dispatch(saveUser({ first_name, last_name, class_code, school_code, personality, icon }));
+		this.props.dispatch(saveUser({ first_name, last_name, class_code, school_code, personality, icon, id }));
 		this.closeModal();
 		if (this.props.profile.class_code !== class_code) {
 			location.reload();
