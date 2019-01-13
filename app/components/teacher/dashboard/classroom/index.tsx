@@ -46,6 +46,7 @@ class Main extends Component<IProps, IState> {
 			rows.push({
 				id: rec.id,
 				name: name,
+				username: rec.username,
 				posts: entry ? entry.post_count : 0,
 				assessed: entry ? entry : {},
 				feedback: feedback ? feedback : '',
@@ -63,6 +64,7 @@ class Main extends Component<IProps, IState> {
 					<TableHead>
 						<TableRow>
 						<TableCell>STUDENT NAME</TableCell>
+						<TableCell>USERNAME</TableCell>
 						<TableCell numeric>POSTS</TableCell>
 						<TableCell numeric>SKILLS</TableCell>
 						<TableCell numeric>FEEDBACK</TableCell>

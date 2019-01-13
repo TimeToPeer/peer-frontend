@@ -86,7 +86,7 @@ class CommentItem extends Component<IProps, IState> {
 		super(props);
         const commentId = props.commentItem.id;
         const myId = props.myId;
-        const myVote = props.votes.find((item: any) => item.comment_id === commentId && item.created_by === myId);
+        const myVote = props.votes && props.votes.find((item: any) => item.comment_id === commentId && item.created_by === myId);
 		this.state = {
 			showMore: false,
 			vote: myVote ? myVote.type : '',
@@ -110,12 +110,7 @@ class CommentItem extends Component<IProps, IState> {
 
 	render() {
         const { commentItem, length, showMore, classes, count, showThumbs } = this.props;
-		const { first_name, last_name, icon, comment, created_on, id, special_text, glow_grow } = commentItem;
-		const profile = {
-			first_name,
-			last_name,
-			icon,
-		}
+		const { first_name, last_name, comment, created_on, id, special_text, glow_grow, created_by } = commentItem;
 		let show = '';
 		if (length <= 3 || showMore) {
 			show = 'show';
@@ -128,7 +123,7 @@ class CommentItem extends Component<IProps, IState> {
 		const downClass = this.state.vote === 'down' ? 'active' : '';
 		return (
 			<div className={classnames(classes['comment-container'], classes[show])} key={id}>
-				<AvatarIcon profile={profile} size='small' />
+				<AvatarIcon id={created_by} size='small' />
 				{glow_grow === 1 ? <img className={classnames(classes.glowing)} src={Glowing} /> : null }
 				{glow_grow === 2 ? <img className={classnames(classes.growing)} src={Growing} /> : null }
 				<div className={classes.comment}>
@@ -155,7 +150,8 @@ class CommentItem extends Component<IProps, IState> {
 
 const mapStateToProps = (store: any) => ({
     myId: store.profileReducer.id,
-    votes: store.commentsReducer.votes,
+	votes: store.commentsReducer.votes,
+	
 })
 
 export default connect(mapStateToProps)(withStyles(styles)(CommentItem));

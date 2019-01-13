@@ -9,7 +9,7 @@ import commentsReducer from 'Reducers/comments';
 import assessmentReducer from 'Reducers/assessment';
 import classroomReducer from 'Reducers/classroom';
 import skillsReducer from 'Reducers/skills';
-
+import usersReducer from 'Reducers/users';
 
 import thunk from 'redux-thunk';
 
@@ -24,6 +24,7 @@ const reducers = combineReducers({
 	assessmentReducer,
 	skillsReducer,
 	classroomReducer,
+	usersReducer,
 });
 
 declare global {

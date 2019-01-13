@@ -167,7 +167,6 @@ class Dashboard extends Component<IProps, IState> {
 
 const mapStateToProps = (state: any, ownProps: any) => {
 	return {
-		profile: state.profileReducer,
 		quests: state.questsReducer,
 		entries: state.entryReducer,
 		comments: state.commentsReducer,

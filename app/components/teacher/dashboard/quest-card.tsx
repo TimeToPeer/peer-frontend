@@ -41,7 +41,7 @@ const styles = () => ({
 	},
 });
 
-interface IProps { classes: any; profile: any; dispatch: any; first_name: string; last_name: string;
+interface IProps { classes: any; profile: any; dispatch: any; first_name: string; last_name: string; created_by: number;
 	image: string; icon: string; created_on: string; entry: string; id: number; image_url: string; }
 
 class FeedCard extends React.Component<IProps, {}> {
@@ -57,7 +57,7 @@ class FeedCard extends React.Component<IProps, {}> {
 
   	render() {
 		const { classes } = this.props;
-		const { first_name, last_name, icon, created_on, image_url: imgUrl, entry } = this.props;
+		const { first_name, last_name, icon, created_on, image_url: imgUrl, entry, created_by } = this.props;
 		const profile = {
 			first_name,
 			last_name,
@@ -69,7 +69,7 @@ class FeedCard extends React.Component<IProps, {}> {
 			<Grid item sm={4} xs={12}>
 				<Card className={classes.card} onClick={this.onCardClick}>
 					<CardHeader
-                        avatar={<Avatar profile={profile} />}
+                        avatar={<Avatar id={created_by} />}
                         title={name}
 						subheader={dateString}
 					/>

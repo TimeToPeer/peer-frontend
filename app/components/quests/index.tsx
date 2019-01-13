@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import {getQuestById, submitQuest} from 'Actions/index';
+import {getQuestById, submitQuest, getUser, fetchUsers} from 'Actions/index';
 import {connect} from 'react-redux';
 import AvatarIcon from 'Common/avatar/avatar-icon';
 import {formatDate} from 'Helpers/main-helper';
 import QuestReponse from 'Components/quests/response';
 import { convertToRaw } from 'draft-js';
+import { getTeacherId } from 'Selectors/index';
 
-interface IProps { dispatch: any; questId: string; match: any; quest: any; entry: any; }
+interface IProps { dispatch: any; questId: string; match: any; quest: any; entry: any; teacherId: number; profile: any; usersPending: boolean; }
 interface IState { questId: string; responseMode: boolean; }
 
 class Quests extends Component<IProps, IState> {
@@ -20,11 +21,9 @@ class Quests extends Component<IProps, IState> {
 
 		this.onSubmit = this.onSubmit.bind(this);
 		this.responseMode = this.responseMode.bind(this);
-	}
-
-	componentDidMount() {
-		const { questId } = this.state;
-		this.props.dispatch(getQuestById({ questId }));
+		props.dispatch(getQuestById({ questId }));
+		props.dispatch(getUser());
+		props.dispatch(fetchUsers());
 	}
 
 	onSubmit(currnetContent: any) {
@@ -41,12 +40,8 @@ class Quests extends Component<IProps, IState> {
 	}
 
 	renderQuestInfo() {
-		const { title, first_name, last_name, icon, create_time, description } = this.props.quest;
-		const teacherProfile = {
-			first_name,
-			last_name,
-			icon,
-		};
+		const { quest, teacherId } = this.props;
+		const { title, first_name, last_name, create_time, description } = quest;
 		const dateString = formatDate(create_time);
 
 		return (
@@ -57,7 +52,7 @@ class Quests extends Component<IProps, IState> {
 					</div>
 				</div>
 				<div className='teacher-info'>
-					<AvatarIcon profile={teacherProfile} />
+					<AvatarIcon id={teacherId} />
 					<div className='info'>
 						<div className='heading'>{`${title} by ${first_name} ${last_name}`}</div>
 						<div className='date'>{dateString}</div>
@@ -71,7 +66,8 @@ class Quests extends Component<IProps, IState> {
 	}
 
 	render() {
-		if (this.props.quest.pending) {
+		const { quest, profile, usersPending } = this.props;
+		if (quest.pending || profile.pending || usersPending) {
 			return <div></div>;
 		}
 		return(
@@ -88,6 +84,9 @@ class Quests extends Component<IProps, IState> {
 const mapStateToProps = (state: any) => {
 	return {
 		quest: state.questsReducer,
+		profile: state.profileReducer,
+		usersPending: state.usersReducer.pending,
+		teacherId: getTeacherId(state.usersReducer.users),
 	};
 };
 

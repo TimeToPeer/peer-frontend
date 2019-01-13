@@ -1,6 +1,6 @@
 import { LOGIN_REQUEST, LOGOUT_REQUEST, PROFILE_REQUEST, PROFILE_SAVED, VOTE_COMMENT,
 	QUEST_REQUEST, QUEST_SUBMIT, QUEST_ENTRY_ASSESSMENT, QUEST_INVENTORY, QUEST_PEER_ENTRIES,
-	GET_COMMENTS, POST_COMMENT, SUBMIT_ASSESSMENT, CLASSROOM_DATA, GET_SKILLS} from 'Types/index';
+	GET_COMMENTS, POST_COMMENT, SUBMIT_ASSESSMENT, CLASSROOM_DATA, GET_SKILLS, FETCH_USERS} from 'Types/index';
 
 export const mapTypeToUrl = (type: string) => {
 	let url = '';
@@ -41,6 +41,8 @@ export const mapTypeToUrl = (type: string) => {
 			return url += '/get/quests/skills';
 		case VOTE_COMMENT:
 			return url += '/post/quests/comment/vote';
+		case FETCH_USERS:
+			return url += '/get/users/classroom';
 		default:
 			return url += '';
 	}

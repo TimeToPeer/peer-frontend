@@ -110,8 +110,8 @@ const styles = (theme: any) => ({
 });
 
 interface IProps { classes: any; profile: any; dispatch: any; disableComment: boolean; feedback?: any;
-	image_url: string; first_name: string; last_name: string; icon: string; created_on: string;
-	entry: string; comments: any; id: number; myComment: boolean; noError: boolean; }
+	image_url: string; first_name: string; last_name: string; icon: string; created_on: string; created_by: number;
+	entry: string; comments: any; id: number; myComment: boolean; noError: boolean; currentUserId: number; }
 interface IState { expanded: boolean; comment: string; clearEditor: boolean; glow: boolean; grow: boolean; disableCommentClick: boolean; posting: boolean; error: boolean; vote: number; }
 
 class FeedCard extends React.Component<IProps, IState> {
@@ -148,10 +148,12 @@ class FeedCard extends React.Component<IProps, IState> {
 
 	onGrowClick() {
 		if (!this.state.glow) this.setState({grow: !this.state.grow});
+		else {this.setState({glow: false, grow: true})};
 	}
 
 	onGlowClick() {
 		if (!this.state.grow) this.setState({glow: !this.state.glow});
+		else {this.setState({grow: false, glow: true})};
 	}
 
   	onChangeCommentInput(val: string) {
@@ -177,7 +179,7 @@ class FeedCard extends React.Component<IProps, IState> {
 
   	render() {
 		const { classes } = this.props;
-		const { first_name, last_name, icon, created_on,  image_url: imgUrl, entry, comments, disableComment } = this.props;
+		const { first_name, last_name, icon, created_on,  image_url: imgUrl, entry, comments, disableComment, currentUserId, created_by, feedback } = this.props;
 		const profile = {
 			first_name,
 			last_name,
@@ -191,10 +193,11 @@ class FeedCard extends React.Component<IProps, IState> {
 		const glowClass = glow ? 'glowing': 'glow';
 		const growClass = grow ? 'growing': 'grow';
 		const disabledCommentClass = disableCommentClick ? 'inactive' : 'active';
+		const showVote = currentUserId === created_by && !feedback;
 		return (
 			<Card className={classes.card}>
 				<CardHeader
-					avatar={<Avatar profile={profile} />}
+					avatar={<Avatar id={created_by} />}
 					title={name}
 					subheader={dateString}
 				/>
@@ -221,7 +224,7 @@ class FeedCard extends React.Component<IProps, IState> {
 				<CardContent className={classes.divider}>
 					<Typography component='div' className={classes.content}>
 						<div>PEER TO PEER COMMENTS</div>
-						<Comments comments={comments} showThumbs={!this.props.feedback} />
+						<Comments comments={comments} showThumbs={showVote} />
 					</Typography>
 				</CardContent>
 				{disableComment ? null :
@@ -243,6 +246,7 @@ const mapStateToProps = (store: any, props: any) => {
 	return {
 		myComment: getPostedComment(store.commentsReducer.comments, props.id, store.profileReducer.id),
 		noError: store.errorReducer.success,
+		currentUserId: store.profileReducer.id,
 	}
 };
 

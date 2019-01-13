@@ -41,17 +41,12 @@ class Account extends Component<IProps, IState> {
 
 	render() {
 		const { accountClicked } = this.state;
-		const { first_name, last_name, icon } = this.props.profile;
+		const { id } = this.props.profile;
 		const isProfileComplete = this.checkIfProfileComplete(this.props.profile);
-		const profile = {
-			first_name,
-			last_name,
-			icon,
-		}
 		return(
 			<div className='avatar'>
 				<AccountModal openAccount={this.openAccount} accountClicked={accountClicked} isProfileComplete={isProfileComplete} />
-				<AvatarIcon profile={profile} size='large' onClick={() => this.openAccount(true)} />
+				<AvatarIcon id={id} size='large' onClick={() => this.openAccount(true)} />
 			</div>
 		);
 	}

@@ -31,7 +31,7 @@ export const mapIdToColor = (id: number) => {
 };
 
 export const formatDate = (unixDate: string) => {
-	const TWENTY_FOUR_HOURS = 60*60*1000*24*2;
+	const TWENTY_FOUR_HOURS = 60*60*1000*24;
 	const now: any = new Date();
 	const currentDate: any = new Date(unixDate);
 	const date = currentDate.getDate();
@@ -44,7 +44,7 @@ export const formatDate = (unixDate: string) => {
 	hours = hours ? hours : 12; // the hour '0' should be '12'
 	const minString = minutes < 10 ? '0' + minutes : minutes;
 	var strTime = hours + ':' + minString + ' ' + ampm;
-	if (now - currentDate < TWENTY_FOUR_HOURS) {
+	if (now - currentDate <= TWENTY_FOUR_HOURS) {
 		return timeAgo.format(currentDate, 'twitter') + ' ago';
 	}
 	return (month + 1)  + '/' + date + '/' + year + ' ' + strTime;

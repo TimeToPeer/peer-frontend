@@ -3,8 +3,15 @@ import {mapIdToColor} from 'Helpers/main-helper';
 import Avatar from '@material-ui/core/Avatar';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
+import {connect} from 'react-redux';
+import { getUser } from 'Selectors/index';
 
 const styles = () => ({
+	'@keyframes glow': {
+		'to': {
+		  boxShadow: '0px 0px 30px 0px yellow',
+		}
+	},
 	'avatar-icon': {
 		fontFamily: 'JosefinRegular, Arial',
 		height: '65px',
@@ -12,6 +19,11 @@ const styles = () => ({
 		cursor: 'pointer',
 		fontSize: '20pt',
 		color: 'black',
+		
+	},
+	glow: {
+		boxShadow: '0px 0px 50px -5px yellow',
+		animation: 'glow 1.5s linear infinite alternate',
 	},
 	'avatar-icon-container': {
 		display: 'inline-block',
@@ -33,7 +45,7 @@ const styles = () => ({
 	},
 });
 
-interface IProps { profile: any; classes: any; size?: string; first_name: string; last_name: string; icon: any; onClick?(bool: boolean):void; }
+interface IProps { profile: any; classes: any; size?: string; first_name: string; last_name: string; icon: any; user: any; onClick?(bool: boolean):void; }
 
 class AvatarIcon extends Component<IProps, {}> {
    	constructor(props: any) {
@@ -58,13 +70,14 @@ class AvatarIcon extends Component<IProps, {}> {
 	}
 
 	render() {
-		const { first_name, last_name, icon } = this.props.profile;
+		const { first_name, last_name, icon, likes } = this.props.profile;
 		const {  classes, size } = this.props;
 		const color = mapIdToColor(Number(icon));
 		const initials = this.getInitials(first_name, last_name);
+		const glow = likes >= 3 ? 'glow' : '';
 		return(
 			<div className={classes['avatar-icon-container']} onClick={() => this.props.onClick(true)}>
-				<Avatar className={classnames(classes['avatar-icon'], color, classes[size])}>
+				<Avatar className={classnames(classes['avatar-icon'], color, classes[size], classes[glow])}>
 					<span>{initials}</span>
 				</Avatar>
 			</div>
@@ -72,4 +85,8 @@ class AvatarIcon extends Component<IProps, {}> {
 	}
 }
 
-export default withStyles(styles)(AvatarIcon);
+const mapStateToProps = (store: any, props: any) => ({
+	profile: getUser(store.usersReducer.users, props.id),
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(AvatarIcon));

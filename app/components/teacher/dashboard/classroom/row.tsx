@@ -141,6 +141,9 @@ class Row extends Component<IProps, IState> {
                     <TableCell component="th" scope="row">
                         {row.name}
                     </TableCell>
+                    <TableCell component="th" scope="row">
+                        {row.username}
+                    </TableCell>
                     <TableCell numeric>{row.posts}</TableCell>
                     <TableCell numeric  onClick={this.openAssessment} className={classes.cursor}>
                         {

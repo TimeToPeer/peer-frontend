@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getUser, showLoading, selectedQuestEntry, getQuestEntry} from 'Actions/index';
+import {getUser, showLoading, selectedQuestEntry, getQuestEntry, fetchUsers} from 'Actions/index';
 import StudentAssessment from 'Components/student/assessment';
 import TeacherAssessment from 'Components/teacher/assessment';
 
 interface IState { loggedIn: boolean;  entryId: string;  }
-interface IProps { profile: any; dispatch: any;  match: any; }
+interface IProps { profile: any; dispatch: any;  match: any; pendingUsers: boolean; }
 
 class Assessment extends Component<IProps, IState> {
 	static getDerivedStateFromProps(props: any, state: any) {
 		if (props.loggedIn && !state.loggedIn) {
 			props.dispatch(getUser());
+			props.dispatch(fetchUsers());
 			return {loggedIn: true};
 		} else if(!props.profile.pending) {
 			props.dispatch(showLoading(false));
@@ -32,13 +33,13 @@ class Assessment extends Component<IProps, IState> {
         this.props.dispatch(showLoading(true));
         if (this.state.entryId) {
             this.props.dispatch(selectedQuestEntry(entryId));
-            this.props.dispatch(getQuestEntry({entryId}));
+			this.props.dispatch(getQuestEntry({entryId}));
         }
 	}
 
 	render() {
 		const { pending, type } = this.props.profile;
-		if (pending) {
+		if (pending || this.props.pendingUsers) {
 			return(
 				<div></div>
 			)
@@ -53,6 +54,7 @@ const mapStateToProps = (state: any) => {
 	return{
 		profile: state.profileReducer,
 		loggedIn: state.authReducer.loggedIn,
+		usersPending: state.usersReducer.pending,
 	}
 }
 

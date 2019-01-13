@@ -1,6 +1,6 @@
 import { LOGIN_REQUEST, LOGOUT_REQUEST, PROFILE_REQUEST, PROFILE_SAVED, FETCHING_ASSESSMENT, VOTE_COMMENT,
 	QUEST_ENTRY_ASSESSMENT, QUEST_REQUEST, REQUEST_ERROR, QUEST_SUBMIT, QUEST_INVENTORY, QUEST_PEER_ENTRIES, SHOW_LOADING,
-	GET_COMMENTS, POST_COMMENT, SUBMIT_ASSESSMENT, CLASSROOM_DATA, FETCHING_CLASSDATA, GET_SKILLS, SELECTED_QUEST_ENTRY } from 'Types/index';
+	GET_COMMENTS, POST_COMMENT, SUBMIT_ASSESSMENT, CLASSROOM_DATA, FETCHING_CLASSDATA, GET_SKILLS, SELECTED_QUEST_ENTRY, FETCH_USERS } from 'Types/index';
 import { mapTypeToUrl } from 'Helpers/fetch-helper';
 
 const sendDataToApi = (type: string, data: any, dispatchData?: any ) => {
@@ -157,4 +157,8 @@ export const pendingAssessment = () => {
 
 export const voteComment = (data: any) => {
 	return sendDataToApi(VOTE_COMMENT, data);
+}
+
+export const fetchUsers = () => {
+	return sendDataToApi(FETCH_USERS, {});
 }

@@ -7,6 +7,7 @@ export const LOGOUT_REQUEST: string = 'LOGOUT_REQUEST';
 // Profile
 export const PROFILE_REQUEST: string = 'PROFILE_REQUEST';
 export const PROFILE_SAVED: string = 'PROFILE_SAVED';
+export const FETCH_USERS: string = 'FETCH_USERS';
 
 // Quests
 export const QUEST_REQUEST: string = 'QUEST_REQUEST';
