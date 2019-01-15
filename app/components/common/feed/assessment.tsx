@@ -64,11 +64,11 @@ class Assessment extends Component<IProps, IState> {
                     <div className='legend-item'><img src={Legend2} /> Teacher</div>
                 </div>
                 <ScoreWheel id='critical-wheel' score = {Number(critical)} teacher_score={Number(teacher_critical)}
-                    title='CRITICAL' description='I give feedback about my work.' />
+                    title='CRITICAL' description='I can support my opinions with facts.' />
                 <ScoreWheel id='creative-wheel' score = {Number(creative)} teacher_score={Number(teacher_creative)}
-                    title='CREATIVE' description='I give feedback about my work.' />
+                    title='CREATIVE' description={`I can build on other people's ideas.`} />
                 <ScoreWheel id='responsible-wheel' score = {Number(responsible)} teacher_score={Number(teacher_responsible)}
-                    title='COMMUNICATION' description='I give feedback about my work.' />
+                    title='COMMUNICATION' description='I can present information clearly.' />
             </React.Fragment>
         )
     }

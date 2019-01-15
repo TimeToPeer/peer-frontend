@@ -47,7 +47,10 @@ class Score extends Component<IProps, {}> {
 		const {id, title, description} = this.props;
 		return(
             <div className='score-container'>
-                {title}
+				{title}
+				<div className='description'>
+					<p>{description}</p>
+				</div>
                 <div className='combine-wheel'>
                     <div className='wheel-container student' id={id}>
                         <Wheel data={dataPie}  spacing={1} svgWidth={200} strokeWidth={4} />

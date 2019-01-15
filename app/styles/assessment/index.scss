@@ -33,6 +33,7 @@
     }
     
     .score-container{
+        position: relative;
         display: inline-block;
         height: 300px;
         width: 284px;
@@ -52,6 +53,24 @@
         }
         circle {
             cursor: default !important;
+        }
+
+        .description {
+            position: absolute;
+            top: 89px;
+            left: 72px;
+            text-align: center;
+            width: 138px;
+            height: 138px;
+            font-family: GothicRegular, Arial;
+            font-size: 11pt;
+            display: table;
+        }
+    
+        .description p {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
         }
     }
 
