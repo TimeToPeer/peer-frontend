@@ -30,7 +30,8 @@ const styles = () => ({
 		fontFamily: 'GothicRegular, Arial',
 		fontSize: '16pt',
 		overflow: 'hidden',
-		textAlign: 'center' as 'center',
+        textAlign: 'center' as 'center',
+        lineHeight: "normal",
 	},
 });
 
@@ -54,11 +55,11 @@ class Skills extends Component<IProps, IState> {
                     <div className='legend-item'><img src={Legend2} /> Teacher</div>
                 </div>
                 <ScoreWheel id={`critical-wheel-${id}`} score = {Number(critical)} teacher_score={Number(teacher_critical)}
-                    title='CRITICAL' description='I give feedback about my work.' />
+                    title='CRITICAL' description='I can support my opinions with facts' />
                 <ScoreWheel id={`creative-wheel-${id}`} score = {Number(creative)} teacher_score={Number(teacher_creative)}
-                    title='CREATIVE' description='I give feedback about my work.' />
+                    title='CREATIVE' description={"I can build on other people's ideas"} />
                 <ScoreWheel id={`responsible-wheel-${id}`} score = {Number(responsible)} teacher_score={Number(teacher_responsible)}
-                    title='COMMUNICATION' description='I give feedback about my work.' />
+                    title='COMMUNICATION' description='I can present information clearly.' />
             </React.Fragment>
         )
     }
